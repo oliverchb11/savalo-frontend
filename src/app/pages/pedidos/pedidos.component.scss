@@ -1,0 +1,111 @@
+.container-pedido {
+    background-color: #DCE1E3;
+    height: auto;
+}
+
+.categoria {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    line-height: 62px;
+}
+
+.categoria:hover {
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    background-color: rgb(13, 164, 205);
+}
+
+.categoria p {
+    font-size: 20px;
+    color: black;
+}
+
+.lista-pedidos {
+    width: 85%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.lista-pedidos h1 {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.card {
+    width: 100%;
+    box-shadow: 4px 4px 7px #ccc;
+    text-align: center;
+}
+
+.content-pedidos {
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+    height: auto;
+    margin: 0 auto;
+    gap: 1em;
+}
+
+.pedido {
+    background-color: #0D6EFD;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    color: #fff;
+}
+
+.tres-p {
+    cursor: pointer;
+}
+
+.pagar {
+    border: none;
+    background-color: #0D6EFD;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    color: #fff;
+}
+
+.p-generic {
+    color: #000000;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+span {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.state {
+    color: rgb(229, 184, 38);
+}
+
+.state-e {
+    color: rgb(15, 226, 11);
+}
+
+.state-a {
+    color: rgb(226, 11, 11);
+}

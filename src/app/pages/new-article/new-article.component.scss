@@ -1,0 +1,32 @@
+.newArticle {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    height: 70px;
+}
+
+.newArticle div {
+    height: 50px;
+}
+
+.form-control,
+.input-group-text {
+    border-radius: 0px !important;
+    box-shadow: 4px 4px 7px #ccc;
+}
+
+.button {
+    background-color: green;
+    color: black;
+}
+
+.button:disabled {
+    background-color: rgb(119, 138, 119);
+    opacity: 0.8;
+    color: black;
+    cursor: not-allowed;
+}
+
+.input-file {
+    content: "Foto";
+}

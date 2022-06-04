@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="container-pedido-mesa">
+    <div class="all-1">
+        <h3 class="text-center txt-category">Categorias</h3>
+        <nav class="navbar navbar-expand-lg navbar-color">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 txt-white">
+                        <li class="nav-item" *ngFor="let category of categorys">
+                            <a class="nav-link " aria-current="page" (click)="getArticle(category._id)">{{category.name}}</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+        <div class="categorys" *ngIf="articlesNew?.length > 0">
+            <div class="info" *ngFor="let article of articlesNew" (click)="dataArticle(article)">
+                <p> {{article.name}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="all-2">
+        <h3 class="text-center txt-category">Pedido</h3>
+        <form [formGroup]="formulario" (ngSubmit)="crearPedido(formulario.value)">
+            <div class="info-mesa">
+                <p>{{mesaData?.name}}</p>
+                <p>Numero de clientes: {{mesaData?.numeroClientes}}</p>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Nombre Cliente" aria-label="Nombre Cliente" aria-describedby="basic-addon1" formControlName="nameOrder">
+                </div>
+            </div>
+            <div class="info-mesa">
+                <p>Pedido: </p>
+                <p class="pedidos" *ngFor="let item of pedido">{{item.name}} - {{item.price | currency: 'COP' }}</p>
+            </div>
+            <div class="info-mesa">
+                <p>SubTotal: </p>
+                <p>{{subTotal | currency: '$'}}</p>
+                <div class="radios">
+                    <div class="r1">
+                        Incluir Servicio <input (change)="servicio($event)" type="checkbox" value="8" name="" id="">
+                    </div>
+                    <div class="r2">
+                        Propina <input (change)="propina($event)" type="checkbox" value="10" name="" id="">
+                    </div>
+                </div>
+                <p>Total: </p>
+                <p>{{total | currency: '$'}}</p>
+            </div>
+            <div class="info-mesa-4" [ngClass]="{'btn-disbled': subTotal === 0 }">
+                <button class="btn-create" type="submit" [disabled]="subTotal === 0"> Crear Pedido  </button>
+            </div>
+        </form>
+    </div>
+</div>

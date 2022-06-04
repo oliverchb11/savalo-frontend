@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+
+<div class="newCategory">
+    <h2 class="text-center">Nueva Categoria</h2>
+    <br>
+    <form [formGroup]="formulario" (ngSubmit)="createCategory(formulario.value)">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" formControlName="name">
+        </div>
+        <div class="input-group mb-3">
+            <select name="" formControlName="visibility" class="form-control" id="">
+            <option value="">Visibles para los clientes</option>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+        </select>
+        </div>
+        <div class="input-group mb-3 ">
+            <button type="submit" class="form-control button" [disabled]="formulario.invalid">Crear categoría</button>
+        </div>
+    </form>
+</div>

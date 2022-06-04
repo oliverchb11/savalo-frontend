@@ -1,0 +1,54 @@
+.ul {
+    list-style: none;
+    display: flex;
+    margin-right: 80px;
+    align-items: center;
+}
+
+ul li a {
+    font-size: 20px;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.img {
+    height: 50px;
+    width: 50px;
+    border-radius: 360px;
+}
+
+.title-p {
+    cursor: pointer;
+}
+
+.container-fluid {
+    gap: 4em;
+}
+
+.img-responsive {
+    height: 75px;
+    width: 130px;
+}
+
+.navbar-color {
+    background-color: #000000;
+}
+
+.txt-white li a {
+    color: #fff;
+    font-family: Ink Free;
+}
+
+.txt-white li a:hover {
+    color: #0D6EFD;
+}
+
+.active {
+    color: #0D6EFD !important;
+}
+
+.info-user {
+    font-family: Ink Free;
+}

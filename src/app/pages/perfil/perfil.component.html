@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container-perfil">
+    <div class="card">
+        <img *ngIf="previewImg === '' && imagen === ''" src="assets/img/no-photo.png" class="card-img-top" alt="no image">
+        <img *ngIf="previewImg !== '' && imagen === ''" [src]="previewImg" class="card-img-top" alt="no image">
+        <img *ngIf="imagen !== '' && previewImg === ''" [src]="imagen" class="card-img-top" alt="no image">
+        <input type="file" name="photo" (change)="fileUpload($event)" class="photo" id="">
+        <div class="card-body">
+            <h5 class="card-title">Nombre:</h5>
+            <p class="card-text">{{user?.name}} {{user?.firstname}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Correo: {{user?.email}}</li>
+            <li class="list-group-item">Edad: {{user?.age}} </li>
+            <li class="list-group-item">Celular: {{user?.cellphone}}</li>
+            <li class="list-group-item">Rol: {{rol}}</li>
+        </ul>
+        <div class="card-body">
+            <a class="card-link">Actualizar Información</a>
+        </div>
+    </div>
+</div>

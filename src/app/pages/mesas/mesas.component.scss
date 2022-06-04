@@ -1,0 +1,34 @@
+.container-mesas {
+    width: 60%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 4px 4px 7px #ccc;
+    border: 2px solid #000
+}
+
+.mesas-img {
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.mesa-ocupada {
+    color: red;
+}
+
+.mesa-libre {
+    color: rgb(39, 213, 33);
+}
+
+.all {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-grow: 4;
+}
+
+.button-add-mesas {
+    height: 100px;
+}

@@ -1,0 +1,83 @@
+.container-login {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.section-login {
+    width: 45%;
+    margin: 0 auto;
+    display: flex;
+    gap: 1em;
+    margin-top: 50px;
+}
+
+.titulo-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.olvide-clave {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 25px;
+}
+
+.botones input {
+    width: 250px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    gap: 1em;
+}
+
+.botones input:hover {
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+}
+
+.olvide-clave a {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.alert-danger {
+    width: 45%;
+    margin: 0 auto;
+}
+
+.not-available {
+    cursor: not-allowed !important;
+    z-index: 999 !important;
+}
+
+.not-available:hover {
+    z-index: 999 !important;
+    background-color: #fff !important;
+    color: rgba(152, 130, 130, 0.3) !important;
+    font-size: 18px !important;
+}
+
+.navbar-color {
+    background-color: #000000;
+}
+
+.img-responsive {
+    height: 75px;
+    width: 130px;
+}

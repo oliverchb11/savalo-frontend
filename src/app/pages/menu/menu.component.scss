@@ -1,0 +1,113 @@
+.container-menu {
+    width: 100%;
+    height: 100%
+}
+
+.categoria {
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    padding-left: 10px;
+    margin-top: 50px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    line-height: 62px;
+}
+
+.categoria:hover {
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    padding-left: 10px;
+    margin-top: 50px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    background-color: rgb(13, 164, 205);
+}
+
+.categoria p {
+    font-size: 20px;
+    color: black;
+}
+
+.importar {
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    padding-left: 10px;
+    margin-top: 50px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    line-height: 62px;
+}
+
+.importar:hover {
+    border: 1px solid #ccc;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    padding-left: 10px;
+    margin-top: 50px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    background-color: rgb(13, 164, 205);
+}
+
+.categorys {
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    height: 50px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(13, 164, 205)
+}
+
+.categorys:hover {
+    background-color: rgb(13, 164, 205);
+}
+
+.articles {
+    cursor: pointer;
+    padding: 10px;
+    width: 60%;
+    height: 50px;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    opacity: 0.8;
+}
+
+.articles:hover {
+    background-color: rgb(13, 164, 205);
+}
+
+.articles-info {
+    cursor: pointer;
+    padding: 10px;
+    width: 60%;
+    height: 50px;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    opacity: 0.8;
+    background-color: rgb(13, 205, 55);
+    background-color: rgb(13, 205, 55);
+}
+
+span {
+    font-size: 20px !important;
+    font-weight: 300 !important;
+}

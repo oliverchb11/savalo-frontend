@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class OrderService {
-
+  public API_PRODUCTION = environment.API_PRODUCTION;
+  public API_LOCAL = environment.API_PRODUCTION;
   public token = localStorage.getItem('token');
   constructor(
     private http: HttpClient
@@ -22,11 +23,11 @@ export class OrderService {
   };
 
   public allOrders(): Observable<ResponseOrderArray>{
-    return this.http.get<ResponseOrderArray>(`${environment.api_general}orders/all-orders`, this.httpOptions)
+    return this.http.get<ResponseOrderArray>(`${this.API_PRODUCTION}orders/all-orders`, this.httpOptions)
   }
 
   public createOrder(data: any): Observable<ResponseOrder>{
-    return this.http.post<ResponseOrder>(`${environment.api_general}orders/create`, data, this.httpOptions);
+    return this.http.post<ResponseOrder>(`${this.API_PRODUCTION}orders/create`, data, this.httpOptions);
   }
 
 }

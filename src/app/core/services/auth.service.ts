@@ -16,6 +16,8 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   public token = localStorage.getItem('token');
+  public API_PRODUCTION = environment.API_PRODUCTION;
+  public API_LOCAL = environment.API_PRODUCTION;
   constructor(
     private http: HttpClient,
   ) {
@@ -32,32 +34,32 @@ export class AuthService {
 
 
   public listUserById(id: string): Observable<UserList>{
-    return this.http.get<UserList>(`${environment.api}user/${id}`, {headers:{'x-token': this.token}});
+    return this.http.get<UserList>(`${this.API_PRODUCTION}auth/user/${id}`, {headers:{'x-token': this.token}});
   }
 
   public loginUser(user: LoginUser): Observable<LoginUserResponse>{
-    return this.http.post<LoginUserResponse>(`${environment.api}login`, user);
+    return this.http.post<LoginUserResponse>(`${this.API_PRODUCTION}auth/login`, user);
   }
 
   public registerUser(user: RegisterUser): Observable<RegisterUserResponse>{
-    return this.http.post<RegisterUserResponse>(`${environment.api}register`, user);
+    return this.http.post<RegisterUserResponse>(`${this.API_PRODUCTION}auth/register`, user);
   }
 
   public resetPassword(email: any): Observable<ResetPasswordResponse>{
-    return this.http.post<ResetPasswordResponse>(`${environment.api}reset-password`, email);
+    return this.http.post<ResetPasswordResponse>(`${this.API_PRODUCTION}auth/reset-password`, email);
   }
 
   public newPassword(password: any, userId: string, token: string): Observable<NewPasswordResponse>{
-    return this.http.post<NewPasswordResponse>(`${environment.api}${userId}/${token}`, password);
+    return this.http.post<NewPasswordResponse>(`${this.API_PRODUCTION}auth/${userId}/${token}`, password);
   }
 
   public getUploadPhoto(tipo: string, photo: string): Observable<any>{
-    return this.http.get<any>(`${environment.api_general}upload/${tipo}/${photo}`, this.httpOptions);
+    return this.http.get<any>(`${this.API_PRODUCTION}upload/${tipo}/${photo}`, this.httpOptions);
   }
 
   public updateUploadFile(file: File, tipo: string,idUser: string ): Observable<UploadPhotoResponse>{
     const formData = new FormData();
     formData.append('photo',file)
-    return this.http.put<UploadPhotoResponse>(`${environment.api_general}upload/images/${tipo}/${idUser}`, formData , {headers:{'x-token': this.token}})
+    return this.http.put<UploadPhotoResponse>(`${this.API_PRODUCTION}upload/images/${tipo}/${idUser}`, formData , {headers:{'x-token': this.token}})
   }
 }

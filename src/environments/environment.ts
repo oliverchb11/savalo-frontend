@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:4000/api/v1/auth/',
-  api_general: 'http://localhost:4000/api/v1/',
+  API_PRODUCTION: 'https://savalo-server-back.herokuapp.com/api/v1/',
+  API_LOCAL: 'http://localhost:4000/api/v1/',
 };
 
 /*

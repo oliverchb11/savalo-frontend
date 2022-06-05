@@ -13,7 +13,7 @@ export class PerfilComponent implements OnInit {
   public user: RegisterUser;
   public previewImg: string | ArrayBuffer = '';
   public rol: string | string[];
-  public baseUrl = environment.api_general;
+  public baseUrl = environment.API_PRODUCTION;
   public imagen: string = '';
   constructor(
     private authService: AuthService

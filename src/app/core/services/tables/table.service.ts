@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TableService {
-
+  public API_PRODUCTION = environment.API_PRODUCTION;
+  public API_LOCAL = environment.API_PRODUCTION;
   public token = localStorage.getItem('token');
   constructor(
     private http: HttpClient
@@ -22,17 +23,17 @@ export class TableService {
   };
 
   public createTable(data: DataTable): Observable<ResponseTable>{
-    return this.http.post<ResponseTable>(`${environment.api_general}tables/create`, data, this.httpOptions);
+    return this.http.post<ResponseTable>(`${this.API_PRODUCTION}tables/create`, data, this.httpOptions);
   }
 
   public allTables(): Observable<ResponseTable>{
-    return this.http.get<ResponseTable>(`${environment.api_general}tables/all-tables`, this.httpOptions)
+    return this.http.get<ResponseTable>(`${this.API_PRODUCTION}tables/all-tables`, this.httpOptions)
   }
   public tablesById(id: string): Observable<ResponseTableUpdate>{
-    return this.http.get<ResponseTableUpdate>(`${environment.api_general}tables/${id}`, this.httpOptions)
+    return this.http.get<ResponseTableUpdate>(`${this.API_PRODUCTION}tables/${id}`, this.httpOptions)
   }
 
   public updateTable(data: DataTable, id: string): Observable<ResponseTableUpdate>{
-    return this.http.put<ResponseTableUpdate>(`${environment.api_general}tables/update/${id}`,data , this.httpOptions);
+    return this.http.put<ResponseTableUpdate>(`${this.API_PRODUCTION}tables/update/${id}`,data , this.httpOptions);
   }
 }

@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CategoryService {
-
+  public API_PRODUCTION = environment.API_PRODUCTION;
+  public API_LOCAL = environment.API_PRODUCTION;
   public token = localStorage.getItem('token');
   constructor(
     private http: HttpClient
@@ -22,14 +23,14 @@ export class CategoryService {
   };
 
   public createCategory(data: DataCreateCategory): Observable<ResponseCreateCategory>{
-    return this.http.post<ResponseCreateCategory>(`${environment.api_general}category/create`, data, this.httpOptions);
+    return this.http.post<ResponseCreateCategory>(`${this.API_PRODUCTION}category/create`, data, this.httpOptions);
   }
 
   public allCategorys(): Observable<ResponseCreateCategory>{
-    return this.http.get<ResponseCreateCategory>(`${environment.api_general}category/all-categorys`, this.httpOptions);
+    return this.http.get<ResponseCreateCategory>(`${this.API_PRODUCTION}category/all-categorys`, this.httpOptions);
   }
 
   public categoryById(id: string): Observable<ResponseCreateCategoryId>{
-    return this.http.get<ResponseCreateCategoryId>(`${environment.api_general}category/${id}`, this.httpOptions);
+    return this.http.get<ResponseCreateCategoryId>(`${this.API_PRODUCTION}category/${id}`, this.httpOptions);
   }
 }

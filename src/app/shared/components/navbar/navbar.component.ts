@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class NavbarComponent implements OnInit {
   public user: RegisterUser;
-  public baseUrl = environment.api_general;
+  public baseUrl = environment.API_PRODUCTION;
   public imagen: string = '';
   constructor(
     private router: Router,

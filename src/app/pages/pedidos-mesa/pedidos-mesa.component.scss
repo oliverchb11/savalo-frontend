@@ -104,3 +104,14 @@ h3 {
 .info-mesa-4 .btn-create :disabled {
     background-color: red;
 }
+
+@media screen and (max-width: 768px) {
+    .container-pedido-mesa {
+        display: flex;
+        flex-direction: column;
+    }
+    .all-1,
+    .all-2 {
+        width: 100%;
+    }
+}

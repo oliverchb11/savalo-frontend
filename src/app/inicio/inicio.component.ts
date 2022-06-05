@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio.component.scss']
 })
 export class InicioComponent implements OnInit {
-
+  public dateNow = new Date();
   constructor(
     private router: Router,
   ) { }

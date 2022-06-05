@@ -32,3 +32,22 @@
 .button-add-mesas {
     height: 100px;
 }
+
+h2 {
+    font-size: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .container-mesas {
+        width: 100%;
+        border: none;
+    }
+    .all {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    h2 {
+        font-size: 30px;
+    }
+}

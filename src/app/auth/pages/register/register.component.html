@@ -91,10 +91,10 @@
                 <input type="submit" value="Registrarse" [disabled]="formulario.invalid" [ngClass]="{'not-available': formulario.invalid }">
                 <input type="button" (click)="login()" value="Iniciar Sesión">
             </div>
+            <div class="olvide-clave">
+                <a (click)="volver()">Volver al inicio</a>
+            </div>
         </form>
-        <div class="olvide-clave">
-            <a (click)="volver()">Volver al inicio</a>
-        </div>
     </div>
 
 </div>

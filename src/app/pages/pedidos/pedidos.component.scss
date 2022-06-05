@@ -109,3 +109,12 @@ span {
 .state-a {
     color: rgb(226, 11, 11);
 }
+
+@media screen and (max-width: 768px) {
+    .categoria {
+        width: 100%;
+    }
+    .container-pedido {
+        height: 1000px;
+    }
+}

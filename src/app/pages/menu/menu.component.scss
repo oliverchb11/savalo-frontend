@@ -111,3 +111,17 @@ span {
     font-size: 20px !important;
     font-weight: 300 !important;
 }
+
+@media screen and (max-width: 768px) {
+    .categoria,
+    .articles,
+    .categorys,
+    .importar,
+    .articles-info {
+        width: 100%;
+    }
+    .container-menu {
+        padding: 10px;
+        height: 964px;
+    }
+}

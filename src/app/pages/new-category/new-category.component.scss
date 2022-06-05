@@ -26,3 +26,10 @@
     color: black;
     cursor: not-allowed;
 }
+
+@media screen and (max-width: 768px) {
+    .newCategory {
+        width: 100%;
+        padding: 10px;
+    }
+}

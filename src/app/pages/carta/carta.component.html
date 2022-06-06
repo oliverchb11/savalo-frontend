@@ -1,43 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container ml-5">
     <h3 class="text-center">Carta</h3>
-    <div class="card">
-        <div class="imgagen">
-            <img src="assets/img/savalo-icono.webp" alt="">
-        </div>
-        <div class="contenido-carta">
-            <div class="content-1">
-                <p class="p-global">Bebidas Calientes</p>
-                <img src="assets/carta/cafe-caliente.png" alt="">
-                <div class="articulos" *ngFor="let item of [1,1,1,1,1]">
-                    <p>Expresso..............................</p>
-                    <p>2.000</p>
-                </div>
-            </div>
-            <div class="content-2">
-                <p class="p-global">Bebidas Frias</p>
-                <img src="assets/carta/cafe-frio.png" alt="">
-                <div class="articulos" *ngFor="let item of [1,1,1,1,1]">
-                    <p>Latte Frio..............................</p>
-                    <p>2.000</p>
-                </div>
-            </div>
-            <div class="content-3">
-                <p class="p-global">Helados</p>
-                <img src="assets/carta/helado.png" alt="">
-                <div class="articulos" *ngFor="let item of [1,1,1,1,1]">
-                    <p>Payasito..............................</p>
-                    <p>2.000</p>
-                </div>
-            </div>
-            <div class="content-4">
-                <p class="p-global">Malteadas</p>
-                <img src="assets/carta/malteadas.png" alt="">
-                <div class="articulos" *ngFor="let item of [1,1,1,1,1]">
-                    <p>Maltead de Cerveza..............................</p>
-                    <p>2.000</p>
-                </div>
-            </div>
-        </div>
+    <div class="card" *ngFor="let item of carta">
+        <img [src]="item.img" alt="">
     </div>
 </div>

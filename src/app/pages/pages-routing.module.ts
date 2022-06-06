@@ -12,6 +12,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { PersonalComponent } from './personal/personal.component';
 import { ReportesComponent } from './reportes/reportes.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path: 'nuevo-articulo/:id',
     component: NewArticleComponent
+  },
+  {
+    path: 'actualizar-perfil/:id',
+    component: UpdateProfileComponent
   },
 ];
 

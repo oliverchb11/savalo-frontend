@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { RegisterUser } from 'src/app/interfaces/register-user';
 import { roles } from 'src/app/utils/roles';
@@ -16,7 +17,8 @@ export class PerfilComponent implements OnInit {
   public baseUrl = environment.API_PRODUCTION;
   public imagen: string = '';
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,24 +45,10 @@ export class PerfilComponent implements OnInit {
 
 
 
-  public fileUpload(event): void {
-    let file = event.target.files[0];
-    let render = new FileReader();
-    render.readAsDataURL(file);
-    render.onload = () =>{
-      this.previewImg = render.result;
-      this.imagen = '';
-    }
-    this.updatePhoto(file);
-  }
 
-  public updatePhoto(file: File): void {
-    console.log(file);
-    this.authService.updateUploadFile(file,'usuarios', this.user?._id).subscribe((response) => {
-      if(response.success){
-        console.log(response);
-      }
-    })
+
+  public pageUpdateUser(id:string): void {
+    this.router.navigateByUrl(`pages/actualizar-perfil/${id}`)
   }
 
 }

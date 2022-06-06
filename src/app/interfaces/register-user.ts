@@ -9,4 +9,6 @@ export interface RegisterUser {
     _id?: string;
     __v? : number;
     photo?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

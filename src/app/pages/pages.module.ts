@@ -18,6 +18,7 @@ import { ModalComponent } from './modal/modal.component';
 import { UbicacionComponent } from './ubicacion/ubicacion.component';
 import { CartaComponent } from './carta/carta.component';
 import { PedidosMesaComponent } from './pedidos-mesa/pedidos-mesa.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { PedidosMesaComponent } from './pedidos-mesa/pedidos-mesa.component';
     ModalComponent,
     UbicacionComponent,
     CartaComponent,
-    PedidosMesaComponent
+    PedidosMesaComponent,
+    UpdateProfileComponent
   ],
   imports: [
     CommonModule,

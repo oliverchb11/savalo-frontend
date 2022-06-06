@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="container-perfil">
+    <div class="card">
+        <img *ngIf="previewImg === '' && imagen === ''" src="assets/img/no-photo.png" class="card-img-top" alt="no image">
+        <img *ngIf="previewImg !== '' && imagen === ''" [src]="previewImg" class="card-img-top" alt="no image">
+        <img *ngIf="imagen !== '' && previewImg === ''" [src]="imagen" class="card-img-top" alt="no image">
+        <input type="file" name="photo" (change)="fileUpload($event)" class="photo" id="">
+        <form [formGroup]="formulario" (ngSubmit)="updateProfile(formulario.value)">
+            <div class="card-body">
+                <h5 class="card-title">Nombre y apellido:</h5>
+                <p class="card-text">
+                    <input type="text" class="form-control" [value]="user?.name" formControlName="name">
+                    <input type="text" class="form-control" [value]="user?.firstname" formControlName="firstname"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Correo: <input type="email" class="form-control" [value]="user?.email" formControlName="email"></li>
+                <li class="list-group-item">Edad: {{user?.age}} <input type="number" class="form-control" [value]="user?.age" formControlName="age"> </li>
+                <li class="list-group-item">Celular: {{user?.cellphone}} <input type="number" class="form-control" [value]="user?.cellphone" formControlName="cellphone"></li>
+                <li class="list-group-item">Rol:
+                    <select name="" id="" class="form-control" formControlName="rol">
+                    <option [value]="(rol === 'Administrador') ? 1 : 2">{{rol}}</option>
+                    <option [value]="(rol === 'Administrador') ? 1 : 2">{{(rol === 'Administrador') ? 'Cajero' : 'Administrador'}}</option>
+                </select>
+                </li>
+            </ul>
+            <div class="card-body">
+                <button type="submit" class="form-control btn btn-primary" [disabled]="!validButtonUpdates()">
+                Actualizar Información
+            </button>
+            </div>
+        </form>
+    </div>
+</div>

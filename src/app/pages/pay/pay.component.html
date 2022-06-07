@@ -1,0 +1,13 @@
+<div class="container-pay">
+    <h2 class="text-center">Pagar</h2>
+    <div class="section-info-order">
+        <p>Fecha de la orden: <span>{{data.createdAt | date: 'YYYY-MM-dd'}}</span></p>
+        <p>Pedido de la orden: </p>
+        <p *ngFor="let item of data.articles"> <span> - {{item.name}}</span></p>
+        <p>Sub Total: <span>{{data.subTotal}}</span></p>
+        <p>Total: <span>{{data.total}}</span></p>
+    </div>
+    <div class="button">
+        <button class="form-control btn btn-success" (click)="payOrder(data)">Pagar</button>
+    </div>
+</div>

@@ -8,7 +8,7 @@
 
     <div class="lista-pedidos">
         <h1 class="text-center">Pedidos</h1>
-        <div class="row">
+        <div class="row" *ngIf="orders?.length > 0">
             <div class="col-md-3" *ngFor="let order of orders; let i = index">
                 <div class="card">
                     <p class="pedido">Pedido numero {{i+ 1}} / {{order.table.name}} <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots-vertical tres-p" viewBox="0 0 16 16">
@@ -20,14 +20,19 @@
                     <p *ngIf="order.preparationState === 'preparacion'" class="p-generic">Estado: <span class="state">{{order.preparationState}}</span></p>
                     <p *ngIf="order.preparationState === 'entregado'" class="p-generic">Estado: <span class="state-e">{{order.preparationState}}</span></p>
                     <p *ngIf="order.preparationState === 'alerta'" class="p-generic">Estado: <span class="state-a">{{order.preparationState}}</span></p>
+                    <p *ngIf="order.preparationState === 'pagado'" class="p-generic">Estado: <span class="state-p">{{order.preparationState}}</span></p>
                     <p class="p-generic">Pedidos:</p>
                     <p class="p-generic" *ngFor="let article of order.articles"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                       </svg> <span>{{article.name}}</span></p>
                     <p class="p-generic">Total: <span>{{order.total | currency: '$'}}</span></p>
-                    <button class="pagar">Pagar</button>
+                    <button class="pagar" *ngIf="order.preparationState !== 'pagado' " (click)="pay(order)">Pagar</button>
+                    <button class="pagar" *ngIf="order.preparationState === 'pagado' ">Pagado</button>
                 </div>
             </div>
+        </div>
+        <div class="row" *ngIf="orders?.length === 0">
+            <h1 class="text-center">No hay pedidos</h1>
         </div>
     </div>
 </div>

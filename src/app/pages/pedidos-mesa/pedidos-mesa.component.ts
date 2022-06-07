@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { OrderService } from 'src/app/core/services/orders/order.service';
@@ -37,6 +37,7 @@ export class PedidosMesaComponent implements OnInit {
     private tableService: TableService,
     private ordersService: OrderService,
     private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -142,6 +143,9 @@ export class PedidosMesaComponent implements OnInit {
           this.pedido = [];
           this.subTotal = 0;
           this.total = 0;
+          this.propinaState = false;
+          this.servicioState = false;
+          this.router.navigateByUrl('pages/pedidos');
         }
       })
     }

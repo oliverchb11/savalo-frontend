@@ -4,6 +4,8 @@ import { OrderService } from 'src/app/core/services/orders/order.service';
 import { DataOrders } from 'src/app/interfaces/orders/data-orders';
 import { ResponseOrder } from 'src/app/interfaces/orders/order-response';
 import * as moment from 'moment';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { PayComponent } from '../pay/pay.component';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -13,7 +15,8 @@ export class PedidosComponent implements OnInit {
   public orders : DataOrders[];
   constructor(
     private router: Router,
-    private ordersService: OrderService
+    private ordersService: OrderService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +56,18 @@ export class PedidosComponent implements OnInit {
        return ` ${respl} Horas`
     }
       
+  }
+
+  public pay(order): void {
+    console.log(order);
+   let dialogRef = this.dialog.open(PayComponent, {
+      data: order,
+    });
+
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log('cuando se cierra la modal muestra:', response);
+      
+    })
   }
 
 }

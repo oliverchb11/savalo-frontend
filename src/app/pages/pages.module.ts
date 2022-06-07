@@ -19,6 +19,7 @@ import { UbicacionComponent } from './ubicacion/ubicacion.component';
 import { CartaComponent } from './carta/carta.component';
 import { PedidosMesaComponent } from './pedidos-mesa/pedidos-mesa.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { PayComponent } from './pay/pay.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     UbicacionComponent,
     CartaComponent,
     PedidosMesaComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    PayComponent
   ],
   imports: [
     CommonModule,

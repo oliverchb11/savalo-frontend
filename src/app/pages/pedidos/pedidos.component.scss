@@ -51,6 +51,10 @@
     text-align: center;
 }
 
+.card-preparacion {
+    width: 100%;
+}
+
 .content-pedidos {
     display: flex;
     width: 95%;
@@ -108,6 +112,10 @@ span {
 
 .state-a {
     color: rgb(226, 11, 11);
+}
+
+.state-p {
+    color: rgb(20, 79, 206);
 }
 
 @media screen and (max-width: 768px) {

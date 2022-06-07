@@ -29,5 +29,9 @@ export class OrderService {
   public createOrder(data: any): Observable<ResponseOrder>{
     return this.http.post<ResponseOrder>(`${this.API_PRODUCTION}orders/create`, data, this.httpOptions);
   }
+  public updateOrder(data: any, id: string): Observable<ResponseOrder>{
+    return this.http.put<ResponseOrder>(`${this.API_PRODUCTION}orders/update/${id}`, data, this.httpOptions);
+  }
+
 
 }

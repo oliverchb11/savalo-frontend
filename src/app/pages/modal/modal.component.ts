@@ -14,6 +14,7 @@ import { successAlertGlobal } from 'src/app/utils/global-alerts';
 export class ModalComponent implements OnInit, AfterViewInit {
   color: ThemePalette = 'accent';
   public stateTable = true;
+  public isAdd = false;
   checked = false;
   disabled = false;
   public formulario: FormGroup;
@@ -40,8 +41,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
   private dataBuilder(): void{
     this.formulario = this.fb.group({
-      numeroClientes: ['', Validators.required],
-      libre: [true, Validators.requiredTrue]
+      numeroClientes: ['', [Validators.required , Validators.pattern('[1-9]')]],
+      libre: [true]
     })
   }
 
@@ -57,6 +58,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
     this.tableService.updateTable(data, this.data.data._id).subscribe((response) => {
       if(response.success){
         console.log(response);
+        this.isAdd = true;
       }
     })
   }

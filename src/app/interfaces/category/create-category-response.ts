@@ -10,3 +10,7 @@ export interface ResponseCreateCategoryId{
     message: string;
     category: DataCreateCategory;
 }
+export interface ResponseDelete{
+    success: boolean;
+    message: string;
+}

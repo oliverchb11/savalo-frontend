@@ -26,7 +26,7 @@ export class PedidosComponent implements OnInit {
   }
 
   public addCategory(): void{
-    // this.router.navigateByUrl('pages/nueva-categoria')
+    this.router.navigateByUrl('pages/mesas')
   }
 
   public getOrders(): void{

@@ -28,7 +28,6 @@ export const successAlertLogin = () => {
         showConfirmButton: false,
     });
 }
-
 export const dismissAlertLogin = () => {
     Swal.close();
 }
@@ -39,3 +38,5 @@ export const errorAlert = (mensaje) => {
         icon: 'error'
     });
 }
+
+

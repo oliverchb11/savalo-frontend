@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
   public userInfoStorage(): void {
     let user = JSON.parse(localStorage.getItem('user'));
     this.user = user;
-    console.log(this.user);
     this.listUserId(user._id);
   }
 
@@ -48,7 +47,6 @@ export class NavbarComponent implements OnInit {
       if(response.success){
         this.user = response.user;
         this.imagen = `${this.baseUrl}upload/usuarios/${this.user.photo}`;
-        console.log(this.user);
         
       }
     })

@@ -25,6 +25,9 @@ export class CategoryService {
   public createCategory(data: DataCreateCategory): Observable<ResponseCreateCategory>{
     return this.http.post<ResponseCreateCategory>(`${this.API_PRODUCTION}category/create`, data, this.httpOptions);
   }
+  public updateCategory(data: any, id: string): Observable<ResponseCreateCategory>{
+    return this.http.put<ResponseCreateCategory>(`${this.API_PRODUCTION}category/update/${id}`, data, this.httpOptions);
+  }
 
   public allCategorys(): Observable<ResponseCreateCategory>{
     return this.http.get<ResponseCreateCategory>(`${this.API_PRODUCTION}category/all-categorys`, this.httpOptions);
@@ -32,5 +35,8 @@ export class CategoryService {
 
   public categoryById(id: string): Observable<ResponseCreateCategoryId>{
     return this.http.get<ResponseCreateCategoryId>(`${this.API_PRODUCTION}category/${id}`, this.httpOptions);
+  }
+  public deleteCategoryById(id: string): Observable<ResponseCreateCategoryId>{
+    return this.http.delete<ResponseCreateCategoryId>(`${this.API_PRODUCTION}category/delete/${id}`, this.httpOptions);
   }
 }

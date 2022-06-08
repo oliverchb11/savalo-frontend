@@ -1,0 +1,23 @@
+.container-g {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.content input {
+    width: 70%;
+    height: 40px;
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 30%;
+}

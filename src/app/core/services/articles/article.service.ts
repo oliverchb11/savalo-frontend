@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponseCreateArticle } from 'src/app/interfaces/article/create-article-response';
+import { ResponseArticleDelete, ResponseArticleId, ResponseCreateArticle, ResponseUpdateArticle } from 'src/app/interfaces/article/create-article-response';
 import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
 import { environment } from 'src/environments/environment';
 
@@ -25,8 +25,17 @@ export class ArticleService {
   public createArticle(data: DataCreateArticle): Observable<ResponseCreateArticle>{
     return this.http.post<ResponseCreateArticle>(`${this.API_PRODUCTION}articles/create`, data, this.httpOptions);
   }
+  public updateArticle(data: any, id: string): Observable<ResponseUpdateArticle>{
+    return this.http.put<ResponseUpdateArticle>(`${this.API_PRODUCTION}articles/update/${id}`, data, this.httpOptions);
+  }
 
   public allArticles(): Observable<ResponseCreateArticle>{
     return this.http.get<ResponseCreateArticle>(`${this.API_PRODUCTION}articles/all-articles`, this.httpOptions);
+  }
+  public articlesById(id: string): Observable<ResponseArticleId>{
+    return this.http.get<ResponseArticleId>(`${this.API_PRODUCTION}articles/${id}`, this.httpOptions);
+  }
+  public deletearticles(id: string): Observable<ResponseArticleDelete>{
+    return this.http.delete<ResponseArticleDelete>(`${this.API_PRODUCTION}articles/delete/${id}`, this.httpOptions);
   }
 }

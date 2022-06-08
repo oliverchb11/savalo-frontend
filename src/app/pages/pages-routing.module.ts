@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartaComponent } from './carta/carta.component';
+import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos.component';
+import { GestionCategoriaComponent } from './gestion-categoria/gestion-categoria.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { MesasComponent } from './mesas/mesas.component';
@@ -66,6 +68,14 @@ const routes: Routes = [
   {
     path: 'actualizar-perfil/:id',
     component: UpdateProfileComponent
+  },
+  {
+    path: 'gestion-categoria/:id',
+    component: GestionCategoriaComponent
+  },
+  {
+    path: 'gestion-articulo/:id',
+    component: GestionArticulosComponent
   },
 ];
 

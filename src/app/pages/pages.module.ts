@@ -20,6 +20,8 @@ import { CartaComponent } from './carta/carta.component';
 import { PedidosMesaComponent } from './pedidos-mesa/pedidos-mesa.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { PayComponent } from './pay/pay.component';
+import { GestionCategoriaComponent } from './gestion-categoria/gestion-categoria.component';
+import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { PayComponent } from './pay/pay.component';
     CartaComponent,
     PedidosMesaComponent,
     UpdateProfileComponent,
-    PayComponent
+    PayComponent,
+    GestionCategoriaComponent,
+    GestionArticulosComponent
   ],
   imports: [
     CommonModule,

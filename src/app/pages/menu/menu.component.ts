@@ -62,4 +62,13 @@ export class MenuComponent implements OnInit {
     this.articles = result;
   }
 
+  public gestionCategoy(category): void {
+    console.log(category);
+    this.router.navigate(['pages/gestion-categoria', category._id])
+  }
+  public gestionArticle(article): void {
+    console.log(article);
+    this.router.navigate(['pages/gestion-articulo', article._id])
+  }
+
 }

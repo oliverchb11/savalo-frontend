@@ -6,13 +6,15 @@
           </svg> Añadir nueva categoría</p>
     </div>
     <div class="all">
-        <div class="categorias" *ngFor="let category of categorys">
-            <div class="categorys">
-                <p>Categoria: <span>{{category.name}}</span></p>
+        <div class="categorias" *ngFor="let category of categorys; let i = index">
+            <div class="categorys bg-primary">
+                <p>{{category.name}} </p>
+                <span class="badge bg-secondary">{{i+1}}</span>
             </div>
             <div class="prueba" *ngFor="let article of articles">
                 <div class="articles-info" *ngIf="category._id === article.category">
                     <p> - {{article.name}} </p>
+                    <span class="badge bg-dark b-article">{{article.price | currency: '$'}}</span>
                 </div>
             </div>
             <div class="articles" (click)="addArticle(category._id)">

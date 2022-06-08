@@ -29,6 +29,7 @@ export class PedidosMesaComponent implements OnInit {
   public propinaVal: number = 0;
   public servicioVal: number = 0;
   public formulario: FormGroup;
+  public contador =0;
   public pedido: any[] = [];
   constructor(
     private categoryService: CategoryService,
@@ -94,8 +95,8 @@ export class PedidosMesaComponent implements OnInit {
     }
 
     public dataArticle(article): void {
+
       this.pedido.push(article);
-      console.log(this.pedido);
       let contador = 0;
       this.pedido.map((pedido) => {
         contador += pedido.price;
@@ -111,6 +112,10 @@ export class PedidosMesaComponent implements OnInit {
         let valorServicio = parseInt(event.target.value);
         this.servicioVal = (this.subTotal * valorServicio) / 100;
         this.total = this.subTotal + this.servicioVal;
+      }else{
+        console.log(this.servicioVal);
+        
+        this.total =  this.total - this.servicioVal ;
       }
       
       
@@ -121,6 +126,10 @@ export class PedidosMesaComponent implements OnInit {
         let valorPropina = parseInt(event.target.value);
         this.propinaVal = (this.subTotal * valorPropina) / 100;
         this.total = this.subTotal + this.propinaVal;
+      }else{
+        console.log(this.propinaVal);
+        
+        this.total = this.total - this.propinaVal ;
       }
     }
 
@@ -148,5 +157,13 @@ export class PedidosMesaComponent implements OnInit {
           this.router.navigateByUrl('pages/pedidos');
         }
       })
+    }
+
+    public deletePedido(index: number): void {
+      console.log(this.pedido[index].price, this.subTotal);
+      
+      this.subTotal = this.subTotal - this.pedido[index].price;
+      this.total = this.total - this.pedido[index].price;
+      this.pedido.splice(index,1)
     }
 }

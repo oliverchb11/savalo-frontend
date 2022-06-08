@@ -42,13 +42,21 @@
 }
 
 .info {
-    background-color: #0D6EFD;
+    background-color: #fff;
     width: 100px;
     height: 60px;
     padding: 5px;
     border-radius: 5px;
-    color: #fff;
+    color: #000;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgb(0 0 0 / 24%) 0px 1.5px 4px, rgb(0 0 0 / 19%) 0px 0.5px 2px;
+}
+
+.info:hover {
+    background-color: #CFE4F4;
 }
 
 .info p {
@@ -90,6 +98,10 @@ h3 {
 
 .pedidos {
     border-bottom: 2px dashed #000;
+}
+
+.pedidos svg {
+    cursor: pointer;
 }
 
 .radios {

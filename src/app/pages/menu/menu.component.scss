@@ -62,21 +62,26 @@
     background-color: rgb(13, 164, 205);
 }
 
+.categorias {
+    margin-bottom: 30px;
+}
+
 .categorys {
+    display: flex;
+    justify-content: space-between;
     width: 60%;
     margin: 0 auto;
     box-shadow: 4px 4px 7px #ccc;
-    color: black;
+    color: white;
     height: 50px;
     padding: 10px;
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
-    background-color: rgb(13, 164, 205)
 }
 
 .categorys:hover {
-    background-color: rgb(13, 164, 205);
+    background-color: rgba(32, 75, 245, 0.822)
 }
 
 .articles {
@@ -88,28 +93,39 @@
     box-shadow: 4px 4px 7px #ccc;
     color: black;
     opacity: 0.8;
+    background-color: #ccc;
 }
 
 .articles:hover {
-    background-color: rgb(13, 164, 205);
+    background-color: #ccc;
 }
 
 .articles-info {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
     width: 60%;
     height: 50px;
     margin: 0 auto;
     box-shadow: 4px 4px 7px #ccc;
     color: black;
-    opacity: 0.8;
-    background-color: rgb(13, 205, 55);
-    background-color: rgb(13, 205, 55);
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
 }
 
-span {
-    font-size: 20px !important;
-    font-weight: 300 !important;
+.articles-info:hover {
+    background-color: #CFE4F4;
+}
+
+.articles-info p {
+    font-size: 16px;
+}
+
+.b-article {
+    font-size: 15px;
+    font-weight: 400;
 }
 
 @media screen and (max-width: 768px) {

@@ -19,9 +19,9 @@ import { successAlertGlobal } from 'src/app/utils/global-alerts';
 export class PedidosMesaComponent implements OnInit {
   public categorys: DataCreateCategory[];
   public articles: DataCreateArticle[];
+  public mesaData: DataTable;
   public articlesId: string[] = [];
   public articlesNew: DataCreateArticle[];
-  public mesaData: DataTable;
   public subTotal: number = 0;
   public total: number = 0;
   public propinaState: boolean = false;

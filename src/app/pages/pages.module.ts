@@ -22,6 +22,8 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { PayComponent } from './pay/pay.component';
 import { GestionCategoriaComponent } from './gestion-categoria/gestion-categoria.component';
 import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos.component';
+import { CambioEstadoOrdenComponent } from './cambio-estado-orden/cambio-estado-orden.component';
+import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos
     UpdateProfileComponent,
     PayComponent,
     GestionCategoriaComponent,
-    GestionArticulosComponent
+    GestionArticulosComponent,
+    CambioEstadoOrdenComponent,
+    EditarOrdernesComponent
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { ResponseOrder } from 'src/app/interfaces/orders/order-response';
 import * as moment from 'moment';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PayComponent } from '../pay/pay.component';
+import { CambioEstadoOrdenComponent } from '../cambio-estado-orden/cambio-estado-orden.component';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -68,6 +69,18 @@ export class PedidosComponent implements OnInit {
       console.log('cuando se cierra la modal muestra:', response);
       
     })
+  }
+
+  public changeState(order): void{
+    this.dialog.open(CambioEstadoOrdenComponent, {
+      data: order,
+      minWidth: '30%',
+      maxWidth: '30%'
+    })
+  }
+
+  public editOrder(order): void{
+    this.router.navigateByUrl(`pages/editar-ordenes/${order._id}`)
   }
 
 }

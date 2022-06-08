@@ -90,7 +90,7 @@ export class GestionArticulosComponent implements OnInit {
   }
   public deteleCategory(id: string): void{
     Swal.fire({
-      title: `Seguro desea eliminar la categoria ${this.article.name}`,
+      title: `Seguro desea eliminar el producto ${this.article.name}`,
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: 'Eliminar',

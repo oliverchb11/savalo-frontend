@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartaComponent } from './carta/carta.component';
+import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.component';
 import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos.component';
 import { GestionCategoriaComponent } from './gestion-categoria/gestion-categoria.component';
 import { HomeComponent } from './home/home.component';
@@ -76,6 +77,10 @@ const routes: Routes = [
   {
     path: 'gestion-articulo/:id',
     component: GestionArticulosComponent
+  },
+  {
+    path: 'editar-ordenes/:id',
+    component: EditarOrdernesComponent
   },
 ];
 

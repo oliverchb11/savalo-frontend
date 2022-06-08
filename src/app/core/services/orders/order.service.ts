@@ -32,6 +32,9 @@ export class OrderService {
   public updateOrder(data: any, id: string): Observable<ResponseOrder>{
     return this.http.put<ResponseOrder>(`${this.API_PRODUCTION}orders/update/${id}`, data, this.httpOptions);
   }
+  public getOrderById(id: string): Observable<ResponseOrder>{
+    return this.http.get<ResponseOrder>(`${this.API_PRODUCTION}orders/${id}`, this.httpOptions);
+  }
 
 
 }

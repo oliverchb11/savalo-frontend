@@ -72,6 +72,16 @@
     font-weight: bold;
     padding: 10px;
     color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.sub-menu-state {
+    list-style: none;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .tres-p {

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center">Cambiar estado de la orden</h3>
+            <div class="input-group">
+                <select *ngIf="data.preparationState === 'preparacion'" class="form-control" name="" id="" [ngModel]="state" (ngModelChange)="estadoAcutal($event)">
+                    <option [value]="data.preparationState">{{data.preparationState}}</option>
+                    <option value="entregado">Entregado</option>
+                    <option value="reclamo">Reclamo</option>
+                </select>
+                <select *ngIf="data.preparationState === 'entregado'" class="form-control" name="" id="" [ngModel]="state" (ngModelChange)="estadoAcutal($event)">
+                    <option [value]="data.preparationState">{{data.preparationState}}</option>
+                    <option value="preparacion">Preparacion</option>
+                    <option value="reclamo">Reclamo</option>
+                </select>
+                <select *ngIf="data.preparationState === 'reclamo'" class="form-control" name="" id="" [ngModel]="state" (ngModelChange)="estadoAcutal($event)">
+                    <option [value]="data.preparationState">{{data.preparationState}}</option>
+                    <option value="preparacion">Preparacion</option>
+                    <option value="entregado">Entregado</option>
+                </select>
+                <button class="btn btn-primary" (click)="changeState(data._id)">Cambiar</button>
+            </div>
+        </div>
+    </div>
+</div>

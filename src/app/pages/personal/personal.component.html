@@ -1,1 +1,18 @@
 <app-navbar></app-navbar>
+<div class="container">
+    <h2 class="text-center">Personal</h2>
+    <div class="row">
+        <div class="col-md-3" *ngFor="let user of users">
+            <div class="card">
+                <figure>
+                    <img src="{{baseUrl}}upload/usuarios/{{user.photo}}" alt="">
+                </figure>
+                <p class="text-justify">Nombre: <span>{{user.name}} {{user.firstname}}</span></p>
+                <p class="text-justify">Cargo: <span>{{(user.rol[0] === '1') ? 'Administrador' : 'Cajero'}}</span></p>
+                <p class="text-justify">Edad: <span>{{user.age}}</span> </p>
+                <p class="text-justify">Celular: <span>{{user.cellphone}}</span> </p>
+                <p class="text-justify">Email: <span>{{user.email}}</span> </p>
+            </div>
+        </div>
+    </div>
+</div>

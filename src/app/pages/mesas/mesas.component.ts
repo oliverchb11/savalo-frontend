@@ -22,6 +22,8 @@ export class MesasComponent implements OnInit {
 
   ngOnInit(): void {
     this.allTablesComp()
+
+    
   }
 
   public mesaInfo(info): void {

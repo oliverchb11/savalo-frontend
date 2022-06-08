@@ -5,3 +5,8 @@ export interface ResponseProfile{
     message: string;
     user: RegisterUser
 }
+export interface ResponseAllUsers{
+    success: boolean;
+    message: string;
+    users: RegisterUser[]
+}

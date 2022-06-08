@@ -35,7 +35,7 @@ export class NewArticleComponent implements OnInit {
     this.formulario = this.fb.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
-      amount: ['', Validators.required],
+      amount: [''],
       description: [''],
       available: [''],
       visibility: [''],

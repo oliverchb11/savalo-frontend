@@ -2,18 +2,18 @@
     <h2 class="text-center">Pagar</h2>
     <div class="section-info-order">
         <p>Fecha de la orden: <span>{{data.createdAt | date: 'YYYY-MM-dd'}}</span></p>
-        <p>Pedido de la orden: </p>
+        <p>Lista de Productos: </p>
         <p *ngFor="let item of data.articles"> <span> - {{item.name}}</span></p>
         <p>Sub Total: <span>{{data.subTotal | currency: '$'}}</span></p>
         <div class="radios">
             <div class="r1">
-                Incluir Servicio ({{servicioVal}}) <input (change)="servicio($event, data.subTotal)" type="checkbox" value="8" name="" id="">
+                Impuesto al Consumo 8% ({{servicioVal}}) <input (change)="servicio($event, data.subTotal)" type="checkbox" value="8" name="" id="">
             </div>
             <div class="r2">
-                Propina ({{propinaVal}}) <input (change)="propina($event, data.subTotal)" type="checkbox" value="10" name="" id="">
+                Propina 10% ({{propinaVal}}) <input (change)="propina($event, data.subTotal)" type="checkbox" value="10" name="" id="">
             </div>
         </div>
-        <p>Total: <span>{{total | currency: '$'}}</span></p>
+        <p class="my-3">Total: <span>{{total | currency: '$'}}</span></p>
     </div>
     <div class="button">
         <button class="form-control btn btn-success" (click)="payOrder(data, total)">Pagar</button>

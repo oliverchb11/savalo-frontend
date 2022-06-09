@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<div class="newArticle">
-    <h2 class="text-center">Nuevo Articulo para la categoría {{category?.name}}: </h2>
+<div class="newArticle" style="max-width: 40rem;">
+    <h2 class="text-center">Nuevo Articulo Para La Categoría {{category?.name}}: </h2>
     <br>
     <form [formGroup]="formulario" (ngSubmit)="createArticle(formulario.value)">
         <div class="input-group mb-3">
@@ -35,5 +35,6 @@
         <div class="input-group mb-3 ">
             <button type="submit" class="form-control button" [disabled]="formulario.invalid">Crear articulo</button>
         </div>
+        <button class=" form-control btn btn-warning btn-sm" role="button" [routerLink]="['/pages/menu']">Regresar</button>
     </form>
 </div>

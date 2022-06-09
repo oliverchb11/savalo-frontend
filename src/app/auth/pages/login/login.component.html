@@ -3,22 +3,22 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <h3 class="text-light">
-                    <img class="img-responsive" src="assets/img/savalo-icono.webp" alt="">
+                    <img class="img-responsive" src="assets/img/logo-savalo.png" alt="">
                 </h3>
             </a>
         </div>
     </nav>
-    <div class="content">
+    <div class="content mx-auto" style="max-width: 70rem;">
         <div class="titulo-login">
             <h2>Inicio De Sesión</h2>
         </div>
         <form [formGroup]="formulario" (ngSubmit)="login(formulario.value)">
-            <div class="section-login">
-                <div class="input-group mb-3" [ngClass]="{'fail-input': validEmail}">
+            <div class="section-login">                
+                <div class="input-group mb-3" [ngClass]="{'fail-input': validEmail}">                    
                     <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                  </svg></span>
+                  </svg></span>                    
                     <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" formControlName="email">
                 </div>
 

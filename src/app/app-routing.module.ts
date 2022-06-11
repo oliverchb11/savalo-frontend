@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ValidTokenSesionGuard } from './guards/valid-token-sesion.guard';
+import { LayoutComponent } from './layout/layout.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: LayoutComponent,
     children: [
       {
         path: 'pages',

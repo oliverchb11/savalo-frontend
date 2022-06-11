@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PayComponent } from '../pay/pay.component';
 import { CambioEstadoOrdenComponent } from '../cambio-estado-orden/cambio-estado-orden.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -14,6 +15,7 @@ import { CambioEstadoOrdenComponent } from '../cambio-estado-orden/cambio-estado
 })
 export class PedidosComponent implements OnInit {
   public orders : DataOrders[];
+  public subscription: Subscription
   constructor(
     private router: Router,
     private ordersService: OrderService,
@@ -22,7 +24,9 @@ export class PedidosComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOrders();
-
+    this.subscription = this.ordersService.refresOrder$.subscribe(() => {
+      this.getOrders();
+    })
     
   }
 

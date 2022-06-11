@@ -10,3 +10,7 @@ export interface ResponseTableUpdate{
     message: string;
     tables: DataTable;
 }
+export interface ResponseTableDelete{
+    success: boolean;
+    message: string;
+}

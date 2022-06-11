@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    CarouselComponent
+    CarouselComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
   ], 
   exports: [
     NavbarComponent,
-    CarouselComponent
+    CarouselComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

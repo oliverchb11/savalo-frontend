@@ -1,0 +1,19 @@
+<div class="container-create-table">
+    <h2 class="text-center">Crear Mesa</h2>
+    <form [formGroup]="formulario" (ngSubmit)="createTable(formulario.value)">
+        <div class="group-inputs">
+            <input class="form-control" formControlName="name" type="text" placeholder="Nombre Mesa">
+        </div>
+        <div class="group-inputs">
+            <input class="form-control" formControlName="numeroSillas" type="number" placeholder="Numero de sillas">
+        </div>
+        <div class="group-button">
+            <button type="submit" class="form-control btn btn-primary">
+                Crear Mesa
+            </button>
+            <button type="button" class="form-control btn btn-danger">
+                Salir
+            </button>
+        </div>
+    </form>
+</div>

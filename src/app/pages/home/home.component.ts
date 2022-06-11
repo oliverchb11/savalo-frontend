@@ -12,6 +12,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let hola = 'Hola como estas ';
+    let sinEspacios = hola.trim();
+    console.log(sinEspacios);
+    
   }
 
 }

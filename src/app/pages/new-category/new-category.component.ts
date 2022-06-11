@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
-import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import { errorAlert, successAlertGlobal } from 'src/app/utils/global-alerts';
 
 @Component({
   selector: 'app-new-category',
@@ -44,6 +44,9 @@ export class NewCategoryComponent implements OnInit {
         successAlertGlobal(response.message);
         this.router.navigateByUrl('pages/menu');
       }
+    }, (error) => {
+      console.log(error);
+      errorAlert(error.error.message);
     })
   }
 

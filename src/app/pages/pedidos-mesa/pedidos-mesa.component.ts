@@ -8,7 +8,7 @@ import { TableService } from 'src/app/core/services/tables/table.service';
 import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
 import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
 import { DataOrders } from 'src/app/interfaces/orders/data-orders';
-import { DataTable } from 'src/app/interfaces/table/data.table';
+import { DataTable, DataTableOrder } from 'src/app/interfaces/table/data.table';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
 
 @Component({
@@ -19,16 +19,18 @@ import { successAlertGlobal } from 'src/app/utils/global-alerts';
 export class PedidosMesaComponent implements OnInit {
   public categorys: DataCreateCategory[];
   public articles: DataCreateArticle[];
-  public mesaData: DataTable;
+  public mesaData: any;
   public articlesId: string[] = [];
   public articlesNew: DataCreateArticle[];
   public subTotal: number = 0;
   public total: number = 0;
+  public totalOders: number = 0;
   public propinaState: boolean = false;
   public servicioState: boolean = false;
   public propinaVal: number = 0;
   public servicioVal: number = 0;
   public formulario: FormGroup;
+  public idMesa: string;
   public contador =0;
   public pedido: any[] = [];
   constructor(
@@ -56,10 +58,13 @@ export class PedidosMesaComponent implements OnInit {
 
   public paramsData(): void{
     this.activeRouter.params.subscribe((params: any) => {
+      this.idMesa = params.id;
       this.tableService.tablesById(params.id).subscribe((response) => {
         if(response.success){
           console.log(response);
-            this.mesaData = response.tables
+            this.mesaData = response.tables;
+            this.totalOders = response.tables.orders.total;
+          
         }
       })
     })  
@@ -148,6 +153,7 @@ export class PedidosMesaComponent implements OnInit {
       this.ordersService.createOrder(datosCrearPedido).subscribe((response) => {
         if (response.success){
           successAlertGlobal(response.message);
+          this.updateTable(this.idMesa, datosCrearPedido.articles,  response.orders._id)
           this.formulario.reset();
           this.pedido = [];
           this.subTotal = 0;
@@ -165,5 +171,25 @@ export class PedidosMesaComponent implements OnInit {
       this.subTotal = this.subTotal - this.pedido[index].price;
       this.total = this.total - this.pedido[index].price;
       this.pedido.splice(index,1)
+    }
+    public deletePedidoId(id: string): void {
+
+    }
+
+    public updateTable(id: string, articles: string[], idOrder: string): void {
+      const data = {
+        libre: false,
+        articles: articles,
+        orders: idOrder
+      }
+        this.tableService.updateTable(data, id).subscribe((response) => {
+          if(response.success){
+            console.log(response);
+          }
+        })
+    }
+
+    public updateOrder(idOrder: string): void {
+      console.log(idOrder);
     }
 }

@@ -24,6 +24,7 @@ import { GestionCategoriaComponent } from './gestion-categoria/gestion-categoria
 import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos.component';
 import { CambioEstadoOrdenComponent } from './cambio-estado-orden/cambio-estado-orden.component';
 import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.component';
+import { CreateTableComponent } from './create-table/create-table.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.compo
     GestionCategoriaComponent,
     GestionArticulosComponent,
     CambioEstadoOrdenComponent,
-    EditarOrdernesComponent
+    EditarOrdernesComponent,
+    CreateTableComponent
   ],
   imports: [
     CommonModule,

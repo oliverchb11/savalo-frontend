@@ -28,6 +28,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.dataBuilder();
+    console.log(this.data, 'importante');
     
   }
   ngAfterViewInit(): void {
@@ -53,8 +54,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   public updateTable(data): void {
-    console.log(data, this.data.data._id);
-    
     this.tableService.updateTable(data, this.data.data._id).subscribe((response) => {
       if(response.success){
         console.log(response);
@@ -70,6 +69,19 @@ export class ModalComponent implements OnInit, AfterViewInit {
   public orderRedirection(id): void{
     this.router.navigateByUrl(`pages/pedidos-mesa/${id}`);
     this.dialogo.close()
+  }
+  public orderRedirection2(id): void{
+    this.router.navigateByUrl(`pages/pedidos-mesa/${id}`);
+    this.dialogo.close()
+  }
+
+  public deleteTable(id): void {
+    this.tableService.tablesDelete(id).subscribe((response) => {
+      if(response.success){
+        successAlertGlobal(response.message);
+        this.dialogo.close();
+      }
+    })
   }
 
 }

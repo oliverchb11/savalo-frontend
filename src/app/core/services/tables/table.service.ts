@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { DataTable } from 'src/app/interfaces/table/data.table';
-import { ResponseTable, ResponseTableUpdate } from 'src/app/interfaces/table/table-response';
+import { ResponseTable, ResponseTableDelete, ResponseTableUpdate } from 'src/app/interfaces/table/table-response';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class TableService {
   public API_PRODUCTION = environment.API_PRODUCTION;
   public API_LOCAL = environment.API_PRODUCTION;
+  private _tableSubject$ = new Subject<void>();
   public token = localStorage.getItem('token');
   constructor(
     private http: HttpClient
@@ -22,8 +24,16 @@ export class TableService {
     } )
   };
 
+  get refresh$(){
+    return this._tableSubject$;
+  }
+
   public createTable(data: DataTable): Observable<ResponseTable>{
-    return this.http.post<ResponseTable>(`${this.API_PRODUCTION}tables/create`, data, this.httpOptions);
+    return this.http.post<ResponseTable>(`${this.API_PRODUCTION}tables/create`, data, this.httpOptions).pipe(
+      tap(() => {
+        this.refresh$.next()
+      })
+    );
   }
 
   public allTables(): Observable<ResponseTable>{
@@ -32,8 +42,15 @@ export class TableService {
   public tablesById(id: string): Observable<ResponseTableUpdate>{
     return this.http.get<ResponseTableUpdate>(`${this.API_PRODUCTION}tables/${id}`, this.httpOptions)
   }
+  public tablesDelete(id: string): Observable<ResponseTableDelete>{
+    return this.http.delete<ResponseTableDelete>(`${this.API_PRODUCTION}tables/delete/${id}`, this.httpOptions).pipe(
+      tap(() => {
+        this.refresh$.next()
+      })
+    )
+  }
 
-  public updateTable(data: DataTable, id: string): Observable<ResponseTableUpdate>{
+  public updateTable(data: any, id: string): Observable<ResponseTableUpdate>{
     return this.http.put<ResponseTableUpdate>(`${this.API_PRODUCTION}tables/update/${id}`,data , this.httpOptions);
   }
 }

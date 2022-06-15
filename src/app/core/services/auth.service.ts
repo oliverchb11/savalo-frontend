@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { LoginUser } from 'src/app/interfaces/login-user';
 import { LoginUserResponse } from 'src/app/interfaces/login-user-response';
 import { NewPasswordResponse } from 'src/app/interfaces/new-password-response';
@@ -18,6 +19,7 @@ export class AuthService {
   public token = localStorage.getItem('token');
   public API_PRODUCTION = environment.API_PRODUCTION;
   public API_LOCAL = environment.API_PRODUCTION;
+  private _refresSubject = new Subject<void>();
   constructor(
     private http: HttpClient,
   ) {
@@ -30,7 +32,9 @@ export class AuthService {
       
     } )
   };
-
+  get refresOrder$(){
+    return this._refresSubject;
+  }
 
 
   public listUserById(id: string): Observable<UserList>{
@@ -42,7 +46,11 @@ export class AuthService {
   }
 
   public registerUser(user: RegisterUser): Observable<RegisterUserResponse>{
-    return this.http.post<RegisterUserResponse>(`${this.API_PRODUCTION}auth/register`, user);
+    return this.http.post<RegisterUserResponse>(`${this.API_PRODUCTION}auth/register`, user).pipe(
+      tap(() =>{
+        this.refresOrder$.next()
+      })
+    );
   }
 
   public resetPassword(email: any): Observable<ResetPasswordResponse>{

@@ -25,6 +25,7 @@ import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos
 import { CambioEstadoOrdenComponent } from './cambio-estado-orden/cambio-estado-orden.component';
 import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.component';
 import { CreateTableComponent } from './create-table/create-table.component';
+import { CreatePersonalityComponent } from './create-personality/create-personality.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { CreateTableComponent } from './create-table/create-table.component';
     GestionArticulosComponent,
     CambioEstadoOrdenComponent,
     EditarOrdernesComponent,
-    CreateTableComponent
+    CreateTableComponent,
+    CreatePersonalityComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,7 @@ import { CreateTableComponent } from './create-table/create-table.component';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class PagesModule { }

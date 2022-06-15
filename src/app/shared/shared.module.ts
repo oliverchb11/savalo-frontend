@@ -4,23 +4,30 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { ChartVentasComponent } from './components/chart-ventas/chart-ventas.component';
+import { ChartPedidosComponent } from './components/chart-pedidos/chart-pedidos.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    ChartVentasComponent,
+    ChartPedidosComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgChartsModule
   ], 
   exports: [
     NavbarComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    ChartVentasComponent,
+    ChartPedidosComponent
   ]
 })
 export class SharedModule { }

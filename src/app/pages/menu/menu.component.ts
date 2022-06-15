@@ -34,14 +34,16 @@ export class MenuComponent implements OnInit {
   public getCategorys(): void{
     this.categoryService.allCategorys().subscribe((response)=> {
       if(response.success){
-        this.validUser(response.category)
+        this.categorys = response.category;
+        // this.validUser(response.category)
       }
     })
   }
   public getArticles(): void{
     this.articleService.allArticles().subscribe((response)=> {
       if(response.success){
-        this.validUserArticles(response.articles);
+        this.articles = response.articles;
+          // this.validUserArticles(response.articles);
       }
     })
   }

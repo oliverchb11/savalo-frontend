@@ -4,6 +4,7 @@ export interface RegisterUser {
     age: number;
     cellphone: number;
     email: string;
+    state: boolean;
     password: string;
     rol: string | string[];
     _id?: string;

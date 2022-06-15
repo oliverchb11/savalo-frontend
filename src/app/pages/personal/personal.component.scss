@@ -1,9 +1,11 @@
 .container {
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .card {
     padding: 10px;
+    box-shadow: 4px 4px 7px #ccc;
 }
 
 .card p {
@@ -30,4 +32,18 @@ figure {
 h2 {
     font-size: 30px;
     font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    gap: 1em;
+}
+
+.btn-create-person {
+    height: 60px;
+}
+
+.div-create {
+    margin-bottom: 8px;
+    box-shadow: 4px 4px 7px #ccc;
 }

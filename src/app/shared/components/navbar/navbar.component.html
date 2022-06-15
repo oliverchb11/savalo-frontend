@@ -17,7 +17,7 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" routerLink="/pages/mesas" routerLinkActive="active">Mesas</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="user.rol[0] === '1'">
                     <a class="nav-link" aria-current="page" routerLink="/pages/menu" routerLinkActive="active">Menú</a>
                 </li>
                 <li class="nav-item" *ngIf="user.rol[0] === '1'">

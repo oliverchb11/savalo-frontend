@@ -73,7 +73,7 @@ export class PedidosMesaComponent implements OnInit {
   public getCategorys(): void{
     this.categoryService.allCategorys().subscribe((response)=> {
       if(response.success){
-        this.validUser(response.category)
+        this.categorys = response.category;
       }
     })
   }
@@ -87,11 +87,11 @@ export class PedidosMesaComponent implements OnInit {
   }
 
     //validar informacion de cada sesion
-    public validUser(category: DataCreateCategory[]): void {
-      let user = JSON.parse(localStorage.getItem('user'));
-      let result = category.filter((cate => cate.user === user._id));
-      this.categorys = result;
-    }
+    // public validUser(category: DataCreateCategory[]): void {
+    //   let user = JSON.parse(localStorage.getItem('user'));
+    //   let result = category.filter((cate => cate.user === user._id));
+    //   this.categorys = result;
+    // }
 
     public getArticle(idCategory : string): void {
      let result = this.articles.filter((article) => article.category === idCategory);

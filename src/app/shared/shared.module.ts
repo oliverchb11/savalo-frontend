@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ChartVentasComponent } from './components/chart-ventas/chart-ventas.component';
 import { ChartPedidosComponent } from './components/chart-pedidos/chart-pedidos.component';
 import { NgChartsModule } from 'ng2-charts';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NgChartsModule } from 'ng2-charts';
     CarouselComponent,
     FooterComponent,
     ChartVentasComponent,
-    ChartPedidosComponent
+    ChartPedidosComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { NgChartsModule } from 'ng2-charts';
     CarouselComponent,
     FooterComponent,
     ChartVentasComponent,
-    ChartPedidosComponent
+    ChartPedidosComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

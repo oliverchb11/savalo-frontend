@@ -44,5 +44,6 @@
         <div class="row" *ngIf="orders?.length === 0">
             <h1 class="text-center">No hay pedidos</h1>
         </div>
+        <app-loader [isLoader]="loading"></app-loader>
     </div>
 </div>

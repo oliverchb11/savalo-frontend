@@ -1,5 +1,16 @@
 <div class="container">
-    <h1 class="text-center">Estadisticas</h1>
-    <app-chart-ventas></app-chart-ventas>
-    <app-chart-pedidos></app-chart-pedidos>
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-center"> Mes actual</h2>
+            <app-chart-ventas *ngIf="!loading1" [labelInput]="dataMes" [colorInput]="'#5BB114'" [calendarInput]="months"></app-chart-ventas>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center"> Semana actual</h2>
+            <app-chart-ventas *ngIf="!loading2" [labelInput]="dataSemana" [colorInput]="'#1467B1'" [calendarInput]="week"></app-chart-ventas>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center"> Dia actual</h2>
+            <app-chart-ventas *ngIf="!loading3" [labelInput]="dataDia" [colorInput]="'#D87919'" [calendarInput]="days"> </app-chart-ventas>
+        </div>
+    </div>
 </div>

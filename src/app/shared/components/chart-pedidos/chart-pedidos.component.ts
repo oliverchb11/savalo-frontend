@@ -16,9 +16,7 @@ export class ChartPedidosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let hola = 'Hola como estas ';
-    let sinEspacios = hola.trim();
-    console.log(sinEspacios);
+
     
   }
 

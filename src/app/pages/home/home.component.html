@@ -9,7 +9,7 @@
             <app-chart-ventas *ngIf="!loading2" [labelInput]="dataSemana" [colorInput]="'#1467B1'" [calendarInput]="week"></app-chart-ventas>
         </div>
         <div class="col-md-6">
-            <h2 class="text-center"> Dia actual</h2>
+            <h2 class="text-center"> Dia actual ({{(totalDay !== 0) ? totalDay : 'No hay ventas'}})</h2>
             <app-chart-ventas *ngIf="!loading3" [labelInput]="dataDia" [colorInput]="'#D87919'" [calendarInput]="days"> </app-chart-ventas>
         </div>
     </div>

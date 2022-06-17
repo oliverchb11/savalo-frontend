@@ -2,7 +2,8 @@
     width: 50%;
     margin: 0 auto;
     margin-top: 30px;
-    height: 70px;
+    height: auto;
+    margin-bottom: 30px;
 }
 
 .newArticle div {
@@ -29,6 +30,10 @@
 
 .input-file {
     content: "Foto";
+}
+
+.img-preview {
+    height: 60px;
 }
 
 @media screen and (max-width: 768px) {

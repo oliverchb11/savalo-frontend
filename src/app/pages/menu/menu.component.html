@@ -12,7 +12,7 @@
             </div>
             <div class="prueba" *ngFor="let article of articles">
                 <div class="articles-info" *ngIf="category._id === article.category" (click)="gestionArticle(article)">
-                    <p> - {{article.name}} </p>
+                    <p> <img *ngIf="article.photo" class="img-article" src="{{baseUrl}}upload/productos/{{article.photo}}" alt=""> <img *ngIf="!article.photo" class="img-article" src="assets/img/no-photo.png" alt=""> - {{article.name}}</p>
                     <span class="badge bg-dark b-article">{{article.price | currency: '$'}}</span>
                 </div>
             </div>

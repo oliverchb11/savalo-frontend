@@ -15,9 +15,10 @@ export class HomeComponent implements OnInit {
   public months: string[];
   public days: string[];
   public week: string[];
-  public loading1 = true
-  public loading2 = true
-  public loading3 = true
+  public loading1 = true;
+  public loading2 = true;
+  public loading3 = true;
+  public totalDay: number = 0;
   constructor(
     private salesService: SalesService
   ){
@@ -72,6 +73,7 @@ export class HomeComponent implements OnInit {
   public getDataDiaSer(): void{
     this.salesService.getSalesDay().subscribe((response)=>{
       if(response.success){
+        console.log(response);
         this.loading3 = false
         this.getDataDia(response.day, response.totalDay)
       }
@@ -80,6 +82,7 @@ export class HomeComponent implements OnInit {
 
 
   public getDataDia(day, totalDay: number): void{
+    this.totalDay = totalDay;
     this.days = [day];
     this.dataDia = [
       {

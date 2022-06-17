@@ -5,6 +5,11 @@ export interface ResponseCreateArticle{
     message: string;
     articles: DataCreateArticle[];
 }
+export interface ResponseCreateArticle2{
+    success: boolean;
+    message: string;
+    article: DataCreateArticle;
+}
 export interface ResponseUpdateArticle{
     success: boolean;
     message: string;

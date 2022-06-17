@@ -4,6 +4,7 @@ import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
 import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -14,6 +15,7 @@ export class MenuComponent implements OnInit {
   public isVisible: boolean = false;
   public categorys: DataCreateCategory[];
   public articles: DataCreateArticle[];
+  public baseUrl = environment.API_PRODUCTION;
   public state = false;
   constructor(
     private router: Router,

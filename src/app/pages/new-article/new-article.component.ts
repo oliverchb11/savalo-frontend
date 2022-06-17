@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/articles/article.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
 import { RegisterUser } from 'src/app/interfaces/register-user';
@@ -17,12 +18,15 @@ export class NewArticleComponent implements OnInit {
   public categoryId: string;
   public userId: RegisterUser;
   public formulario: FormGroup;
+  public previewImg: string | ArrayBuffer;
+  public file: any
   constructor(
     private fb: FormBuilder,
     private categoryService: CategoryService,
     private articleService: ArticleService,
     private router: Router,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -56,6 +60,9 @@ export class NewArticleComponent implements OnInit {
         this.formulario.reset();
         successAlertGlobal(response.message);
         this.router.navigateByUrl('pages/menu');
+        console.log('Respuiesta creacion', response.article);
+        
+        this.updatePhoto(this.file, response.article._id);
       }
     })
   }
@@ -72,6 +79,26 @@ export class NewArticleComponent implements OnInit {
       if(response.success){
         this.category = response.category;
         console.log(this.category);
+      }
+    })
+  }
+
+  public fileUpload(event): void {
+    let file = event.target.files[0];
+    this.file = file;
+    let render = new FileReader();
+    render.readAsDataURL(file);
+    render.onload = () =>{
+      this.previewImg = render.result;
+    }
+   
+  }
+
+  public updatePhoto(file: File, idArticle: string): void {
+    console.log(file, idArticle);
+    this.authService.updateUploadFile(file,'productos', idArticle).subscribe((response) => {
+      if(response.success){
+        console.log(response);
       }
     })
   }

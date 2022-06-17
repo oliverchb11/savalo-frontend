@@ -15,7 +15,10 @@
             <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción" aria-describedby="basic-addon1" formControlName="description">
         </div>
         <div class="input-group mb-3">
-            <input type="file" class="form-control input-file" placeholder="Foto" aria-label="Foto" aria-describedby="basic-addon1" formControlName="photo">
+            <input type="file" (change)="fileUpload($event)" class="form-control input-file" placeholder="Foto" aria-label="Foto" aria-describedby="basic-addon1" formControlName="photo">
+        </div>
+        <div class="input-group mb-3" *ngIf="previewImg !== ''">
+            <img class="img-preview" [src]="previewImg" alt="">
         </div>
         <div class="input-group mb-3">
             <select name="" formControlName="available" class="form-control" id="">

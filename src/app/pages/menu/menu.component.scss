@@ -114,6 +114,7 @@
     color: black;
     border-bottom: 1px solid #ccc;
     background-color: #fff;
+    margin-bottom: 9px;
 }
 
 .articles-info:hover {
@@ -127,6 +128,12 @@
 .b-article {
     font-size: 15px;
     font-weight: 400;
+}
+
+.img-article {
+    height: 50px;
+    width: 50px;
+    margin-top: 12px;
 }
 
 @media screen and (max-width: 768px) {

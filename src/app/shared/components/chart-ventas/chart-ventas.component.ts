@@ -15,6 +15,7 @@ export class ChartVentasComponent implements OnInit {
   @Input() set colorInput(val: string) {
     this.barChartOptions.backgroundColor = val;
     this.barChartOptions.color = val;
+    this.barChartOptions.hover = {mode: null}
   }
   @Input() set calendarInput(val: string[]) {
     this.barChartLabels = val;
@@ -48,9 +49,9 @@ export class ChartVentasComponent implements OnInit {
     }
   };
 
-  public barChartType: ChartType = 'pie';
+  public barChartType: ChartType = 'bar';
 
-  public barChartData: ChartData<'pie'> = {
+  public barChartData: ChartData<'bar'> = {
     labels: this.barChartLabels,
     datasets: []
   };

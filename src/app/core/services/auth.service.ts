@@ -28,7 +28,7 @@ export class AuthService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
+      'x-token': this.token
       
     } )
   };
@@ -68,6 +68,6 @@ export class AuthService {
   public updateUploadFile(file: File, tipo: string,idUser: string ): Observable<UploadPhotoResponse>{
     const formData = new FormData();
     formData.append('photo',file)
-    return this.http.put<UploadPhotoResponse>(`${this.API_PRODUCTION}upload/images/${tipo}/${idUser}`, formData , {headers:{'x-token': this.token}})
+    return this.http.put<UploadPhotoResponse>(`${this.API_PRODUCTION}upload/images/${tipo}/${idUser}`, formData , this.httpOptions)
   }
 }

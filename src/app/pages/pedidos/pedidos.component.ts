@@ -41,7 +41,7 @@ export class PedidosComponent implements OnInit {
       if(response.success){
         this.orders = response.orders;
         this.loading = false;
-        let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion');
+        let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion' || value.preparationState === 'entregado' || value.preparationState === 'reclamacion');
         this.ordersNoPay = orderPreparation.length;
       }
     })

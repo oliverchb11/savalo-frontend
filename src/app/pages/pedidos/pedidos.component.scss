@@ -107,6 +107,7 @@
 .p-generic {
     color: #000000;
     padding: 10px;
+    padding-bottom: 0px;
     font-size: 18px;
     font-weight: bold;
 }
@@ -152,6 +153,11 @@ span {
 .no-pedidos img {
     height: 150px;
     width: 300px;
+}
+
+.proudcts {
+    display: flex;
+    justify-content: space-between
 }
 
 @media screen and (max-width: 768px) {

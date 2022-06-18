@@ -20,7 +20,11 @@
     box-shadow: rgb(0 0 0 / 24%) 0px 1.5px 4px, rgb(0 0 0 / 19%) 0px 0.5px 2px;
 }
 
-.navbar-collapse ul li:hover {
+.navbar-collapse ul .nav-item:hover {
+    border-bottom: 2px solid blue;
+}
+
+.nav-item-active {
     border-bottom: 2px solid blue;
 }
 

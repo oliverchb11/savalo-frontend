@@ -1,11 +1,11 @@
 <div class="container">
     <h2 class="text-center my-3">
         Mesas</h2>
-    <div class="container-mesas" style="max-width: 50rem;" *ngIf="tables.length > 0">
+    <div class="container-mesas" style="max-width: 50rem;" *ngIf="tables?.length > 0">
         <div class="all">
             <div class="mesas1" *ngFor="let mesa of tables; let i = index">
-                <p class="text-center">{{mesa.name}}</p>
                 <p class="text-center" [ngClass]="{'mesa-libre': mesa.libre, 'mesa-ocupada': !mesa.libre}">{{(mesa.libre) ? 'Mesa libre': 'Mesa ocupada'}}</p>
+                <p class="text-center">{{mesa.name}} / sillas {{mesa.numeroSillas}}</p>
                 <img class="mesas-img" [src]="mesa.img" [alt]="mesa.name" (click)="mesaInfo(mesa)">
             </div>
             <div class="mesas1" *ngIf="tables?.length < 10">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="no-table" *ngIf="tables.length === 0">
+    <div class="no-table" *ngIf="tables?.length === 0">
         <img src="assets/img/undraw_special_event_-4-aj8.svg" alt="">
         <h2 class="text-center">
             No hay mesas creadas

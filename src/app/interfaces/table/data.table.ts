@@ -9,6 +9,7 @@ export interface DataTable{
     img?:string;
     orders?: DataOrders
     position?: number;
+    numeroSillas?: number;
     numeroClientes?: number;
     _id?: string
 }

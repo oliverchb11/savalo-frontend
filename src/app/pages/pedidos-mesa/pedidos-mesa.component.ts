@@ -33,6 +33,7 @@ export class PedidosMesaComponent implements OnInit {
   public idMesa: string;
   public contador =0;
   public pedido: any[] = [];
+  public nombrePrimeraCategoria: string;
   constructor(
     private categoryService: CategoryService,
     private articleService: ArticleService,
@@ -74,6 +75,12 @@ export class PedidosMesaComponent implements OnInit {
     this.categoryService.allCategorys().subscribe((response)=> {
       if(response.success){
         this.categorys = response.category;
+        this.nombrePrimeraCategoria = this.categorys[0].name;
+        this.categorys.map((resp, i) => {
+          if(resp.name === this.nombrePrimeraCategoria){
+            this.getArticle(resp._id,i )
+          }
+        }) 
       }
     })
   }
@@ -93,10 +100,11 @@ export class PedidosMesaComponent implements OnInit {
     //   this.categorys = result;
     // }
 
-    public getArticle(idCategory : string): void {
+    public getArticle(idCategory : string, iCategory?: number): any {
      let result = this.articles.filter((article) => article.category === idCategory);
       console.log(result);
       this.articlesNew = result;
+      this.nombrePrimeraCategoria =  this.categorys[iCategory].name;
     }
 
     public dataArticle(article): void {

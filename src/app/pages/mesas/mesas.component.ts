@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TableService } from 'src/app/core/services/tables/table.service';
 import { DataTable } from 'src/app/interfaces/table/data.table';
-import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import { errorAlert, successAlertGlobal } from 'src/app/utils/global-alerts';
 import { CreateTableComponent } from '../create-table/create-table.component';
 import { ModalComponent } from '../modal/modal.component';
 
@@ -53,6 +53,8 @@ export class MesasComponent implements OnInit {
         if(response.success){
           successAlertGlobal(response.message);
         }
+      }, (error) => {
+        errorAlert(error.error.message);
       })
     })
     

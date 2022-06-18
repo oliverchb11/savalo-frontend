@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
   public loading2 = true;
   public loading3 = true;
   public totalDay: number = 0;
+  public day: string;
+  public weekTitle: string;
+  public month: string;
   constructor(
     private salesService: SalesService
   ){
@@ -41,6 +44,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getDataMes(month: string, totalMonth: number): void{
+    this.month = month
     this.months = [month];
     this.dataMes = [
       {
@@ -60,6 +64,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getDataSemana(de, hasta, totalWeek: number): void{
+    this.weekTitle = `${de} / ${hasta}`;
     this.week = [`${de} / ${hasta}`];
     this.dataSemana = [
       {
@@ -82,6 +87,7 @@ export class HomeComponent implements OnInit {
 
 
   public getDataDia(day, totalDay: number): void{
+    this.day = day
     this.totalDay = totalDay;
     this.days = [day];
     this.dataDia = [

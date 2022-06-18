@@ -1,15 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <h2 class="text-center"> Mes actual</h2>
+            <h2 class="text-center"> Mes actual ({{month}})</h2>
             <app-chart-ventas *ngIf="!loading1" [labelInput]="dataMes" [colorInput]="'#5BB114'" [calendarInput]="months"></app-chart-ventas>
         </div>
         <div class="col-md-6">
-            <h2 class="text-center"> Semana actual</h2>
+            <h2 class="text-center"> Semana actual ({{weekTitle}})</h2>
             <app-chart-ventas *ngIf="!loading2" [labelInput]="dataSemana" [colorInput]="'#1467B1'" [calendarInput]="week"></app-chart-ventas>
         </div>
         <div class="col-md-6">
-            <h2 class="text-center"> Dia actual ({{(totalDay !== 0) ? totalDay : 'No hay ventas'}})</h2>
+            <h2 class="text-center"> Dia actual ( {{day}} - {{(totalDay !== 0) ? totalDay : 'No hay ventas'}})</h2>
             <app-chart-ventas *ngIf="!loading3" [labelInput]="dataDia" [colorInput]="'#D87919'" [calendarInput]="days"> </app-chart-ventas>
         </div>
     </div>

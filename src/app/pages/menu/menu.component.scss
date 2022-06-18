@@ -136,6 +136,25 @@
     margin-top: 12px;
 }
 
+.no-category {
+    height: 49vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.no-category h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.no-category img {
+    height: 150px;
+    width: 300px;
+}
+
 @media screen and (max-width: 768px) {
     .categoria,
     .articles,

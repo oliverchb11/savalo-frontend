@@ -41,7 +41,14 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="orders?.length === 0">
+        <div class="row no-pedidos" *ngIf="ordersNoPay === 0">
+            <img src="assets/img/undraw_diet_ghvw.svg" alt="">
+            <h2 class="text-center">
+                No hay pedidos en preparación
+            </h2>
+        </div>
+        <div class="row no-pedidos" *ngIf="orders?.length === 0">
+            <img src="assets/img/undraw_order_delivered_re_v4ab.svg" alt="">
             <h1 class="text-center">No hay pedidos</h1>
         </div>
         <app-loader [isLoader]="loading"></app-loader>

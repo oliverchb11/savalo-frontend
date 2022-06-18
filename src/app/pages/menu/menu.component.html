@@ -4,7 +4,7 @@
             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
           </svg> Añadir nueva categoría</p>
     </div>
-    <div class="all">
+    <div class="all" *ngIf="categorys?.length > 0">
         <div class="categorias" *ngFor="let category of categorys; let i = index">
             <div class="categorys bg-primary" (click)="gestionCategoy(category)">
                 <p>{{category.name}} </p>
@@ -23,7 +23,10 @@
             </div>
         </div>
     </div>
-
+    <div class="all no-category" *ngIf="categorys?.length === 0">
+        <img src="assets/img/undraw_logistics_x-4-dc.svg" alt="">
+        <h2 class="text-center">No hay categorias creadas</h2>
+    </div>
     <div class="importar">
         <p>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">

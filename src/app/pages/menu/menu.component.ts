@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
@@ -17,6 +18,7 @@ export class MenuComponent implements OnInit {
   public articles: DataCreateArticle[];
   public baseUrl = environment.API_PRODUCTION;
   public state = false;
+  public subscription: Subscription;
   constructor(
     private router: Router,
     private categoryService: CategoryService,
@@ -26,7 +28,9 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.getCategorys();
     this.getArticles();
- 
+    this.subscription = this.articleService.refresOrder$.subscribe(()=>{
+      this.getArticles();
+    })
   }
 
   public addCategory(): void{

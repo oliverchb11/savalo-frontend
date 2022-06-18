@@ -17,6 +17,7 @@ export class PedidosComponent implements OnInit {
   public orders : DataOrders[];
   public subscription: Subscription;
   public loading = true;
+  public ordersNoPay: number;
   constructor(
     private router: Router,
     private ordersService: OrderService,
@@ -39,7 +40,9 @@ export class PedidosComponent implements OnInit {
     this.ordersService.allOrders().subscribe((response) =>{
       if(response.success){
         this.orders = response.orders;
-        this.loading = false
+        this.loading = false;
+        let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion');
+        this.ordersNoPay = orderPreparation.length;
       }
     })
   }

@@ -137,6 +137,23 @@ span {
     font-weight: bold;
 }
 
+.no-pedidos {
+    height: 49vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-pedidos h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.no-pedidos img {
+    height: 150px;
+    width: 300px;
+}
+
 @media screen and (max-width: 768px) {
     .categoria {
         width: 100%;

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from 'src/app/core/services/articles/article.service';
+import { CategoryService } from 'src/app/core/services/categorys/category.service';
+import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
+import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-carta',
@@ -7,12 +12,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartaComponent implements OnInit {
   public carta: any[] = [];
-  constructor() { }
+  public category: DataCreateCategory[];
+  public articles: DataCreateArticle[];
+  public baseUrl = environment.API_PRODUCTION;
+  constructor(
+    private categoryService: CategoryService,
+    private articleService: ArticleService,
+  ) { }
 
   ngOnInit(): void {
 
     this.getCarta(8);
+    this.getArticle();
+    this.getCategory();
   }
+
+
+  public getArticle(): void{
+    this.articleService.allArticles().subscribe((response) => {
+      if(response.success){
+        console.log(response);
+        this.articles = response.articles
+      }
+    })
+  }
+  public getCategory(): void{
+    this.categoryService.allCategorys().subscribe((response) => {
+      if(response.success){
+        this.category = response.category
+        console.log(response);
+      }
+    })
+  }
+
+
 
   public getCarta(numero) {
 

@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="text-center my-3">
         Mesas</h2>
-    <div class="container-mesas" style="max-width: 50rem;">
+    <div class="container-mesas" style="max-width: 50rem;" *ngIf="tables.length > 0">
         <div class="all">
             <div class="mesas1" *ngFor="let mesa of tables; let i = index">
                 <p class="text-center">{{mesa.name}}</p>
@@ -14,5 +14,11 @@
                   </svg> Agregar mesas</button>
             </div>
         </div>
+    </div>
+    <div class="no-table" *ngIf="tables.length === 0">
+        <img src="assets/img/undraw_special_event_-4-aj8.svg" alt="">
+        <h2 class="text-center">
+            No hay mesas creadas
+        </h2>
     </div>
 </div>

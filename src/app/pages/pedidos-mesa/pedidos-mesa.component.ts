@@ -4,10 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { OrderService } from 'src/app/core/services/orders/order.service';
+import { ProfileService } from 'src/app/core/services/profile/profile.service';
 import { TableService } from 'src/app/core/services/tables/table.service';
 import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
 import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
 import { DataOrders } from 'src/app/interfaces/orders/data-orders';
+import { RegisterUser } from 'src/app/interfaces/register-user';
 import { DataTable, DataTableOrder } from 'src/app/interfaces/table/data.table';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
 
@@ -19,6 +21,7 @@ import { successAlertGlobal } from 'src/app/utils/global-alerts';
 export class PedidosMesaComponent implements OnInit {
   public categorys: DataCreateCategory[];
   public articles: DataCreateArticle[];
+  public cajeros: RegisterUser[] = []
   public mesaData: any;
   public articlesId: string[] = [];
   public articlesNew: DataCreateArticle[];
@@ -33,6 +36,7 @@ export class PedidosMesaComponent implements OnInit {
   public idMesa: string;
   public contador =0;
   public pedido: any[] = [];
+  public ok: number;
   public nombrePrimeraCategoria: string;
   constructor(
     private categoryService: CategoryService,
@@ -41,7 +45,8 @@ export class PedidosMesaComponent implements OnInit {
     private tableService: TableService,
     private ordersService: OrderService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private profileService: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -49,11 +54,13 @@ export class PedidosMesaComponent implements OnInit {
     this.getCategorys()
     this.getArticles()
     this.paramsData()
+    this.getCajerosUser()
   }
 
   public dataBuilder(): void{
     this.formulario = this.fb.group({
-      nameOrder: ['']
+      nameOrder: [''],
+      cajero: ['', Validators.required]
     })
   }
 
@@ -101,22 +108,36 @@ export class PedidosMesaComponent implements OnInit {
     // }
 
     public getArticle(idCategory : string, iCategory?: number): any {
-     let result = this.articles.filter((article) => article.category === idCategory);
-      console.log(result);
+     let result = this.articles?.filter((article) => article.category === idCategory);
       this.articlesNew = result;
       this.nombrePrimeraCategoria =  this.categorys[iCategory].name;
     }
 
     public dataArticle(article): void {
-
-      this.pedido.push(article);
+        this.pedido.push(article);
+          const carritoSinDuplicados = [...new Set(this.pedido  )];
+          // Generamos los Nodos a partir de carrito
+          carritoSinDuplicados.forEach((item) => {
+              // Obtenemos el item que necesitamos de la variable base de datos
+              const miItem = this.articles.filter((itemBaseDatos) => {
+                  // ¿Coincide las id? Solo puede existir un caso
+                  return itemBaseDatos._id === item._id;
+              });
+       
+        const numeroUnidadesItem =  this.pedido.reduce((total, itemId, i) => {
+          // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+          return itemId._id === item._id ? total += 1 : total;
+      }, 0);
+      console.log(`${numeroUnidadesItem} x ${miItem[0].name}`);
+      this.pedido = carritoSinDuplicados
+    })
+ 
       let contador = 0;
       this.pedido.map((pedido) => {
         contador += pedido.price;
       })
       this.subTotal = contador;
       this.total = this.subTotal;
-      console.log(contador);
     }
 
     public servicio(event): void {
@@ -155,6 +176,7 @@ export class PedidosMesaComponent implements OnInit {
         total: this.total,
         subTotal: this.subTotal,
         nameOrder: nameOrder.nameOrder,
+        cajero: nameOrder.cajero,
         articles: this.articlesId
       }
       console.log(datosCrearPedido);
@@ -199,5 +221,16 @@ export class PedidosMesaComponent implements OnInit {
 
     public updateOrder(idOrder: string): void {
       console.log(idOrder);
+    }
+
+
+    //optener los cajeros disponibles para seleccionar
+    public getCajerosUser(): void{
+      this.profileService.getAllUsers().subscribe((respose) => {
+        if(respose.success){
+        let cajeros =  respose.users.filter((user) => user.rol[0] === '2');
+        this.cajeros = cajeros
+        }
+      })
     }
 }

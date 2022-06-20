@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TableService } from 'src/app/core/services/tables/table.service';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -76,12 +76,29 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   public deleteTable(id): void {
-    this.tableService.tablesDelete(id).subscribe((response) => {
-      if(response.success){
-        successAlertGlobal(response.message);
-        this.dialogo.close();
+    Swal.fire({
+      title: `Seguro desea eliminar la mesa seleccionada?`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Eliminar',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.tableService.tablesDelete(id).subscribe((response) => {
+          if(response.success){
+            successAlertGlobal(response.message);
+            this.dialogo.close();
+          }
+        })
+      } else if (result.isDenied) {
+        Swal.fire('Cancelado', '', 'info')
       }
     })
+
+
+
+
   }
 
 }

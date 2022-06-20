@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
+import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
 import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
 import Swal from 'sweetalert2';
@@ -19,6 +21,7 @@ export class GestionCategoriaComponent implements OnInit {
     private activeRouter:  ActivatedRoute,
     private router: Router,
     private categoryService: CategoryService,
+    private articleService: ArticleService,
     private fb: FormBuilder,
   ) { }
 
@@ -74,6 +77,7 @@ export class GestionCategoriaComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
+        this.getArticles(id)
         this.categoryService.deleteCategoryById(id).subscribe((response) => {
           if (response.success){
             Swal.fire(response.message, '', 'success');
@@ -83,6 +87,23 @@ export class GestionCategoriaComponent implements OnInit {
       } else if (result.isDenied) {
         Swal.fire('Cancelado', '', 'info')
       }
+    })
+  }
+
+  public getArticles(idCategory): void{
+    this.articleService.allArticles().subscribe((resp) => {
+      let articlesDelete = resp.articles.filter((value)=> value.category === idCategory);
+      this.deleteArticlesForCategory(articlesDelete);
+    })
+  }
+
+  public deleteArticlesForCategory(article: DataCreateArticle[]): void{
+    article.map((resp) => {
+      this.articleService.deletearticles(resp._id).subscribe((resp) => {
+        if(resp.success){
+          console.log('ok delete articles');
+        }
+      })
     })
   }
 

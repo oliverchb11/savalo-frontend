@@ -18,7 +18,7 @@
         </nav>
         <div class="categorys" *ngIf="articlesNew?.length > 0">
             <div class="info" *ngFor="let article of articlesNew" (click)="dataArticle(article)">
-                <p> {{article.name}}</p>
+                <p> {{ok}} {{article.name}}</p>
             </div>
         </div>
     </div>
@@ -62,8 +62,14 @@
                 <p *ngIf="!mesaData?.libre">{{(total === 0) ? (totalOders | currency: '$') : (( total + totalOders)| currency: '$')}}</p>
 
             </div>
+            <div class="info-cajero">
+                <select class="select-cajero" name="" id="" formControlName="cajero">
+                    <option value="">Seleccione Cajero</option>
+                    <option *ngFor="let cajero of cajeros" [value]="cajero.name">{{cajero.name}}</option>
+                </select>
+            </div>
             <div *ngIf="mesaData?.libre" class="info-mesa-4" [ngClass]="{'btn-disbled': subTotal === 0 }">
-                <button class="btn-create" type="submit" [disabled]="subTotal === 0"> Crear Pedido  </button>
+                <button class="btn-create" type="submit" [disabled]="subTotal === 0 || formulario.invalid"> Crear Pedido  </button>
             </div>
             <div *ngIf="!mesaData?.libre" class="info-mesa-4" [ngClass]="{'btn-disbled': subTotal === 0 }">
                 <button class="btn-create" type="button" [disabled]="mesaData?.orders?.total === 0" (click)="updateOrder(mesaData.orders._id)"> Actualizar Pedido  </button>

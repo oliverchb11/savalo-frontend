@@ -8,6 +8,7 @@ import { ChartVentasComponent } from './components/chart-ventas/chart-ventas.com
 import { ChartPedidosComponent } from './components/chart-pedidos/chart-pedidos.component';
 import { NgChartsModule } from 'ng2-charts';
 import { LoaderComponent } from './components/loader/loader.component';
+import { TablaReportesComponent } from './components/tabla-reportes/tabla-reportes.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     ChartVentasComponent,
     ChartPedidosComponent,
-    LoaderComponent
+    LoaderComponent,
+    TablaReportesComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     FooterComponent,
     ChartVentasComponent,
     ChartPedidosComponent,
-    LoaderComponent
+    LoaderComponent,
+    TablaReportesComponent
   ]
 })
 export class SharedModule { }

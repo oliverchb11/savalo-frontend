@@ -8,6 +8,7 @@ export interface DataOrders {
     total: number;
     subTotal: number;
     _id?: string;
+    cajero?: string;
     hourCreate?: Date;
     createdAt?: Date;
     updateAt?: Date;

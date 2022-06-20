@@ -1,0 +1,56 @@
+.container {
+    padding: 8;
+    margin: 8;
+}
+
+table {
+    width: 100%;
+}
+
+table thead {
+    background-color: white;
+    height: 50px;
+    text-align: center;
+    box-shadow: 4px 4px 7px #ccc;
+    border-bottom: 1px solid #000;
+}
+
+table thead tr td {
+    font-size: 21px;
+    font-weight: 500;
+}
+
+table tbody {
+    background-color: white;
+    height: 90px;
+    text-align: center;
+    box-shadow: 4px 4px 7px #ccc;
+}
+
+table tbody tr:hover {
+    background-color: #CFE4F4;
+    cursor: pointer;
+}
+
+table tbody tr td {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.no-report {
+    height: 49vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.no-report h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.no-report img {
+    height: 150px;
+    width: 300px;
+}

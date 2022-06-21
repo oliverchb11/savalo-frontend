@@ -31,6 +31,7 @@ export class PayComponent implements OnInit {
   public payOrder(order , total): void {
     const infoUpdate = {
       preparationState: 'pagado',
+      metodoPago: 'efectivo',
       total
     }
     this.orderService.updateOrder(infoUpdate, order._id).subscribe((response) => {

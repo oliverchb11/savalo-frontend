@@ -7,3 +7,11 @@ export interface ReportsResponse{
 
 
 }
+export interface ReportsResponse2{
+    success: boolean;
+    ordersMoth: DataOrders[]
+}
+export interface ReportsResponse3{
+    success: boolean;
+    ordersweek: DataOrders[]
+}

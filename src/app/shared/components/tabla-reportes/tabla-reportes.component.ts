@@ -31,7 +31,8 @@ export class TablaReportesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.setTableThead()
+    this.setTableThead();
+    console.log(this.reporteNow);
   }
 
   public setTableThead(): void{
@@ -78,6 +79,7 @@ export class TablaReportesComponent implements OnInit {
   }
 
   public searchDates(fecha: string): void{
+    console.log(fecha);
     switch (fecha) {
       case 'hoy':
         let hoy = moment().format('YYYY-MM-DD');
@@ -89,6 +91,32 @@ export class TablaReportesComponent implements OnInit {
             this.setTableThead()
           }
         })
+        break;
+      case 'mes':
+        let mes = moment().format('MM');
+        this.reportsService.getReportsMoths(mes).subscribe((response) => {
+          if(response.success){
+            this.search = response.ordersMoth;
+            this.countOders = this.search?.length;
+            this.setTableThead()
+          }
+        })
+        break;
+      case 'semana':
+        let weekStart = parseInt(moment().startOf('week').format('DD')) + 1;
+        let weekEnd = parseInt(moment().endOf('week').format('DD')) + 1;
+        this.reportsService.getReportsWeeks(weekStart,weekEnd).subscribe((response) => {
+          if(response.success){
+            this.search = response.ordersweek;
+            this.countOders = this.search?.length;
+            this.setTableThead()
+          }
+        })
+        break;
+      case '':
+        this.search = [];
+        this.countOders = 0;
+        this.setTableThead();
         break;
     
       default:

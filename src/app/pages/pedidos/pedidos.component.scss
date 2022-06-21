@@ -160,6 +160,58 @@ span {
     justify-content: space-between
 }
 
+.metodos {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.metodos .efectivo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    cursor: pointer;
+    background-color: #52C81E;
+    height: 90px;
+    font-size: 19px;
+    text-align: center;
+    font-weight: 800;
+    width: 110px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.metodos .efectivo p {
+    color: #fff;
+    font-size: 20px;
+}
+
+.metodos {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.metodos .qr {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    background-color: #1979D9;
+    height: 90px;
+    font-size: 19px;
+    text-align: center;
+    font-weight: 800;
+    width: 110px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.metodos .qr p {
+    color: #fff;
+    font-size: 17px;
+}
+
 @media screen and (max-width: 768px) {
     .categoria {
         width: 100%;

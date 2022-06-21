@@ -9,6 +9,8 @@ export interface DataOrders {
     subTotal: number;
     _id?: string;
     cajero?: string;
+    metodoPago?: string;
+    pedidoCancelado?: boolean;
     hourCreate?: Date;
     createdAt?: Date;
     updateAt?: Date;

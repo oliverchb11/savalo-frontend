@@ -1,0 +1,11 @@
+<div class="container">
+    <form [formGroup]="formulario" (ngSubmit)="enviarReclamo(formulario.value)">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Reclamo</h2>
+                <textarea name="" placeholder="Escribir reclamo..." formControlName="pqrs" id="" cols="30" rows="10"></textarea>
+                <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary form-control">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>

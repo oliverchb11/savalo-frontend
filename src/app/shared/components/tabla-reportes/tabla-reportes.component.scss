@@ -1,6 +1,5 @@
 .container {
-    padding: 8;
-    margin: 8;
+    height: auto;
 }
 
 table {
@@ -30,6 +29,10 @@ table tbody {
 table tbody tr:hover {
     background-color: #CFE4F4;
     cursor: pointer;
+}
+
+table tbody tr {
+    height: 40px;
 }
 
 table tbody tr td {

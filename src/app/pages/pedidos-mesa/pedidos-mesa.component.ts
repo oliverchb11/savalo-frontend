@@ -228,7 +228,7 @@ export class PedidosMesaComponent implements OnInit {
     public getCajerosUser(): void{
       this.profileService.getAllUsers().subscribe((respose) => {
         if(respose.success){
-        let cajeros =  respose.users.filter((user) => user.rol[0] === '2');
+        let cajeros =  respose.users.filter((user) => user.rol[0] === '2' && user.state);
         this.cajeros = cajeros
         }
       })

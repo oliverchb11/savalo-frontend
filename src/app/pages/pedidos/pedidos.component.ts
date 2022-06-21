@@ -10,6 +10,8 @@ import { CambioEstadoOrdenComponent } from '../cambio-estado-orden/cambio-estado
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import { TableService } from 'src/app/core/services/tables/table.service';
+import { PqrsComponent } from '../pqrs/pqrs.component';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -25,6 +27,7 @@ export class PedidosComponent implements OnInit {
   constructor(
     private router: Router,
     private ordersService: OrderService,
+    private tableService: TableService,
     private dialog: MatDialog
   ) { }
 
@@ -45,7 +48,11 @@ export class PedidosComponent implements OnInit {
       if(response.success){
         this.orders = response.orders;
         this.loading = false;
-        let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion' || value.preparationState === 'entregado' || value.preparationState === 'reclamo');
+        let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion' ||
+         value.preparationState === 'entregado' ||
+          value.preparationState === 'reclamo' 
+
+          );
         this.ordersNoPay = orderPreparation.length;
       }
     })
@@ -120,11 +127,33 @@ export class PedidosComponent implements OnInit {
         this.ordersService.updateOrder(infoUpdate, order._id).subscribe((response) => {
           if (response.success){
             successAlertGlobal(response.message);
+            this.updateTable(order.table._id)
             this.dialog.closeAll();
               }
         })
       } else if (result.isDenied) {
         Swal.fire('Cancelado', '', 'info')
+      }
+    })
+  }
+
+  public reclamoPedido(order: any): void{
+    this.dialog.open(PqrsComponent, {
+      data: order
+    })
+  }
+
+
+  public updateTable(id: string): void {
+    const data = {
+      libre: true,
+      numeroClientes: 0
+    }
+    console.log(id, data);
+    
+    this.tableService.updateTable(data, id).subscribe((response) => {
+      if(response.success){
+        console.log('mesa update');
       }
     })
   }

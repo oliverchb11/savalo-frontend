@@ -39,4 +39,6 @@ public print(): void{
 public searchDate(event):void{
   this.fecha = event.target.value
 }
+
+
 }

@@ -26,6 +26,8 @@ import { CambioEstadoOrdenComponent } from './cambio-estado-orden/cambio-estado-
 import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.component';
 import { CreateTableComponent } from './create-table/create-table.component';
 import { CreatePersonalityComponent } from './create-personality/create-personality.component';
+import { PqrsComponent } from './pqrs/pqrs.component';
+import { RangoFechasComponent } from './rango-fechas/rango-fechas.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { CreatePersonalityComponent } from './create-personality/create-personal
     CambioEstadoOrdenComponent,
     EditarOrdernesComponent,
     CreateTableComponent,
-    CreatePersonalityComponent
+    CreatePersonalityComponent,
+    PqrsComponent,
+    RangoFechasComponent
   ],
   imports: [
     CommonModule,

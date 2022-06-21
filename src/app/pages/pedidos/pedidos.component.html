@@ -41,7 +41,7 @@
                     <p class="p-generic">Total: <span>{{order.total | currency: '$'}}</span></p>
                     <button class="pagar" *ngIf="order.preparationState !== 'pagado' && order.preparationState !== 'pagado' && order.preparationState !== 'reclamo' && order.preparationState !== 'cancelado'" (click)="pay(order, modal)">Pagar</button>
                     <button class="pagar" *ngIf="order.preparationState === 'pagado' ">Pagado</button>
-                    <button class="pagar" *ngIf="order.preparationState === 'reclamo' ">Reclamo</button>
+                    <button class="pagar" *ngIf="order.preparationState === 'reclamo' " (click)="reclamoPedido(order)">Reclamo</button>
                     <button class="pagar" *ngIf="order.preparationState === 'cancelado' " (click)="cancelarPedido(order)">Cancelar pedido</button>
                 </div>
             </div>

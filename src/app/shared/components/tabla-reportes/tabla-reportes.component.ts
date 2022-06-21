@@ -5,6 +5,8 @@ import { ReportsService } from 'src/app/core/services/reports/reports.service';
 import { RegisterUser } from 'src/app/interfaces/register-user';
 import { ResponseOrder } from 'src/app/interfaces/orders/order-response';
 import { DataOrders } from 'src/app/interfaces/orders/data-orders';
+import { MatDialog } from '@angular/material/dialog';
+import { RangoFechasComponent } from 'src/app/pages/rango-fechas/rango-fechas.component';
 @Component({
   selector: 'app-tabla-reportes',
   templateUrl: './tabla-reportes.component.html',
@@ -26,7 +28,8 @@ export class TablaReportesComponent implements OnInit {
     this.searchDates(value)
   }
   constructor(
-    private reportsService: ReportsService
+    private reportsService: ReportsService,
+    private dialog: MatDialog
   ) { }
 
 
@@ -112,6 +115,9 @@ export class TablaReportesComponent implements OnInit {
             this.setTableThead()
           }
         })
+        break;
+      case 'rango':
+        this.dialog.open(RangoFechasComponent)
         break;
       case '':
         this.search = [];

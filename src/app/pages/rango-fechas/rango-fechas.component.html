@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">Buscar por rango de fechas</h2>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [formGroup]="formulario" [rangePicker]="picker">
+                    <input matStartDate formControlName="start" placeholder="Fecha desde">
+                    <input matEndDate formControlName="end" placeholder="Fecha hasta">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <!-- <mat-error *ngIf="formulario.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+                <mat-error *ngIf="formulario.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
+            </mat-form-field>
+            <button class="btn btn-primary form-control" (click)="buscarRango(formulario.value)">Buscar</button>
+        </div>
+    </div>
+</div>

@@ -15,3 +15,7 @@ export interface ReportsResponse3{
     success: boolean;
     ordersweek: DataOrders[]
 }
+export interface ReportsResponse4{
+    success: boolean;
+    ordersRange: DataOrders[]
+}

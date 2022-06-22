@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rango-fechas',
@@ -9,7 +10,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class RangoFechasComponent implements OnInit {
    public formulario: FormGroup;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialogo: MatDialogRef<RangoFechasComponent>,
   ) { }
 
   ngOnInit(): void {
@@ -18,13 +20,13 @@ export class RangoFechasComponent implements OnInit {
 
   public getFormBuilder(): void{
     this.formulario = this.fb.group({
-      start: [''],
-      end: [''],
+      start: ['', Validators.required],
+      end: ['', Validators.required],
     })
   }
 
   public buscarRango(formulario): void{
-    console.log(formulario);
+    this.dialogo.close(formulario)
   }
 
 }

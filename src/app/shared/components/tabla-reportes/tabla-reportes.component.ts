@@ -117,7 +117,24 @@ export class TablaReportesComponent implements OnInit {
         })
         break;
       case 'rango':
-        this.dialog.open(RangoFechasComponent)
+       let dialog = this.dialog.open(RangoFechasComponent);
+       dialog.afterClosed().subscribe((data) => {
+        let start = new Date(data?.start).toISOString();
+        let end = new Date(data?.end).toISOString();
+        let ranges = {
+          rangeStart: start,
+          rangeEnd: end
+        }
+        this.reportsService.postReportsRange(ranges).subscribe((response) =>{
+          if(response.success){
+            console.log('IMPORTANTE', response);
+            
+            this.search = response.ordersRange;
+            this.countOders = this.search?.length;
+            this.setTableThead()
+          }
+        })
+       })
         break;
       case '':
         this.search = [];

@@ -24,7 +24,7 @@
 
         </tbody>
     </table>
-    <mat-paginator (page)="page($event)" [length]="lengthPage" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    <mat-paginator *ngIf="search?.length > 0" (page)="page($event)" [length]="lengthPage" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
     </mat-paginator>
     <div class="no-report" *ngIf="search?.length === 0">
         <img src="assets/img/undraw_data_report_re_p4so.svg" alt="">

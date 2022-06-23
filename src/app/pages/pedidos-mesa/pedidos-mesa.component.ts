@@ -1,6 +1,8 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { OrderService } from 'src/app/core/services/orders/order.service';
@@ -12,6 +14,7 @@ import { DataOrders } from 'src/app/interfaces/orders/data-orders';
 import { RegisterUser } from 'src/app/interfaces/register-user';
 import { DataTable, DataTableOrder } from 'src/app/interfaces/table/data.table';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pedidos-mesa',
@@ -36,6 +39,10 @@ export class PedidosMesaComponent implements OnInit {
   public idMesa: string;
   public contador =0;
   public pedido: any[] = [];
+  public cajeroActual: string;
+  public cajeroNuevo: string;
+  public clienteNuevo: string;
+  public subscription: Subscription;
   public ok: number;
   public nombrePrimeraCategoria: string;
   constructor(
@@ -54,7 +61,10 @@ export class PedidosMesaComponent implements OnInit {
     this.getCategorys()
     this.getArticles()
     this.paramsData()
-    this.getCajerosUser()
+    this.getCajerosUser();
+    this.subscription = this.articleService.refresOrder$.subscribe(() => {
+      this.getArticles()
+    })
   }
 
   public dataBuilder(): void{
@@ -71,8 +81,11 @@ export class PedidosMesaComponent implements OnInit {
         if(response.success){
           console.log(response);
             this.mesaData = response.tables;
-            this.totalOders = response.tables.orders.total;
-          
+            this.totalOders =     parseInt(response.tables.orders.total.toString());
+        
+
+            
+            this.optenerCajeroAsignado(response.tables.orders._id)
         }
       })
     })  
@@ -202,15 +215,16 @@ export class PedidosMesaComponent implements OnInit {
       this.total = this.total - this.pedido[index].price;
       this.pedido.splice(index,1)
     }
-    public deletePedidoId(id: string): void {
-
+    public deletePedidoId(i: number): void {
+      this.mesaData.articles.splice(i,1);
+      this.totalOders = 0.
     }
 
     public updateTable(id: string, articles: string[], idOrder: string): void {
       const data = {
         libre: false,
         articles: articles,
-        orders: idOrder
+        orders: idOrder,
       }
         this.tableService.updateTable(data, id).subscribe((response) => {
           if(response.success){
@@ -219,8 +233,71 @@ export class PedidosMesaComponent implements OnInit {
         })
     }
 
+
+    //meotods para ir opteniendo la data que se puede actualizar
+    public optenerCajero(event): void{
+      this.cajeroNuevo = event.target.value;
+    }
+    public changeName(event): void{
+      this.clienteNuevo = event.target.value;
+    }
+    //validacion de articulos para acutliazar
+    public articlesUpdate(article): any[]{
+      if(article.length > 0 && this.pedido.length === 0) {
+         return article
+       }else if(article.length === 0 && this.pedido.length > 0){
+         return this.pedido
+       }else if(article.length > 0 && this.pedido.length > 0){
+        const union = this.pedido.concat(article)
+         return  union;
+       }else{
+         return []
+       }
+     }
     public updateOrder(idOrder: string): void {
-      console.log(idOrder);
+      Swal.fire({
+        title: `Seguro desea actualizar la orden?`,
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Actualizar',
+        denyButtonText: `Cancelar`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.dataUpdate(idOrder)
+        } else if (result.isDenied) {
+          Swal.fire('Cancelado', '', 'info')
+        }
+      })
+    }
+
+    public dataUpdate(idOrder): void{
+      let totalUpdate = 0;
+      if(this.total === 0 && this.totalOders > 0){
+        totalUpdate = this.totalOders;
+      }else if(this.total > 0 && this.totalOders === 0){
+        totalUpdate = this.total;
+      }else if(this.total > 0 && this.totalOders > 0){
+        totalUpdate = this.total + this.totalOders;
+      }
+      const dataUpdate = {
+        cajero:  this.cajeroNuevo,
+        nameOrder: this.clienteNuevo,
+        articles: this.articlesUpdate(this.mesaData.articles),
+        total: totalUpdate
+      }
+      console.log(idOrder, dataUpdate);
+      this.ordersService.updateOrder(dataUpdate,idOrder).subscribe((response)=>{
+        if(response.success){
+          successAlertGlobal('Orden actualizada');
+          this.router.navigateByUrl('pages/pedidos')
+        }
+      })
+    }
+
+    //formatear a numero totalOrder
+    public formartNumber(total: number): number{
+      return total;
     }
 
 
@@ -230,6 +307,15 @@ export class PedidosMesaComponent implements OnInit {
         if(respose.success){
         let cajeros =  respose.users.filter((user) => user.rol[0] === '2' && user.state);
         this.cajeros = cajeros
+        }
+      })
+    }
+    //obtener el cajero asignado de la orden, para actualizar orden
+    public optenerCajeroAsignado(idOrder: string): void{
+      this.ordersService.getOrderById(idOrder).subscribe((response) => {
+        if(response.success){
+          console.log('cajero', response);
+          this.cajeroActual = response?.order?.cajero;
         }
       })
     }

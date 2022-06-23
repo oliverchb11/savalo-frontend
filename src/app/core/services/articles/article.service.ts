@@ -46,6 +46,10 @@ export class ArticleService {
     return this.http.get<ResponseArticleId>(`${this.API_PRODUCTION}articles/${id}`, this.httpOptions);
   }
   public deletearticles(id: string): Observable<ResponseArticleDelete>{
-    return this.http.delete<ResponseArticleDelete>(`${this.API_PRODUCTION}articles/delete/${id}`, this.httpOptions);
+    return this.http.delete<ResponseArticleDelete>(`${this.API_PRODUCTION}articles/delete/${id}`, this.httpOptions).pipe(
+      tap(()=>{
+        this.refresOrder$.next()
+      })
+    );
   }
 }

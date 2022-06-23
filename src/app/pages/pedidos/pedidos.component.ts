@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
 import { TableService } from 'src/app/core/services/tables/table.service';
 import { PqrsComponent } from '../pqrs/pqrs.component';
+import { TranferenciaComponent } from '../tranferencia/tranferencia.component';
 @Component({
   selector: 'app-pedidos',
   templateUrl: './pedidos.component.html',
@@ -93,6 +94,16 @@ export class PedidosComponent implements OnInit {
       this.dialog.closeAll()
     })
   }
+  public tranferencia(): void{
+   let dialogRef = this.dialog.open(TranferenciaComponent, {
+      data: this.order,
+    });
+
+    dialogRef.afterClosed().subscribe((response) => {
+      console.log('cuando se cierra la modal muestra:', response);
+      this.dialog.closeAll()
+    })
+  }
 
   public pay(order, modal): void {
     this.methodPay(modal);
@@ -108,7 +119,7 @@ export class PedidosComponent implements OnInit {
   }
 
   public editOrder(order): void{
-    this.router.navigateByUrl(`pages/editar-ordenes/${order._id}`)
+    this.router.navigateByUrl(`pages/pedidos-mesa/${order.table._id}`);
   }
 
   public cancelarPedido(order): void{

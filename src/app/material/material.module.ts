@@ -5,6 +5,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -19,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule { }

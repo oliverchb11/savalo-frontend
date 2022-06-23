@@ -9,6 +9,7 @@ import { ChartPedidosComponent } from './components/chart-pedidos/chart-pedidos.
 import { NgChartsModule } from 'ng2-charts';
 import { LoaderComponent } from './components/loader/loader.component';
 import { TablaReportesComponent } from './components/tabla-reportes/tabla-reportes.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TablaReportesComponent } from './components/tabla-reportes/tabla-report
   imports: [
     CommonModule,
     RouterModule,
-    NgChartsModule
+    NgChartsModule,
+    MaterialModule
   ], 
   exports: [
     NavbarComponent,

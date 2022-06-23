@@ -64,7 +64,7 @@
 <ng-template #modal>
     <h2>Con que desea realizar el pago?</h2>
     <div class="metodos">
-        <div class="qr">
+        <div class="qr" (click)="tranferencia()">
             <p>Trasferencia / QR</p>
         </div>
         <div class="efectivo" (click)="efectivo()">

@@ -32,7 +32,7 @@
                     <input type="text" class="form-control" placeholder="Nombre Cliente" aria-label="Nombre Cliente" aria-describedby="basic-addon1" formControlName="nameOrder">
                 </div>
                 <div *ngIf="!mesaData?.libre" class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Nombre Cliente" aria-label="Nombre Cliente" aria-describedby="basic-addon1" [value]="mesaData?.orders?.nameOrder">
+                    <input type="text" (change)="changeName($event)" class="form-control" placeholder="Nombre Cliente" aria-label="Nombre Cliente" aria-describedby="basic-addon1" [value]="mesaData?.orders?.nameOrder">
                 </div>
             </div>
             <div class="info-mesa">
@@ -41,7 +41,7 @@
                     <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                   </svg></p>
                 <div *ngIf="!mesaData?.libre">
-                    <p class="pedidos" *ngFor="let items of mesaData?.articles"> {{items.name}} - {{items.price | currency: 'COP' }} <svg (click)="deletePedidoId(items._id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                    <p class="pedidos" *ngFor="let items of mesaData?.articles; let i = index"> {{items.name}} - {{items.price | currency: 'COP' }} <svg (click)="deletePedidoId(i)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
                       </svg></p>
                 </div>
@@ -59,12 +59,22 @@
                 </div> -->
                 <p>Total: </p>
                 <p *ngIf="mesaData?.libre">{{total | currency: '$'}}</p>
-                <p *ngIf="!mesaData?.libre">{{(total === 0) ? (totalOders | currency: '$') : (( total + totalOders)| currency: '$')}}</p>
+
+                <p *ngIf="!mesaData?.libre && total === 0 && totalOders > 0">{{(totalOders | currency: '$')}}</p>
+                <p *ngIf="!mesaData?.libre && total > 0 && totalOders === 0 ">{{( total | currency: '$')}}</p>
+                <p *ngIf="!mesaData?.libre && total > 0 && totalOders > 0  ">{{( total + totalOders| currency: '$')}}</p>
+                <!-- <p *ngIf="!mesaData?.libre">{{total}}- {{totalOders}}</p> -->
 
             </div>
-            <div class="info-cajero">
+            <div *ngIf="mesaData?.libre" class="info-cajero">
                 <select class="select-cajero" name="" id="" formControlName="cajero">
                     <option value="">Seleccione Cajero</option>
+                    <option *ngFor="let cajero of cajeros" [value]="cajero.name">{{cajero.name}}</option>
+                </select>
+            </div>
+            <div *ngIf="!mesaData?.libre" class="info-cajero">
+                <select class="select-cajero" name="" id="" (change)="optenerCajero($event)">
+                    <option [value]="cajeroActual">{{cajeroActual}}</option>
                     <option *ngFor="let cajero of cajeros" [value]="cajero.name">{{cajero.name}}</option>
                 </select>
             </div>

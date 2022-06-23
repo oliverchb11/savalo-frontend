@@ -18,13 +18,19 @@ export class TablaReportesComponent implements OnInit {
   public export = false;
   public fecha : string;
   public countOders: number = 0;
-  public search: DataOrders[] = []
+  public search: DataOrders[] = [];
+  public pageSize: number;
+  public pageSizeOptions: number;
+  public lengthPage: number;
+  
+
   @Input() set isExport(value: boolean){
     if(value){
       this.exportTable()
     }
   }
   @Input() set fechaSearch(value: string){
+    this.fecha = value;
     this.searchDates(value)
   }
   constructor(
@@ -88,7 +94,9 @@ export class TablaReportesComponent implements OnInit {
         let hoy = moment().format('YYYY-MM-DD');
         this.reportsService.getReportsDay(hoy).subscribe((response) => {
           if(response.success){
-            console.log(response.ordersDay);
+            console.log(response);
+            this.pageSize = response.pageSize;
+            this.lengthPage = response.count;
             this.search = response.ordersDay;
             this.countOders = this.search.length;
             this.setTableThead()
@@ -99,6 +107,9 @@ export class TablaReportesComponent implements OnInit {
         let mes = moment().format('MM');
         this.reportsService.getReportsMoths(mes).subscribe((response) => {
           if(response.success){
+            console.log(response);
+            this.pageSize = response.pageSize;
+            this.lengthPage = response.count;
             this.search = response.ordersMoth;
             this.countOders = this.search?.length;
             this.setTableThead()
@@ -110,6 +121,8 @@ export class TablaReportesComponent implements OnInit {
         let weekEnd = parseInt(moment().endOf('week').format('DD')) + 1;
         this.reportsService.getReportsWeeks(weekStart,weekEnd).subscribe((response) => {
           if(response.success){
+            this.pageSize = response.pageSize;
+            this.lengthPage = response.count;
             this.search = response.ordersweek;
             this.countOders = this.search?.length;
             this.setTableThead()
@@ -140,11 +153,101 @@ export class TablaReportesComponent implements OnInit {
         this.search = [];
         this.countOders = 0;
         this.setTableThead();
+        this.pageSize = 0;
+        this.lengthPage = 0;
         break;
     
       default:
         break;
     }
+  }
+
+  public page(event): void{
+    switch (this.fecha) {
+      case 'hoy':
+        let hoy = moment().format('YYYY-MM-DD');
+        if(parseInt(event.pageIndex) > 0){
+          this.reportsService.getReportsDay(hoy, event.pageSize, parseInt(event.pageIndex) + 1).subscribe((response) => {
+            if(response.success){
+              console.log(response);
+              this.pageSize = response.pageSize;
+              this.lengthPage = response.count;
+              this.search = response.ordersDay;
+              this.countOders = this.search?.length;
+              this.setTableThead()
+            }
+          })
+        }else{
+          this.reportsService.getReportsDay(hoy, event.pageSize, parseInt(event.previousPageIndex)).subscribe((response) => {
+            if(response.success){
+              console.log(response);
+              this.pageSize = response.pageSize;
+              this.lengthPage = response.count;
+              this.search = response.ordersDay;
+              this.countOders = this.search?.length;
+              this.setTableThead()
+            }
+          })
+        }
+        break;
+      case 'semana':
+        let weekStart = parseInt(moment().startOf('week').format('DD')) + 1;
+        let weekEnd = parseInt(moment().endOf('week').format('DD')) + 1;
+        if(parseInt(event.pageIndex) > 0){
+          this.reportsService.getReportsWeeks(weekStart, weekEnd,event.pageSize, parseInt(event.pageIndex) + 1).subscribe((response) => {
+            if(response.success){
+              console.log(response);
+              this.pageSize = response.pageSize;
+              this.lengthPage = response.count;
+              this.search = response.ordersweek;
+              this.countOders = this.search?.length;
+              this.setTableThead()
+            }
+          })
+        }else{
+          this.reportsService.getReportsWeeks(weekStart,weekEnd ,event.pageSize, parseInt(event.previousPageIndex)).subscribe((response) => {
+            if(response.success){
+              console.log(response);
+              this.pageSize = response.pageSize;
+              this.lengthPage = response.count;
+              this.search = response.ordersweek;
+              this.countOders = this.search?.length;
+              this.setTableThead()
+            }
+          })
+        }
+        break;
+      case 'mes':
+        let mes = moment().format('MM');
+        if(parseInt(event.pageIndex) > 0){
+          this.reportsService.getReportsMoths(mes, event.pageSize, parseInt(event.pageIndex) + 1).subscribe((response) => {
+            if(response.success){
+              console.log(response);
+              this.pageSize = response.pageSize;
+              this.lengthPage = response.count;
+              this.search = response.ordersMoth;
+              this.countOders = this.search?.length;
+              this.setTableThead()
+            }
+          })
+        }else{
+          this.reportsService.getReportsMoths(mes, event.pageSize, parseInt(event.previousPageIndex)).subscribe((response) => {
+            if(response.success){
+              console.log(response);
+              this.pageSize = response.pageSize;
+              this.lengthPage = response.count;
+              this.search = response.ordersMoth;
+              this.countOders = this.search?.length;
+              this.setTableThead()
+            }
+          })
+        }
+        break;
+    
+      default:
+        break;
+    }
+    console.log(event);
   }
 
 }

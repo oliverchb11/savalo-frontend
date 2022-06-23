@@ -23,14 +23,14 @@ export class ReportsService {
     } )
   };
 
-  public getReportsDay(date: string): Observable<ReportsResponse>{
-    return this.http.get<ReportsResponse>(`${this.API_PRODUCTION}reports/days?day=${date}`, this.httpOptions)
+  public getReportsDay(date: string, limit?: number, page?: number): Observable<ReportsResponse>{
+    return this.http.get<ReportsResponse>(`${this.API_PRODUCTION}reports/days?day=${date}&limit=${limit}&page=${page}`, this.httpOptions)
   }
-  public getReportsMoths(date: string): Observable<ReportsResponse2>{
-    return this.http.get<ReportsResponse2>(`${this.API_PRODUCTION}reports/moths?moth=${date}`, this.httpOptions)
+  public getReportsMoths(date: string, limit?: number, page?: number): Observable<ReportsResponse2>{
+    return this.http.get<ReportsResponse2>(`${this.API_PRODUCTION}reports/moths?moth=${date}&limit=${limit}&page=${page}`, this.httpOptions)
   }
-  public getReportsWeeks(weekStart: number, weekEnd: number): Observable<ReportsResponse3>{
-    return this.http.get<ReportsResponse3>(`${this.API_PRODUCTION}reports/weeks?weekStart=${weekStart}&weekEnd=${weekEnd}`, this.httpOptions)
+  public getReportsWeeks(weekStart: number, weekEnd: number, limit?: number, page?: number): Observable<ReportsResponse3>{
+    return this.http.get<ReportsResponse3>(`${this.API_PRODUCTION}reports/weeks?weekStart=${weekStart}&weekEnd=${weekEnd}&limit=${limit}&page=${page}`, this.httpOptions)
   }
   public postReportsRange(rangos: any): Observable<ReportsResponse4>{
     return this.http.post<ReportsResponse4>(`${this.API_PRODUCTION}reports/ranges`, rangos,this.httpOptions)

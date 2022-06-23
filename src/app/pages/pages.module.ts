@@ -28,6 +28,7 @@ import { CreateTableComponent } from './create-table/create-table.component';
 import { CreatePersonalityComponent } from './create-personality/create-personality.component';
 import { PqrsComponent } from './pqrs/pqrs.component';
 import { RangoFechasComponent } from './rango-fechas/rango-fechas.component';
+import { TranferenciaComponent } from './tranferencia/tranferencia.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { RangoFechasComponent } from './rango-fechas/rango-fechas.component';
     CreateTableComponent,
     CreatePersonalityComponent,
     PqrsComponent,
-    RangoFechasComponent
+    RangoFechasComponent,
+    TranferenciaComponent
   ],
   imports: [
     CommonModule,

@@ -3,19 +3,31 @@ import { RegisterUser } from "../register-user";
 
 export interface ReportsResponse{
     success: boolean;
-    ordersDay: DataOrders[]
+    ordersDay: DataOrders[];
+    count: number;
+    page: number;
+    pageSize: number;
 
 
 }
 export interface ReportsResponse2{
     success: boolean;
-    ordersMoth: DataOrders[]
+    ordersMoth: DataOrders[];
+    count: number;
+    page: number;
+    pageSize: number;
 }
 export interface ReportsResponse3{
     success: boolean;
-    ordersweek: DataOrders[]
+    ordersweek: DataOrders[];
+    count: number;
+    page: number;
+    pageSize: number;
 }
 export interface ReportsResponse4{
     success: boolean;
-    ordersRange: DataOrders[]
+    ordersRange: DataOrders[];
+    count: number;
+    page: number;
+    pageSize: number;
 }

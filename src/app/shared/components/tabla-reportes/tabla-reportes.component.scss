@@ -26,6 +26,20 @@ table tbody {
     box-shadow: 4px 4px 7px #ccc;
 }
 
+.tbody-total {
+    height: 30px !important;
+}
+
+.tbody-total tr {
+    background-color: #1979D9 !important;
+    color: #fff;
+}
+
+.tbody-total tr:hover {
+    background-color: #1979D9 !important;
+    color: #fff !important;
+}
+
 table tbody tr:hover {
     background-color: #CFE4F4;
     cursor: pointer;

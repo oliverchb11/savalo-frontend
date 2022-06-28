@@ -1,11 +1,21 @@
 .container {
-    margin-top: 20px;
     padding-bottom: 20px;
+}
+
+.div-create .card {
+    padding: 10px;
+    border-radius: 0px;
+    box-shadow: 4px 4px 7px #ccc;
 }
 
 .card {
     padding: 10px;
     box-shadow: 4px 4px 7px #ccc;
+}
+
+.div-create .card:hover {
+    outline: none;
+    background-color: rgb(13, 164, 205);
 }
 
 .card p {
@@ -41,9 +51,13 @@ h2 {
 
 .btn-create-person {
     height: 60px;
+    outline: none;
+    border: none;
 }
 
 .div-create {
-    margin-bottom: 8px;
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 20px;
     box-shadow: 4px 4px 7px #ccc;
 }

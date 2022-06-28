@@ -18,6 +18,8 @@ export class TablaReportesComponent implements OnInit {
   public export = false;
   public fecha : string;
   public countOders: number = 0;
+  public initialValue: number = 0;
+  public totalOrders: number = 0;
   public search: DataOrders[] = [];
   public pageSize: number;
   public pageSizeOptions: number;
@@ -32,6 +34,7 @@ export class TablaReportesComponent implements OnInit {
   @Input() set fechaSearch(value: string){
     this.fecha = value;
     this.searchDates(value)
+    this.valorPesos(0)
   }
   constructor(
     private reportsService: ReportsService,
@@ -72,7 +75,7 @@ export class TablaReportesComponent implements OnInit {
       },
       {
         id: 7,
-        title: 'Total'
+        title: `Total (${this.valorPesos(this.totalOrders)}) `
       },
     ]
   }
@@ -88,6 +91,7 @@ export class TablaReportesComponent implements OnInit {
   }
 
   public searchDates(fecha: string): void{
+
     console.log(fecha);
     switch (fecha) {
       case 'hoy':
@@ -98,6 +102,7 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersDay;
+            this.totalOrders = this.priceTotalOrders(this.search)
             this.countOders = this.search.length;
             this.setTableThead()
           }
@@ -111,6 +116,7 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersMoth;
+            this.totalOrders = this.priceTotalOrders(this.search)
             this.countOders = this.search?.length;
             this.setTableThead()
           }
@@ -124,6 +130,7 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersweek;
+            this.totalOrders = this.priceTotalOrders(this.search)
             this.countOders = this.search?.length;
             this.setTableThead()
           }
@@ -140,9 +147,10 @@ export class TablaReportesComponent implements OnInit {
         }
         this.reportsService.postReportsRange(ranges).subscribe((response) =>{
           if(response.success){
-            console.log('IMPORTANTE', response);
-            
+            this.pageSize = response.pageSize;
+            this.lengthPage = response.count;
             this.search = response.ordersRange;
+            this.totalOrders = this.priceTotalOrders(this.search)
             this.countOders = this.search?.length;
             this.setTableThead()
           }
@@ -155,6 +163,9 @@ export class TablaReportesComponent implements OnInit {
         this.setTableThead();
         this.pageSize = 0;
         this.lengthPage = 0;
+        this.totalOrders = 0
+        this.initialValue = 0
+        this.valorPesos(this.totalOrders)
         break;
     
       default:
@@ -243,11 +254,36 @@ export class TablaReportesComponent implements OnInit {
           })
         }
         break;
-    
+        case 'rango':
+
+          break;
       default:
         break;
     }
     console.log(event);
+  }
+
+// precio total de los productos
+  public priceTotalOrders(order: DataOrders[]): number{
+    this.initialValue = 0
+     let totales = order.map((value)=> value.total);
+  
+      for (let index = 0; index < totales.length; index++) {
+        this.initialValue += parseInt(totales[index].toString());
+        console.log( totales[index]);
+        
+      }
+     return this.initialValue;
+  }
+
+  //valor en pesos COP
+  public valorPesos(valor): any{
+    const formatterPeso = new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0
+    })
+    return formatterPeso.format(valor)
   }
 
 }

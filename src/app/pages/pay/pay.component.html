@@ -3,7 +3,7 @@
     <div class="section-info-order">
         <p>Fecha de la orden: <span>{{data.createdAt | date: 'YYYY-MM-dd'}}</span></p>
         <p>Lista de Productos: </p>
-        <p *ngFor="let item of data.articles"> <span> - {{item.name}}</span></p>
+        <p *ngFor="let item of data.articles"> <span> {{item.name}}</span> - <span>{{item.price | currency: '$'}}</span> </p>
         <p>Sub Total: <span>{{data.subTotal | currency: '$'}}</span></p>
         <div class="radios">
             <div class="r1">

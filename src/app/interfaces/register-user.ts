@@ -3,6 +3,8 @@ import { DataTable } from "./table/data.table";
 export interface RegisterUser {
     name: string;
     firstname: string;
+    cedula?: string;
+    tipoCedula?: string;
     age: number;
     cellphone: number;
     email: string;

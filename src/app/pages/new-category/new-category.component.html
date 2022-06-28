@@ -2,9 +2,11 @@
     <h2 class="text-center">Nueva Categoria</h2>
     <br>
     <form [formGroup]="formulario" (ngSubmit)="createCategory(formulario.value)">
+        <label for="name">Nombre Categoria</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" formControlName="name">
         </div>
+        <label for="visibility">Visible para los clientes</label>
         <div class="input-group mb-3">
             <select name="" formControlName="visibility" class="form-control" id="">
             <option value="">Visibles para los clientes</option>

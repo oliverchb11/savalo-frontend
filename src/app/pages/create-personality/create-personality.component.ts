@@ -27,6 +27,8 @@ export class CreatePersonalityComponent implements OnInit {
   private dataBuilder(): void{
     this.formulario = this.fb.group({
       name: ['', Validators.required],
+      tipoCedula: ['', Validators.required],
+      cedula: ['', Validators.required],
       firstname: ['', Validators.required],
       age: ['', [Validators.required, Validators.pattern('^[0-9]{2}$')]],
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
@@ -76,5 +78,11 @@ export class CreatePersonalityComponent implements OnInit {
   }
   get validRol(): boolean {
     return this.formulario.get('rol').invalid && this.formulario.get('rol').touched
+  }
+  get validTipoCedula(): boolean {
+    return this.formulario.get('tipoCedula').invalid && this.formulario.get('tipoCedula').touched
+  }
+  get validCedula(): boolean {
+    return this.formulario.get('cedula').invalid && this.formulario.get('cedula').touched
   }
 }

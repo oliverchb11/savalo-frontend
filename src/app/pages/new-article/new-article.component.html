@@ -2,18 +2,23 @@
     <h2 class="text-center">Nuevo Articulo Para La Categoría {{category?.name}}: </h2>
     <br>
     <form [formGroup]="formulario" (ngSubmit)="createArticle(formulario.value)">
+        <label for="name">Nombre</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" formControlName="name">
         </div>
+        <label for="price">Precio</label>
         <div class="input-group mb-3">
             <input type="number" class="form-control" placeholder="Precio" aria-label="Precio" aria-describedby="basic-addon1" formControlName="price">
         </div>
+        <label for="amount">Cantidad</label>
         <div class="input-group mb-3">
             <input type="number" class="form-control" placeholder="Cantidad" aria-label="Cantidad" aria-describedby="basic-addon1" formControlName="amount">
         </div>
+        <label for="description">Descripcion</label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Descripción" aria-label="Descripción" aria-describedby="basic-addon1" formControlName="description">
         </div>
+        <label for="photo">Foto producto</label>
         <div class="input-group mb-3">
             <input type="file" (change)="fileUpload($event)" class="form-control input-file" placeholder="Foto" aria-label="Foto" aria-describedby="basic-addon1" formControlName="photo">
         </div>

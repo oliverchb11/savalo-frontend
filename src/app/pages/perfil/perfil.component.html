@@ -6,6 +6,10 @@
             <h5 class="card-title">Nombre:</h5>
             <p class="card-text">{{user?.name}} {{user?.firstname}}</p>
         </div>
+        <div class="card-body">
+            <h5 class="card-title">Tipo cedula y Cedula:</h5>
+            <p class="card-text">{{tipoCedula(user?.tipoCedula)}}: {{user?.cedula}}</p>
+        </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Correo: {{user?.email}}</li>
             <li class="list-group-item">Edad: {{user?.age}} </li>

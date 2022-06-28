@@ -21,7 +21,17 @@
                 <td>{{item.cajero}}</td>
                 <td>{{item.total | currency: '$'}}</td>
             </tr>
-
+        </tbody>
+        <tbody class="tbody-total" *ngIf="search?.length > 0">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{totalOrders| currency: '$'}}</td>
+            </tr>
         </tbody>
     </table>
     <mat-paginator *ngIf="search?.length > 0" (page)="page($event)" [length]="lengthPage" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">

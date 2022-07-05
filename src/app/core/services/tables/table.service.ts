@@ -51,6 +51,10 @@ export class TableService {
   }
 
   public updateTable(data: any, id: string): Observable<ResponseTableUpdate>{
-    return this.http.put<ResponseTableUpdate>(`${this.API_PRODUCTION}tables/update/${id}`,data , this.httpOptions);
+    return this.http.put<ResponseTableUpdate>(`${this.API_PRODUCTION}tables/update/${id}`,data , this.httpOptions).pipe(
+      tap(() => {
+        this.refresh$.next()
+      })
+    )
   }
 }

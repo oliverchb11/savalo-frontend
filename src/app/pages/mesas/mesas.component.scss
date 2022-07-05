@@ -98,6 +98,26 @@ h2 {
     width: 50%;
 }
 
+.tuerca {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.mesa-activada {
+    border: 2px solid #1979D9;
+    border-radius: 5px;
+    box-shadow: 4px 4px 7px #ccc;
+    /* background-color: red; */
+    width: 159px;
+    cursor: pointer;
+    height: 172px;
+}
+
+.color-tuerca {
+    color: blue;
+}
+
 @media screen and (max-width: 768px) {
     .container-mesas {
         width: 100%;

@@ -29,6 +29,7 @@ import { CreatePersonalityComponent } from './create-personality/create-personal
 import { PqrsComponent } from './pqrs/pqrs.component';
 import { RangoFechasComponent } from './rango-fechas/rango-fechas.component';
 import { TranferenciaComponent } from './tranferencia/tranferencia.component';
+import { GestionMesaComponent } from './gestion-mesa/gestion-mesa.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { TranferenciaComponent } from './tranferencia/tranferencia.component';
     CreatePersonalityComponent,
     PqrsComponent,
     RangoFechasComponent,
-    TranferenciaComponent
+    TranferenciaComponent,
+    GestionMesaComponent
   ],
   imports: [
     CommonModule,

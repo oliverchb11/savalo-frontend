@@ -1,5 +1,6 @@
 .container {
     height: auto;
+    padding: 10px;
 }
 
 table {
@@ -70,4 +71,12 @@ table tbody tr td {
 .no-report img {
     height: 150px;
     width: 300px;
+}
+
+.p-ocultar {
+    display: none;
+}
+
+.season-tble {
+    margin-bottom: 30px;
 }

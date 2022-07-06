@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
   public getDataMesSer(): void{
     this.salesService.getSalesMonth().subscribe((response)=>{
       if(response.success){
+        console.log(response);
+        
         this.loading1 = false
         this.getDataMes(response.month, response.totalMonth)
       }

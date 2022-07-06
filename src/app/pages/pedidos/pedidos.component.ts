@@ -47,6 +47,8 @@ export class PedidosComponent implements OnInit {
   public getOrders(): void{
     this.ordersService.allOrders().subscribe((response) =>{
       if(response.success){
+        console.log(response.orders);
+        
         this.orders = response.orders;
         this.loading = false;
         let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion' ||

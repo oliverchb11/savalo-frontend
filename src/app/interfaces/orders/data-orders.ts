@@ -5,6 +5,7 @@ export interface DataOrders {
     nameOrder: string;
     table: DataTable;
     articles: DataCreateArticle[];
+    articles_cantidad: DataCreateArticle[];
     total: number;
     subTotal: number;
     _id?: string;

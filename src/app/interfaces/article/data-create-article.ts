@@ -5,6 +5,7 @@ export interface DataCreateArticle{
     amount?: number;
     description?: string;
     photo?: string;
+    cantidad?: number;
     available: string;
     user: string;
     category: string;

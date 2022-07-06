@@ -39,12 +39,16 @@ export class PedidosMesaComponent implements OnInit {
   public idMesa: string;
   public contador =0;
   public pedido: any[] = [];
+  public pedido2: any[] = [];
+  public seBorro = false;
   public cajeroActual: string;
   public cajeroNuevo: string;
   public clienteNuevo: string;
   public subscription: Subscription;
   public ok: number;
+  public carrito: {};
   public nombrePrimeraCategoria: string;
+  public cantidadProducto = this.pedido.length;
   constructor(
     private categoryService: CategoryService,
     private articleService: ArticleService,
@@ -127,31 +131,31 @@ export class PedidosMesaComponent implements OnInit {
     }
 
     public dataArticle(article): void {
-        this.pedido.push(article);
-          const carritoSinDuplicados = [...new Set(this.pedido  )];
-          // Generamos los Nodos a partir de carrito
-          carritoSinDuplicados.forEach((item) => {
-              // Obtenemos el item que necesitamos de la variable base de datos
-              const miItem = this.articles.filter((itemBaseDatos) => {
-                  // ¿Coincide las id? Solo puede existir un caso
-                  return itemBaseDatos._id === item._id;
-              });
-       
-        const numeroUnidadesItem =  this.pedido.reduce((total, itemId, i) => {
-          // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
-          return itemId._id === item._id ? total += 1 : total;
-      }, 0);
-      console.log(`${numeroUnidadesItem} x ${miItem[0].name}`);
-      this.pedido = carritoSinDuplicados
-    })
- 
-      let contador = 0;
-      this.pedido.map((pedido) => {
-        contador += pedido.price;
-      })
-      this.subTotal = contador;
-      this.total = this.subTotal;
-    }
+      this.seBorro = false
+      if(!this.seBorro){
+        console.log(this.pedido2.length);
+        this.pedido.push(article)
+        article.cantidad ++
+        const result = this.pedido.reduce((acc,item)=>{
+          if(!acc.includes(item)){
+            acc.push(item);
+          }
+          return acc;
+        },[])
+        console.log(result);
+  
+        this.pedido2 = result;
+      }else{
+        this.pedido2 = []
+      }
+  
+  let contador = 0;
+  this.pedido.map((pedido) => {
+    contador += pedido.price;
+  })
+  this.subTotal = contador;
+  this.total = this.subTotal;
+}
 
     public servicio(event): void {
       this.servicioState = !this.servicioState;
@@ -184,13 +188,15 @@ export class PedidosMesaComponent implements OnInit {
       for (let i = 0; i < this.pedido.length; i++){
           this.articlesId.push(this.pedido[i]._id);
       }
+
       const datosCrearPedido = {
         table : this.mesaData._id,
         total: this.total,
         subTotal: this.subTotal,
         nameOrder: nameOrder.nameOrder,
         cajero: nameOrder.cajero,
-        articles: this.articlesId
+        articles: this.articlesId,
+        articles_cantidad: this.pedido2
       }
       console.log(datosCrearPedido);
       this.ordersService.createOrder(datosCrearPedido).subscribe((response) => {
@@ -212,8 +218,15 @@ export class PedidosMesaComponent implements OnInit {
       console.log(this.pedido[index].price, this.subTotal);
       
       this.subTotal = this.subTotal - this.pedido[index].price;
+      this.subTotal = this.subTotal - this.pedido2[index].price;
       this.total = this.total - this.pedido[index].price;
+      this.total = this.total - this.pedido2[index].price;
       this.pedido.splice(index,1)
+      this.pedido2.splice(index,1);
+      console.log(this.pedido2.length); 
+      if(this.pedido2.length === 0){
+        this.seBorro = true;
+      }
     }
     public deletePedidoId(i: number): void {
       this.mesaData.articles.splice(i,1);
@@ -318,5 +331,12 @@ export class PedidosMesaComponent implements OnInit {
           this.cajeroActual = response?.order?.cajero;
         }
       })
+    }
+
+    public decrementarCantidad(): void{
+      this.cantidadProducto -= 1
+    }
+    public aumentarCantidad(): void{
+      this.cantidadProducto += 1
     }
 }

@@ -30,6 +30,7 @@ import { PqrsComponent } from './pqrs/pqrs.component';
 import { RangoFechasComponent } from './rango-fechas/rango-fechas.component';
 import { TranferenciaComponent } from './tranferencia/tranferencia.component';
 import { GestionMesaComponent } from './gestion-mesa/gestion-mesa.component';
+import { DetalleReporteComponent } from './detalle-reporte/detalle-reporte.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { GestionMesaComponent } from './gestion-mesa/gestion-mesa.component';
     PqrsComponent,
     RangoFechasComponent,
     TranferenciaComponent,
-    GestionMesaComponent
+    GestionMesaComponent,
+    DetalleReporteComponent
   ],
   imports: [
     CommonModule,

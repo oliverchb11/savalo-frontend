@@ -7,6 +7,7 @@ import { ResponseOrder } from 'src/app/interfaces/orders/order-response';
 import { DataOrders } from 'src/app/interfaces/orders/data-orders';
 import { MatDialog } from '@angular/material/dialog';
 import { RangoFechasComponent } from 'src/app/pages/rango-fechas/rango-fechas.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tabla-reportes',
   templateUrl: './tabla-reportes.component.html',
@@ -38,7 +39,8 @@ export class TablaReportesComponent implements OnInit {
   }
   constructor(
     private reportsService: ReportsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) { }
 
 
@@ -284,6 +286,11 @@ export class TablaReportesComponent implements OnInit {
       minimumFractionDigits: 0
     })
     return formatterPeso.format(valor)
+  }
+
+  public detailReport(item: DataOrders): void{
+    console.log(item);
+    this.router.navigateByUrl(`pages/detalle-reporte/${item._id}`)    
   }
 
 }

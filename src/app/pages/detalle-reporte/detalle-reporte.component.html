@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="info">
+        <div class="row text-center m-3">
+            <div class="col-md-6">
+                <p>Fecha Inicio</p>
+            </div>
+            <div class="col-md-6">
+                <p>{{order?.createdAt | date: 'medium'}}</p>
+            </div>
+        </div>
+        <div class="row text-center m-3">
+            <div class="col-md-6">
+                <p>Mesa</p>
+            </div>
+            <div class="col-md-6">
+                <p>{{order?.table?.name}}</p>
+            </div>
+        </div>
+        <div class="row text-center m-3">
+            <div class="col-md-6">
+                <p>Cajero</p>
+            </div>
+            <div class="col-md-6">
+                <p>{{order?.cajero}}</p>
+            </div>
+        </div>
+        <div class="row text-center m-3">
+            <div class="col-md-6">
+                <p>Medio de pago</p>
+            </div>
+            <div class="col-md-6">
+                <p>{{order?.metodoPago}}</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="info">
+        <div class="row text-center m-3">
+            <div class="col-md-12 ">
+                <b>Articulos</b>
+            </div>
+        </div>
+        <div class="row" *ngFor="let item of order?.articles_cantidad">
+            <div class="col-md-2 article-1">
+                <p>{{item?.cantidad}}</p>
+            </div>
+            <div class="col-md-10 article-2">
+                <p>{{item?.name}}</p>
+                <p>{{item?.price | currency: '$'}}</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row text-center">
+            <div class="col-md-6">
+                <p>Total</p>
+            </div>
+            <div class="col-md-6">
+                <p>{{order?.total | currency: '$'}}</p>
+            </div>
+        </div>
+    </div>
+</div>

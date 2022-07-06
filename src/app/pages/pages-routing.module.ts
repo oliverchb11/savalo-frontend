@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartaComponent } from './carta/carta.component';
+import { DetalleReporteComponent } from './detalle-reporte/detalle-reporte.component';
 import { EditarOrdernesComponent } from './editar-ordernes/editar-ordernes.component';
 import { GestionArticulosComponent } from './gestion-articulos/gestion-articulos.component';
 import { GestionCategoriaComponent } from './gestion-categoria/gestion-categoria.component';
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'editar-ordenes/:id',
     component: EditarOrdernesComponent
+  },
+  {
+    path: 'detalle-reporte/:id',
+    component: DetalleReporteComponent
   },
 ];
 

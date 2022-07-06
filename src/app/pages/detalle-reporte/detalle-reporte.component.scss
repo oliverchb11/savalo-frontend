@@ -1,0 +1,33 @@
+.container {
+    padding: 10px;
+}
+
+.info {
+    width: 45%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 4px 4px 7px #ccc;
+    padding: 10px;
+}
+
+p {
+    font-size: 17px;
+    font-weight: 800;
+}
+
+b {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.article-2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.article-1 {
+    display: flex;
+    justify-content: center;
+}

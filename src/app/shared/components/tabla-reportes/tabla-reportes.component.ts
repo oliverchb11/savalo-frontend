@@ -20,7 +20,11 @@ export class TablaReportesComponent implements OnInit {
   public fecha : string;
   public countOders: number = 0;
   public initialValue: number = 0;
+  public initialValueEfectivo: number = 0;
+  public initialValueTrasferencia: number = 0;
   public totalOrders: number = 0;
+  public totalOrdersEfectivo: number = 0;
+  public totalOrdersTransferencia: number = 0;
   public search: DataOrders[] = [];
   public pageSize: number;
   public pageSizeOptions: number;
@@ -104,7 +108,9 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersDay;
-            this.totalOrders = this.priceTotalOrders(this.search)
+            this.totalOrders = this.priceTotalOrders(this.search);
+            this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
+            this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
             this.countOders = this.search.length;
             this.setTableThead()
           }
@@ -118,7 +124,9 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersMoth;
-            this.totalOrders = this.priceTotalOrders(this.search)
+            this.totalOrders = this.priceTotalOrders(this.search);
+            this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
+            this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
             this.countOders = this.search?.length;
             this.setTableThead()
           }
@@ -133,6 +141,8 @@ export class TablaReportesComponent implements OnInit {
             this.lengthPage = response.count;
             this.search = response.ordersweek;
             this.totalOrders = this.priceTotalOrders(this.search)
+            this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
+            this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
             this.countOders = this.search?.length;
             this.setTableThead()
           }
@@ -153,6 +163,8 @@ export class TablaReportesComponent implements OnInit {
             this.lengthPage = response.count;
             this.search = response.ordersRange;
             this.totalOrders = this.priceTotalOrders(this.search)
+            this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
+            this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
             this.countOders = this.search?.length;
             this.setTableThead()
           }
@@ -276,6 +288,42 @@ export class TablaReportesComponent implements OnInit {
         
       }
      return this.initialValue;
+  }
+
+  //precios total en efectivo
+  public priceTotalEfectivo(order: DataOrders[]): number{
+    this.initialValueEfectivo = 0;
+    let total = order.map((value)=> {
+      if(value.metodoPago === 'efectivo'){
+        this.initialValueEfectivo = value.total
+      }
+      return this.initialValueEfectivo
+    });
+    let all = total.reduce((pre,curren)=> {
+      return pre + parseInt(curren.toString())
+    } ,0)
+  
+    return all
+  }
+  //precios total en transferencia
+  public priceTotalTrasferencia(order: DataOrders[]): number{
+    this.initialValueTrasferencia = 0;
+    let total = order.map((value)=> {
+      if(value.metodoPago === 'transferencia'){
+        this.initialValueTrasferencia = value.total
+
+      }else{
+        this.initialValueTrasferencia = 0
+      }
+      return this.initialValueTrasferencia
+      
+    });
+    console.log(total);
+    let all = total.reduce((pre,curren)=> {
+      return pre + parseInt(curren.toString())
+    } ,0)
+  
+    return all
   }
 
   //valor en pesos COP

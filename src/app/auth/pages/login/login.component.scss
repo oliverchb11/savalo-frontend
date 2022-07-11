@@ -83,6 +83,13 @@
     width: 130px;
 }
 
+.mensaje {
+    display: flex;
+    gap: 1em;
+    width: 44%;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 768px) {
     .container-login,
     form {

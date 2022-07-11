@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData, ChartEvent, ChartOptions, ChartType } from 'chart.js';
 import { SalesService } from 'src/app/core/services/sales/sales.service';
+import { dataMes } from 'src/app/interfaces/sales/sales-month';
+import * as moment from 'moment';
+import { monthsString } from 'src/app/utils/months-string';
 
 @Component({
   selector: 'app-home',
@@ -40,18 +43,20 @@ export class HomeComponent implements OnInit {
         console.log(response);
         
         this.loading1 = false
-        this.getDataMes(response.month, response.totalMonth)
+        this.getDataMes(response.data)
       }
     })
   }
 
-  public getDataMes(month: string, totalMonth: number): void{
-    this.month = month
-    this.months = [month];
+  public getDataMes(data: dataMes[]): void{
+    this.month = monthsString(moment().format('MM'));
+    let meses = data.map((value)=> value.mesLetras);
+    let totalMes = data.map((value)=> value.totalMes);
+    this.months = meses;
     this.dataMes = [
       {
         label: 'Ventas por mes',
-        data: [ totalMonth]
+        data: totalMes
       }
     ]
   }

@@ -19,7 +19,7 @@
 
 .section {
     display: flex;
-    width: 45%;
+    width: 47%;
     margin: 0 auto;
     gap: 1em;
     margin-top: 10px;
@@ -96,6 +96,17 @@
     background-color: #000000;
 }
 
+.is-label {
+    color: rgb(251, 0, 0);
+}
+
+.mensaje {
+    display: flex;
+    gap: 1em;
+    width: 44%;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 768px) {
     .container-register,
     form,
@@ -105,7 +116,7 @@
     }
     .section-register {
         width: 100%;
-        padding: 10px;
+        padding: 5px;
     }
     .botones {
         padding: 10px;

@@ -8,6 +8,8 @@ export interface DataOrders {
     articles_cantidad: DataCreateArticle[];
     total: number;
     subTotal: number;
+    fechaEntrega?: number;
+    fechaPagado?: number;
     _id?: string;
     cajero?: string;
     metodoPago?: string;

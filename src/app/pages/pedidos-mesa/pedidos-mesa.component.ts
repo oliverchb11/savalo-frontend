@@ -131,6 +131,7 @@ export class PedidosMesaComponent implements OnInit {
     }
 
     public dataArticle(article): void {
+
       this.seBorro = false
       if(!this.seBorro){
         console.log(this.pedido2.length);
@@ -147,12 +148,15 @@ export class PedidosMesaComponent implements OnInit {
         this.pedido2 = result;
       }else{
         this.pedido2 = []
+        this.pedido = []
+        this.seBorro = true;
       }
+
+      let contador = 0;
+      this.pedido.map((pedido) => {
+        contador += pedido.price;
+      })
   
-  let contador = 0;
-  this.pedido.map((pedido) => {
-    contador += pedido.price;
-  })
   this.subTotal = contador;
   this.total = this.subTotal;
 }
@@ -215,15 +219,13 @@ export class PedidosMesaComponent implements OnInit {
     }
 
     public deletePedido(index: number): void {
-      console.log(this.pedido[index].price, this.subTotal);
-      
-      this.subTotal = this.subTotal - this.pedido[index].price;
-      this.subTotal = this.subTotal - this.pedido2[index].price;
-      this.total = this.total - this.pedido[index].price;
-      this.total = this.total - this.pedido2[index].price;
+      console.log('all', this.pedido2[index]);
+      this.total = this.total - ((parseInt(this.pedido2[index].price) * parseInt(this.pedido2[index].cantidad) ));
+      this.subTotal = this.subTotal - ((parseInt(this.pedido2[index].price) * parseInt(this.pedido2[index].cantidad) ));
+      this.pedido2[index].cantidad = 0;
+      this.pedido[index].cantidad = 0;
       this.pedido.splice(index,1)
       this.pedido2.splice(index,1);
-      console.log(this.pedido2.length); 
       if(this.pedido2.length === 0){
         this.seBorro = true;
       }

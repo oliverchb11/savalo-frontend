@@ -36,7 +36,11 @@ export class LoginComponent implements OnInit {
         successAlertLogin();
         saveToken(data.token, data.user);
         setTimeout(() => {
-          this.router.navigateByUrl('pages/home');
+          if(data.user.rol[0] === '1'){
+            this.router.navigateByUrl('pages/home');
+          }else{
+            this.router.navigateByUrl('pages/pedidos');
+          }
           dismissAlertLogin()
         }, 2000);
       }else{

@@ -1,7 +1,9 @@
 <div class="container-perfil">
     <div class="card">
-        <img *ngIf=" imagen === ''" src="assets/img/no-photo.png" class="card-img-top" alt="no image">
-        <img *ngIf="imagen !== ''" [src]="imagen" class="card-img-top" alt="no image">
+        <figure>
+            <img *ngIf=" imagen === ''" src="assets/img/no-photo.png" class="card-img-top" alt="no image">
+            <img *ngIf="imagen !== ''" [src]="imagen" class="card-img-top" alt="no image">
+        </figure>
         <div class="card-body">
             <h5 class="card-title">Nombre:</h5>
             <p class="card-text">{{user?.name}} {{user?.firstname}}</p>

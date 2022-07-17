@@ -47,6 +47,7 @@ export class PedidosMesaComponent implements OnInit {
   public subscription: Subscription;
   public ok: number;
   public carrito: {};
+  public rolUser: string;
   public nombrePrimeraCategoria: string;
   public cantidadProducto = this.pedido.length;
   constructor(
@@ -61,6 +62,7 @@ export class PedidosMesaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getUserLocalStorage()
     this.dataBuilder()
     this.getCategorys()
     this.getArticles()
@@ -192,13 +194,14 @@ export class PedidosMesaComponent implements OnInit {
       for (let i = 0; i < this.pedido.length; i++){
           this.articlesId.push(this.pedido[i]._id);
       }
+      this.rolUser
 
       const datosCrearPedido = {
         table : this.mesaData._id,
         total: this.total,
         subTotal: this.subTotal,
         nameOrder: nameOrder.nameOrder,
-        cajero: nameOrder.cajero,
+        cajero: (this.rolUser === '1')? nameOrder.cajero : this.cajeroActual,
         articles: this.articlesId,
         articles_cantidad: this.pedido2
       }
@@ -329,8 +332,8 @@ export class PedidosMesaComponent implements OnInit {
     public optenerCajeroAsignado(idOrder: string): void{
       this.ordersService.getOrderById(idOrder).subscribe((response) => {
         if(response.success){
-          console.log('cajero', response);
-          this.cajeroActual = response?.order?.cajero;
+          console.log('cajero', response?.order?.cajero);
+          // this.cajeroActual = response?.order?.cajero;
         }
       })
     }
@@ -340,5 +343,13 @@ export class PedidosMesaComponent implements OnInit {
     }
     public aumentarCantidad(): void{
       this.cantidadProducto += 1
+    }
+
+    //obtener usuario del localStorage
+    public getUserLocalStorage(): void{
+      let user = JSON.parse(localStorage.getItem('user'));
+      this.rolUser = user.rol[0];
+      this.cajeroActual = user.name;
+      console.log( user.name);
     }
 }

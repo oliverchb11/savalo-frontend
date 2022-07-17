@@ -6,17 +6,46 @@
     margin: 10px;
 }
 
-.card {
-    width: 80%;
+// .card {
+//     width: 80%;
+//     margin: 0 auto;
+//     border-radius: 0px;
+//     height: 80px;
+//     background-color: #fff !important;
+// }
+// .card:hover {
+//     outline: none;
+//     background-color: rgb(13, 164, 205);
+// }
+.categoria {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 73%;
     margin: 0 auto;
-    border-radius: 0px;
-    height: 80px;
-    background-color: #fff !important;
+    box-shadow: 4px 4px 7px #ccc;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    line-height: 62px;
 }
 
-.card:hover {
-    outline: none;
+.categoria:hover {
+    border: 1px solid #ccc;
+    width: 73%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
     background-color: rgb(13, 164, 205);
+}
+
+.categoria p {
+    font-size: 20px;
+    color: black;
 }
 
 .button-add-mesas {
@@ -52,6 +81,14 @@
     background-color: #CFE4F4;
     box-shadow: 4px 4px 7px #ccc;
     cursor: pointer;
+}
+
+@supports(object-fit: cover) {
+    .mesas-img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
 }
 
 .mesa-ocupada {

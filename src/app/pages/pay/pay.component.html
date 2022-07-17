@@ -2,8 +2,22 @@
     <h2 class="text-center">Pagar</h2>
     <div class="section-info-order">
         <p>Fecha de la orden: <span>{{data.createdAt | date: 'YYYY-MM-dd'}}</span></p>
-        <p>Lista de Productos: </p>
-        <p *ngFor="let item of data.articles_cantidad"> <span> {{item.cantidad}} {{item.name}}</span> - <span>{{item.price | currency: '$'}}</span> </p>
+        <table class="table table-light table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data.articles_cantidad">
+                    <th scope="row">{{item.cantidad}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price | currency: '$'}}</td>
+                </tr>
+            </tbody>
+        </table>
         <p>Sub Total: <span>{{data.subTotal | currency: '$'}}</span></p>
         <div class="radios">
             <div class="r1">

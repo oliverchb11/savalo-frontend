@@ -28,6 +28,37 @@
     font-weight: 400;
 }
 
+.categoria {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 73%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    line-height: 62px;
+}
+
+.categoria:hover {
+    border: 1px solid #ccc;
+    width: 73%;
+    margin: 0 auto;
+    box-shadow: 4px 4px 7px #ccc;
+    color: black;
+    padding-left: 10px;
+    cursor: pointer;
+    text-align: center;
+    height: 70px;
+    background-color: rgb(13, 164, 205);
+}
+
+.categoria p {
+    font-size: 20px;
+    color: black;
+}
+
 .card img {
     height: 150px;
     width: 150px;
@@ -55,9 +86,17 @@ h2 {
     border: none;
 }
 
-.div-create {
-    margin: 0 auto;
-    width: 80%;
-    margin-bottom: 20px;
-    box-shadow: 4px 4px 7px #ccc;
+@supports(object-fit: cover) {
+    figure img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
 }
+
+// .div-create {
+//     margin: 0 auto;
+//     width: 80%;
+//     margin-bottom: 20px;
+//     box-shadow: 4px 4px 7px #ccc;
+// }

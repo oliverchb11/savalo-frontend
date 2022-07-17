@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     background-color: #000;
-    opacity: 0.35;
     overflow-y: hidden;
     overflow-x: hidden;
 }
@@ -29,6 +28,7 @@ img {
 
 .info-inicial {
     position: absolute;
+    background-color: #000 !important;
     left: 50%;
     top: 40%;
     transform: translate(-50%, -40%);
@@ -43,7 +43,7 @@ img {
     position: absolute;
     display: flex;
     left: 50%;
-    top: 70%;
+    top: 80%;
     transform: translate(-50%, -70%);
     gap: 1em;
     z-index: 999;
@@ -52,14 +52,14 @@ img {
 
 .botones input {
     width: 320px;
-    height: 40px;
+    height: 50px;
     font-size: 18px;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .botones input:hover {
-    background-color: #000;
+    background-color: #F0822C;
     color: #fff;
     font-size: 18px;
 }
@@ -83,11 +83,9 @@ img {
         display: flex;
         flex-direction: column;
     }
-
     .info-inicial h1 {
         font-size: 9em;
     }
-
     .copy {
         width: 90%;
         margin: 0 auto;

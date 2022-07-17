@@ -93,19 +93,24 @@
 
             </div>
             <div *ngIf="mesaData?.libre" class="info-cajero">
-                <select class="select-cajero" name="" id="" formControlName="cajero">
+                <select *ngIf="rolUser === '1'" class="select-cajero" name="" id="" formControlName="cajero">
                     <option value="">Seleccione Cajero</option>
                     <option *ngFor="let cajero of cajeros" [value]="cajero.name">{{cajero.name}}</option>
                 </select>
+                <select *ngIf="rolUser === '2'" class="select-cajero" name="" id="">
+                    <option [value]="cajeroActual">{{cajeroActual}}</option>
+                </select>
             </div>
             <div *ngIf="!mesaData?.libre" class="info-cajero">
-                <select class="select-cajero" name="" id="" (change)="optenerCajero($event)">
-                    <option [value]="cajeroActual">{{cajeroActual}}</option>
+                <select *ngIf="rolUser === '1'" class="select-cajero" name="" id="" (change)="optenerCajero($event)">
                     <option *ngFor="let cajero of cajeros" [value]="cajero.name">{{cajero.name}}</option>
+                </select>
+                <select *ngIf="rolUser === '2'" class="select-cajero" name="" id="" (change)="optenerCajero($event)">
+                    <option [value]="cajeroActual">{{cajeroActual}}</option>
                 </select>
             </div>
             <div *ngIf="mesaData?.libre" class="info-mesa-4" [ngClass]="{'btn-disbled': subTotal === 0 }">
-                <button class="btn-create" type="submit" [disabled]="subTotal === 0 || formulario.invalid"> Crear Pedido  </button>
+                <button class="btn-create" type="submit" [disabled]="subTotal === 0 || formulario.invalid && rolUser === '1'"> Crear Pedido  </button>
             </div>
             <div *ngIf="!mesaData?.libre" class="info-mesa-4" [ngClass]="{'btn-disbled': subTotal === 0 }">
                 <button class="btn-create" type="button" [disabled]="mesaData?.orders?.total === 0" (click)="updateOrder(mesaData.orders._id)"> Actualizar Pedido  </button>

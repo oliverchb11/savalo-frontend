@@ -62,10 +62,10 @@ export class PedidosMesaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getArticles()
+    this.getCategorys()
     this.getUserLocalStorage()
     this.dataBuilder()
-    this.getCategorys()
-    this.getArticles()
     this.paramsData()
     this.getCajerosUser();
     this.subscription = this.articleService.refresOrder$.subscribe(() => {

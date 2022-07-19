@@ -89,6 +89,7 @@ export class PedidosComponent implements OnInit {
   public efectivo(): void{
    let dialogRef = this.dialog.open(PayComponent, {
       data: this.order,
+      height:'500px'
     });
 
     dialogRef.afterClosed().subscribe((response) => {

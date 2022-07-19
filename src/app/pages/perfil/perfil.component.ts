@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { RegisterUser } from 'src/app/interfaces/register-user';
 import { roles } from 'src/app/utils/roles';
@@ -14,6 +15,7 @@ export class PerfilComponent implements OnInit {
   public user: RegisterUser;
   public previewImg: string | ArrayBuffer = '';
   public rol: string | string[];
+  public subscription: Subscription
   public baseUrl = environment.API_PRODUCTION;
   public imagen: string = '';
   constructor(
@@ -23,11 +25,14 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.userInfoStorage();
+      this.listUserId(this.userInfoStorage());
+
   }
 
-  public userInfoStorage(): void {
+  public userInfoStorage(): string {
     let user = JSON.parse(localStorage.getItem('user'));
     this.listUserId(user._id);
+    return user._id;
   }
 
   public listUserId(id: string): void {

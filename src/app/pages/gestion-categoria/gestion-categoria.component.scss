@@ -2,12 +2,7 @@
     width: 70%;
     margin: 0 auto;
     margin-top: 20px;
-}
-
-.content {
-    display: flex;
-    justify-content: space-between;
-    gap: 1em;
+    height: 440px;
 }
 
 .content input {
@@ -17,7 +12,24 @@
 
 .botones {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     gap: 1em;
-    width: 30%;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+.form-control {
+    border-radius: 0px;
+    box-shadow: 4px 4px 7px #ccc;
+    height: 45px;
+}
+
+.card-header {
+    background-color: transparent;
+    border: none;
 }

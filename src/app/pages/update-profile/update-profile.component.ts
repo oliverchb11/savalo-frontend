@@ -20,6 +20,7 @@ export class UpdateProfileComponent implements OnInit {
   public dataUser: any[] = [];
   public form: any;
   public imagen: string = '';
+  public cambioImg = false;
   public id: string ;
   public baseUrl = environment.API_PRODUCTION;
   public formulario: FormGroup;
@@ -71,6 +72,7 @@ export class UpdateProfileComponent implements OnInit {
     this.authService.updateUploadFile(file,'usuarios', this.user?._id).subscribe((response) => {
       if(response.success){
         console.log(response);
+        this.cambioImg = true;
       }
     })
   }
@@ -149,7 +151,8 @@ export class UpdateProfileComponent implements OnInit {
       !this.touchInputEmail ||
       !this.touchInputAge ||
       !this.touchInputRol ||
-      !this.touchInputCell 
+      !this.touchInputCell ||
+      this.cambioImg 
       ){
         return true
       }else{

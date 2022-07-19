@@ -20,6 +20,7 @@ export class AuthService {
   public API_PRODUCTION = environment.API_PRODUCTION;
   public API_LOCAL = environment.API_PRODUCTION;
   private _refresSubject = new Subject<void>();
+  private _refresSubject2 = new Subject<void>();
   constructor(
     private http: HttpClient,
   ) {
@@ -35,10 +36,16 @@ export class AuthService {
   get refresOrder$(){
     return this._refresSubject;
   }
+  get refresOrder2$(){
+    return this._refresSubject2;
+  }
 
 
   public listUserById(id: string): Observable<UserList>{
-    return this.http.get<UserList>(`${this.API_PRODUCTION}auth/user/${id}`, {headers:{'x-token': this.token}});
+    return this.http.get<UserList>(`${this.API_PRODUCTION}auth/user/${id}`, {headers:{'x-token': this.token}}).pipe(
+      tap(() =>{
+        this.refresOrder2$.next()
+      }));
   }
 
   public loginUser(user: LoginUser): Observable<LoginUserResponse>{

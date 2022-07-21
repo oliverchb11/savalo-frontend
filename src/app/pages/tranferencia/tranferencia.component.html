@@ -1,4 +1,10 @@
 <div class="container">
+    <div class="icon-close" (click)="close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <h2 class="text">Escanea el codigo QR o Realiza tranferencia al numero de cuenta</h2>
@@ -13,5 +19,35 @@
                 <button class="btn btn-primary form-control" (click)="trasferencia()">Trasferencia confirmada</button>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="contenido-resivo2" onload="window.print()">
+    <h2>Cafe Savalo</h2>
+    <p>Fecha: {{order.createdAt| date: 'YYYY-MM-dd:HH:MM'}}</p>
+    <p>Cajer@: {{order.cajero}}</p>
+    <p>Metodo de pago: {{order.metodoPago}} </p>
+    <table class="table table-light table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of order.articles_cantidad">
+                <th scope="row">{{item.cantidad}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.price | currency: '$'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>sub Total: {{order.subTotal | currency: '$'}}</p>
+
+    <p>Total: {{order.total | currency: '$'}}</p>
+    <div class="boton">
+        <button class="btn btn-primary form-control btn-print" onclick="window.print()">Imprimir recibo</button>
     </div>
 </div>

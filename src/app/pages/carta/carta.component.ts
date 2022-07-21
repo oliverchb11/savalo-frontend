@@ -32,15 +32,29 @@ export class CartaComponent implements OnInit {
     this.articleService.allArticles().subscribe((response) => {
       if(response.success){
         console.log(response);
-        this.articles = response.articles
+        this.articles = response.articles.map((resp, i)=>{
+          if( resp.visibility === 'si' || resp.visibility === ''){
+            return resp
+          }else{
+            return null
+          }
+          })
+
+          this.articles = this.articles.filter((resp)=> resp !== null);       
       }
     })
   }
   public getCategory(): void{
     this.categoryService.allCategorys().subscribe((response) => {
       if(response.success){
-        this.category = response.category
-        console.log(response);
+        this.category = response.category.map((resp, i)=>{
+        if( resp.visibility === 'si'){
+          return resp
+        }else{
+          return null
+        }
+        })
+      this.category = this.category.filter((resp)=> resp !== null);       
       }
     })
   }

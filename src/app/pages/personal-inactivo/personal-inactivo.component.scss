@@ -1,0 +1,17 @@
+::ng-deep .mat-dialog-container {
+    background-color: #fff;
+}
+
+h2 {
+    color: black;
+}
+
+.icon-close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-close svg {
+    color: black;
+    cursor: pointer;
+}

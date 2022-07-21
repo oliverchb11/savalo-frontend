@@ -16,7 +16,9 @@ export class GestionCategoriaComponent implements OnInit {
   public category: DataCreateCategory;
   public formulario: FormGroup;
   public name: string;
+  public visibility: string;
   public nameNew: string;
+  public visibilityNew: string;
   constructor(
     private activeRouter:  ActivatedRoute,
     private router: Router,
@@ -45,8 +47,10 @@ export class GestionCategoriaComponent implements OnInit {
   public getCategorys(id: string): void{
     this.categoryService.categoryById(id).subscribe((response) => {
       if(response.success){
+        console.log(response);
         this.category = response.category;
         this.name = this.category.name;
+        this.visibility = this.category.visibility;
       }
     })
   }
@@ -55,9 +59,14 @@ export class GestionCategoriaComponent implements OnInit {
   public nameData(name: string): void{
     this.nameNew = name;
   }
+
+  public visibilityData(visibility): void{
+    this.visibilityNew = visibility.target.value;
+  }
   public editCategory( id: string): void{
     const infoEdit = {
-      name: this.nameNew
+      name: this.nameNew,
+      visibility: this.visibilityNew
     }
     this.categoryService.updateCategory(infoEdit, id).subscribe((response) => {
       if(response.success){

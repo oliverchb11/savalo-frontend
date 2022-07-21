@@ -24,7 +24,8 @@ import Swal from 'sweetalert2';
 export class PedidosMesaComponent implements OnInit {
   public categorys: DataCreateCategory[];
   public articles: DataCreateArticle[];
-  public cajeros: RegisterUser[] = []
+  public cajeros: RegisterUser[] = [];
+  public user: any;
   public mesaData: any;
   public orders: DataOrders;
   public articlesId: string[] = [];
@@ -115,7 +116,7 @@ export class PedidosMesaComponent implements OnInit {
   public getArticles(): void{
     this.articleService.allArticles().subscribe((response)=> {
       if(response.success){
-        this.articles = response.articles;
+        this.articles = response.articles.filter((value)=> value.available === 'si' || value.available === '');
       }
     })
   }
@@ -306,7 +307,8 @@ export class PedidosMesaComponent implements OnInit {
         nameOrder: this.clienteNuevo,
         articles: this.articlesUpdate(this.mesaData.articles),
         articles_cantidad: this.articlesUpdate(this.orders.articles_cantidad),
-        total: totalUpdate
+        total: totalUpdate,
+        preparationState: 'preparacion'
       }
       console.log(idOrder, dataUpdate);
       this.ordersService.updateOrder(dataUpdate,idOrder).subscribe((response)=>{
@@ -355,6 +357,6 @@ export class PedidosMesaComponent implements OnInit {
       let user = JSON.parse(localStorage.getItem('user'));
       this.rolUser = user.rol[0];
       this.cajeroActual = user.name;
-      console.log( user.name);
+      console.log(this.rolUser, this.cajeros.length);
     }
 }

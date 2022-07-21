@@ -86,6 +86,12 @@ h2 {
     border: none;
 }
 
+.boton-inactivos {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
 @supports(object-fit: cover) {
     figure img {
         height: 100%;

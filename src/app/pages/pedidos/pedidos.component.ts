@@ -47,9 +47,12 @@ export class PedidosComponent implements OnInit {
   public getOrders(): void{
     this.ordersService.allOrders().subscribe((response) =>{
       if(response.success){
-        console.log(response);
+        console.log(response.orders);
         
-        this.orders = response.orders;
+        this.orders = response.orders.filter((resp)=> resp.preparationState === 'preparacion' ||
+        resp.preparationState === 'entregado' ||
+        resp.preparationState === 'reclamo');
+        
         this.loading = false;
         let orderPreparation = this.orders.filter((value) => value.preparationState === 'preparacion' ||
          value.preparationState === 'entregado' ||
@@ -83,13 +86,18 @@ export class PedidosComponent implements OnInit {
   }
 
   public methodPay(modal):void{
-    this.dialog.open(modal);
+    this.dialog.open(modal, 
+      {
+        disableClose: true,
+        
+      });
   }
 
   public efectivo(): void{
    let dialogRef = this.dialog.open(PayComponent, {
       data: this.order,
-      height:'500px'
+      height:'500px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((response) => {
@@ -100,6 +108,7 @@ export class PedidosComponent implements OnInit {
   public tranferencia(): void{
    let dialogRef = this.dialog.open(TranferenciaComponent, {
       data: this.order,
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((response) => {

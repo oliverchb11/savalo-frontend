@@ -26,3 +26,17 @@
 p {
     color: #000;
 }
+
+.contenido-resivo2 {
+    display: none;
+}
+
+.icon-close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-close svg {
+    color: black;
+    cursor: pointer;
+}

@@ -106,6 +106,7 @@ export class PayComponent implements OnInit {
      popupWinindow.document.close();
   }
 
-
-
+public close(): void{
+  this.dialogo.close()
+}
 }

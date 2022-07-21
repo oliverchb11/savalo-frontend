@@ -40,3 +40,13 @@ table {
     display: flex;
     justify-content: center;
 }
+
+.icon-close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-close svg {
+    color: black;
+    cursor: pointer;
+}

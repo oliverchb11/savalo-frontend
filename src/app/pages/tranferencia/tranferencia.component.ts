@@ -28,6 +28,7 @@ export class TranferenciaComponent implements OnInit {
         preparationState: 'pagado',
         metodoPago: 'transferencia',
       }
+      this.praintPay();
       this.orderService.updateOrder(infoUpdate, this.order._id).subscribe((response) => {
         if (response.success){
           successAlertGlobal('Trasfernecia realizada correctamente');
@@ -49,6 +50,19 @@ export class TranferenciaComponent implements OnInit {
         console.log('mesa update');
       }
     })
+  }
+
+  public praintPay(): void{
+    let prueba = document.querySelector('.contenido-resivo2');
+    let popupWinindow 
+    popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
+    popupWinindow.document.open(); 
+    popupWinindow.document.write(prueba.innerHTML);
+     popupWinindow.document.close();
+  }
+
+  public close(): void{
+    this.dialogo.close();
   }
 
 }

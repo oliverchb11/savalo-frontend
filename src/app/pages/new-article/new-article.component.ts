@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { CategoryService } from 'src/app/core/services/categorys/category.service';
 import { DataCreateCategory } from 'src/app/interfaces/category/data-create-category';
 import { RegisterUser } from 'src/app/interfaces/register-user';
-import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import { errorAlert, successAlertGlobal } from 'src/app/utils/global-alerts';
 
 @Component({
   selector: 'app-new-article',
@@ -64,6 +64,8 @@ export class NewArticleComponent implements OnInit {
         
         this.updatePhoto(this.file, response.article._id);
       }
+    }, err =>{
+      errorAlert(err.error.message)
     })
   }
 

@@ -31,6 +31,7 @@ import { RangoFechasComponent } from './rango-fechas/rango-fechas.component';
 import { TranferenciaComponent } from './tranferencia/tranferencia.component';
 import { GestionMesaComponent } from './gestion-mesa/gestion-mesa.component';
 import { DetalleReporteComponent } from './detalle-reporte/detalle-reporte.component';
+import { PersonalInactivoComponent } from './personal-inactivo/personal-inactivo.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { DetalleReporteComponent } from './detalle-reporte/detalle-reporte.compo
     RangoFechasComponent,
     TranferenciaComponent,
     GestionMesaComponent,
-    DetalleReporteComponent
+    DetalleReporteComponent,
+    PersonalInactivoComponent
   ],
   imports: [
     CommonModule,

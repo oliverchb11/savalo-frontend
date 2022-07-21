@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { CreatePersonalityComponent } from '../create-personality/create-personality.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { PersonalInactivoComponent } from '../personal-inactivo/personal-inactivo.component';
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class PersonalComponent implements OnInit {
   public users: RegisterUser[];
+  public usersInactive: RegisterUser[];
   public baseUrl = environment.API_PRODUCTION;
   public cargo: string;
   public userLogin: any;
@@ -30,7 +32,7 @@ export class PersonalComponent implements OnInit {
   ngOnInit(): void {
     this.getUsuersAll();
     this.userLogin = JSON.parse(localStorage.getItem('user'));
-    this.subscription = this.authService.refresOrder$.subscribe(() => {
+    this.subscription = this.profileService.refresOrder$.subscribe(() => {
       this.getUsuersAll();
     })
   }
@@ -40,6 +42,7 @@ export class PersonalComponent implements OnInit {
       if(response.success){
         console.log(response.users);
         this.users = response.users.filter((user) => user.state === true);
+        this.usersInactive = response.users;
       }
     })
   }
@@ -78,6 +81,13 @@ export class PersonalComponent implements OnInit {
     })
 
 
+  }
+
+  public personalInactivo(users: RegisterUser[]): void{
+    this.dialog.open(PersonalInactivoComponent,{
+      data: this.usersInactive,
+      height: '500px'
+    })
   }
 
 

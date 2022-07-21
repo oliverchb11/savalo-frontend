@@ -33,3 +33,33 @@
         <button class="form-control btn btn-success" (click)="payOrder(data, total)">Pagar</button>
     </div>
 </div>
+
+
+<div class="contenido-resivo" onload="window.print()">
+    <h2>Cafe Savalo</h2>
+    <p>Fecha: {{data.createdAt| date: 'YYYY-MM-dd:HH:MM'}}</p>
+    <p>Cajer@: {{data.cajero}}</p>
+    <table class="table table-light table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data.articles_cantidad">
+                <th scope="row">{{item.cantidad}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.price | currency: '$'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>sub Total: {{data.subTotal | currency: '$'}}</p>
+    <p>Impuesto: {{servicioVal | currency: '$'}}</p>
+    <p>Propina: {{propinaVal | currency: '$'}}</p>
+    <p>Total: {{total | currency: '$'}}</p>
+    <div class="boton">
+        <button class="btn btn-primary form-control btn-print" onclick="window.print()">Imprimir recibo</button>
+    </div>
+</div>

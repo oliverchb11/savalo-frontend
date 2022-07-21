@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { OrderService } from 'src/app/core/services/orders/order.service';
 import { TableService } from 'src/app/core/services/tables/table.service';
+import { DataOrders } from 'src/app/interfaces/orders/data-orders';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
 
 @Component({
@@ -16,6 +18,7 @@ export class PayComponent implements OnInit {
   public servicioVal: number = 0;
   public subTotal: number = 0;
   public total: number = 0;
+  public mostrarRecibo = false;
   constructor(
     public dialogo: MatDialogRef<PayComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,14 +37,16 @@ export class PayComponent implements OnInit {
       metodoPago: 'efectivo',
       total
     }
-    this.orderService.updateOrder(infoUpdate, order._id).subscribe((response) => {
-      if (response.success){
-        successAlertGlobal(response.message);
-        this.dialogo.close();
-        this.updateTable(order.table._id)
-          }
-    })
+    this.praintPay(order, total);
+      this.orderService.updateOrder(infoUpdate, order._id).subscribe((response) => {
+        if (response.success){
+          successAlertGlobal(response.message);
+          this.dialogo.close();
+          this.updateTable(order.table._id)
+            }
+      })
   }
+  
 
   public updateTable(id: string): void {
     const data = {
@@ -89,5 +94,18 @@ export class PayComponent implements OnInit {
       this.total = this.total - this.propinaVal;
     }
   }
+
+
+  public praintPay(order: DataOrders, total): void{
+    this.mostrarRecibo = true
+    let prueba = document.querySelector('.contenido-resivo');
+    let popupWinindow 
+    popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
+    popupWinindow.document.open(); 
+    popupWinindow.document.write(prueba.innerHTML);
+     popupWinindow.document.close();
+  }
+
+
 
 }

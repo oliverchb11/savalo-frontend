@@ -24,3 +24,19 @@ h2,
 table {
     overflow-x: scroll;
 }
+
+
+/*estilos resivo de pago*/
+
+.contenido-resivo {
+    display: none;
+}
+
+.contenido-resivo h2 {
+    text-align: center;
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+}

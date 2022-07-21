@@ -26,6 +26,7 @@ export class PedidosMesaComponent implements OnInit {
   public articles: DataCreateArticle[];
   public cajeros: RegisterUser[] = []
   public mesaData: any;
+  public orders: DataOrders;
   public articlesId: string[] = [];
   public articlesNew: DataCreateArticle[];
   public subTotal: number = 0;
@@ -233,9 +234,11 @@ export class PedidosMesaComponent implements OnInit {
         this.seBorro = true;
       }
     }
-    public deletePedidoId(i: number): void {
+    public deletePedidoId(i: number, item): void {
       this.mesaData.articles.splice(i,1);
-      this.totalOders = 0.
+      console.log(item, i);
+      this.orders.articles_cantidad.splice(i,1);
+      this.totalOders = 0
     }
 
     public updateTable(id: string, articles: string[], idOrder: string): void {
@@ -261,12 +264,12 @@ export class PedidosMesaComponent implements OnInit {
     }
     //validacion de articulos para acutliazar
     public articlesUpdate(article): any[]{
-      if(article.length > 0 && this.pedido.length === 0) {
+      if(article.length > 0 && this.pedido2.length === 0) {
          return article
-       }else if(article.length === 0 && this.pedido.length > 0){
-         return this.pedido
-       }else if(article.length > 0 && this.pedido.length > 0){
-        const union = this.pedido.concat(article)
+       }else if(article.length === 0 && this.pedido2.length > 0){
+         return this.pedido2
+       }else if(article.length > 0 && this.pedido2.length > 0){
+        const union = this.pedido2.concat(article)
          return  union;
        }else{
          return []
@@ -302,6 +305,7 @@ export class PedidosMesaComponent implements OnInit {
         cajero:  this.cajeroNuevo,
         nameOrder: this.clienteNuevo,
         articles: this.articlesUpdate(this.mesaData.articles),
+        articles_cantidad: this.articlesUpdate(this.orders.articles_cantidad),
         total: totalUpdate
       }
       console.log(idOrder, dataUpdate);
@@ -333,6 +337,7 @@ export class PedidosMesaComponent implements OnInit {
       this.ordersService.getOrderById(idOrder).subscribe((response) => {
         if(response.success){
           console.log('cajero', response?.order?.cajero);
+          this.orders = response?.order;
           // this.cajeroActual = response?.order?.cajero;
         }
       })

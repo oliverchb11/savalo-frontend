@@ -86,12 +86,15 @@
     padding: 10px;
     color: #fff;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .sub-menu-state {
     list-style: none;
 }
+
+.circulos {}
 
 .pointer {
     cursor: pointer;

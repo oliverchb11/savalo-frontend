@@ -10,17 +10,19 @@
         <div class="row" *ngIf="orders?.length > 0">
             <div class="col-md-3" *ngFor="let order of orders; let i = index">
                 <div class="card" *ngIf="order.preparationState !== 'pagado' && !order.pedidoCancelado   ">
-                    <p class="pedido" *ngIf="order.preparationState !== 'pagado' && !order.pedidoCancelado ">Pedido numero {{i+ 1}} / {{order.table.name}}
+                    <div class="marco-azul pedido">
+                        <p *ngIf="order.preparationState !== 'pagado' && !order.pedidoCancelado ">Pedido numero {{i+ 1}} / {{order.table.name}}</p>
                         <li class="sub-menu-state">
                             <svg class="nav-link dropdown-toggler bi bi-three-dots-vertical tres-p" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                  </svg>
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                      </svg>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item pointer" (click)="editOrder(order)">Editar Pedido</a></li>
                                 <li><a class="dropdown-item pointer" (click)="changeState(order)">Cambiar estado</a></li>
                             </ul>
                         </li>
-                    </p>
+                    </div>
+
                     <p class="pedido" *ngIf="order.preparationState === 'pagado'">Pedido Gestionado <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots-vertical tres-p" viewBox="0 0 16 16">
                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
                       </svg></p>

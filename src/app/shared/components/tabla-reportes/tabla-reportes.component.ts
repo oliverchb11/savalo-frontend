@@ -29,6 +29,7 @@ export class TablaReportesComponent implements OnInit {
   public pageSize: number;
   public pageSizeOptions: number;
   public lengthPage: number;
+  public tiempoTotalMesa: number;
   
 
   @Input() set isExport(value: boolean){
@@ -104,10 +105,11 @@ export class TablaReportesComponent implements OnInit {
         let hoy = moment().format('YYYY-MM-DD');
         this.reportsService.getReportsDay(hoy).subscribe((response) => {
           if(response.success){
-            console.log(response);
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersDay;
+            this.articulosFiltrados(response.ordersDay)
+             this.tiempoTotalMesa = this.promedioClienteMesa(response.ordersDay)
             this.totalOrders = this.priceTotalOrders(this.search);
             this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
             this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
@@ -124,6 +126,7 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersMoth;
+            this.tiempoTotalMesa = this.promedioClienteMesa(response.ordersMoth)
             this.totalOrders = this.priceTotalOrders(this.search);
             this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
             this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
@@ -140,6 +143,7 @@ export class TablaReportesComponent implements OnInit {
             this.pageSize = response.pageSize;
             this.lengthPage = response.count;
             this.search = response.ordersweek;
+            this.tiempoTotalMesa = this.promedioClienteMesa(response.ordersweek)
             this.totalOrders = this.priceTotalOrders(this.search)
             this.totalOrdersEfectivo = this.priceTotalEfectivo(this.search);
             this.totalOrdersTransferencia= this.priceTotalTrasferencia(this.search);
@@ -339,6 +343,22 @@ export class TablaReportesComponent implements OnInit {
   public detailReport(item: DataOrders): void{
     console.log(item);
     this.router.navigateByUrl(`pages/detalle-reporte/${item._id}`)    
+  }
+
+  //saber promedio del cliente en la mesa
+  public promedioClienteMesa(dataOrder: DataOrders[]): number{
+    let tiempoMesa = dataOrder.reduce((previus, data) =>{
+      return previus += data.fechaPagado
+    }, 0)
+    let totalTiempoMesa = tiempoMesa / dataOrder.length
+    return parseInt(totalTiempoMesa.toFixed(2));
+  }
+
+  //saber los articulos que se filtratron
+  public articulosFiltrados(dataOrder: DataOrders[]): void{
+    let articulos = dataOrder.map((articulo)=> articulo.articles_cantidad[0]);
+    console.log('importante hoy', articulos);
+    
   }
 
 }

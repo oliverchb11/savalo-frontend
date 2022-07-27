@@ -11,7 +11,7 @@
             <div class="all">
 
                 <div class="mesas1" *ngFor="let mesa of tables; let i = index">
-                    <div class="info" [ngClass]="{'mesa-activada': avilabledColor && mesa.libre}" (click)="gestionarMesa(mesa)">
+                    <div *ngIf="!mesa.ocultar" class="info" [ngClass]="{'mesa-activada': avilabledColor && mesa.libre}" (click)="gestionarMesa(mesa)">
                         <p class="text-center" [ngClass]="{'mesa-libre': mesa.libre, 'mesa-ocupada': !mesa.libre}">{{(mesa.libre) ? 'Mesa libre': 'Mesa ocupada'}}</p>
                         <p class="text-center">{{mesa.name}} / sillas {{mesa.numeroSillas}}</p>
                         <img class="mesas-img" [src]="mesa.img" [alt]="mesa.name" (click)="mesaInfo(mesa)">

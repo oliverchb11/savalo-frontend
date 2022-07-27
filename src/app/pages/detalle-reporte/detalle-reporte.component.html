@@ -1,79 +1,67 @@
 <div class="container">
-    <div class="info">
-        <div class="row text-center m-3">
-            <div class="col-md-6">
-                <p>Fecha Inicio</p>
+    <div class="container2">
+        <div class="info">
+            <div class="row text-center m-3">
+                <div class="col-md-12 ">
+                    <b>Información de la orden</b>
+                </div>
             </div>
-            <div class="col-md-6">
-                <p>{{order?.createdAt | date: 'medium'}}</p>
-            </div>
-        </div>
-        <div class="row text-center m-3">
-            <div class="col-md-6">
-                <p>Mesa</p>
-            </div>
-            <div class="col-md-6">
-                <p>{{order?.table?.name}}</p>
-            </div>
-        </div>
-        <div class="row text-center m-3">
-            <div class="col-md-6">
-                <p>Cajero</p>
-            </div>
-            <div class="col-md-6">
-                <p>{{order?.cajero}}</p>
-            </div>
-        </div>
-        <div class="row text-center m-3">
-            <div class="col-md-6">
-                <p>Medio de pago</p>
-            </div>
-            <div class="col-md-6">
-                <p>{{order?.metodoPago}}</p>
-            </div>
-        </div>
-        <div class="row text-center m-3">
-            <div class="col-md-6">
-                <p>Tiempo de preparación a entrega</p>
-            </div>
-            <div class="col-md-6">
-                <p>{{order?.fechaEntrega}} minutos</p>
-            </div>
-        </div>
-        <div class="row text-center m-3">
-            <div class="col-md-6">
-                <p>Tiempo total del pedido</p>
-            </div>
-            <div class="col-md-6">
-                <p>{{order?.fechaPagado}} minutos</p>
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    <div class="info">
-        <div class="row text-center m-3">
-            <div class="col-md-12 ">
-                <b>Articulos</b>
-            </div>
-        </div>
-        <div class="row" *ngFor="let item of order?.articles_cantidad">
-            <div class="col-md-2 article-1">
-                <p>{{item?.cantidad}}</p>
-            </div>
-            <div class="col-md-10 article-2">
-                <p>{{item?.name}}</p>
-                <p>{{item?.price | currency: '$'}}</p>
-            </div>
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Mesa</th>
+                        <th scope="col">Cajero</th>
+                        <th scope="col">Medio de pago</th>
+                        <th scope="col">Tiempo de preparación a entrega</th>
+                        <th scope="col">Tiempo total del pedido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{order?.createdAt | date: 'medium'}}</td>
+                        <td>{{order?.table?.name}}</td>
+                        <td>{{order?.cajero}}</td>
+                        <td>{{order?.metodoPago}}</td>
+                        <td>{{order?.fechaEntrega}} minutos</td>
+                        <td>{{order?.fechaPagado}} minutos</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <br>
         <br>
-        <div class="row text-center">
-            <div class="col-md-6">
-                <p>Total</p>
+        <div class="info">
+
+            <div class="row text-center m-3">
+                <div class="col-md-12 ">
+                    <b>Articulos</b>
+                </div>
             </div>
-            <div class="col-md-6">
-                <p>{{order?.total | currency: '$'}}</p>
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Mesa</th>
+                        <th scope="col">Cajero</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of order?.articles_cantidad">
+                        <th scope="row">{{item.cantidad}}</th>
+                        <td>{{item?.name}}</td>
+                        <td>{{item?.price | currency: '$'}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <p>Total</p>
+                </div>
+                <div class="col-md-6">
+                    <p>{{order?.total | currency: '$'}}</p>
+                </div>
             </div>
         </div>
     </div>

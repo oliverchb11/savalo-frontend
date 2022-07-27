@@ -38,5 +38,11 @@ export const errorAlert = (mensaje) => {
         icon: 'error'
     });
 }
+export const infoAlert = (mensaje) => {
+    Swal.fire({
+        title: mensaje,
+        icon: 'info'
+    });
+}
 
 

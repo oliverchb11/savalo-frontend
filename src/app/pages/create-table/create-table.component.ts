@@ -32,4 +32,8 @@ export class CreateTableComponent implements OnInit {
     })
   }
 
+  public salirMesa(): void{
+    this.dialogo.close()
+  }
+
 }

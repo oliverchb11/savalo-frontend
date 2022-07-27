@@ -31,7 +31,10 @@ export class GestionMesaComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.tableService.tablesDelete(id).subscribe((response) => {
+        const data = {
+          ocultar: true
+        }
+        this.tableService.updateTable(data, id).subscribe((response) => {
           if(response.success){
             successAlertGlobal(response.message);
             this.dialogo.close();

@@ -235,6 +235,16 @@ span {
     gap: 1em;
 }
 
+.icon-close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon-close svg {
+    color: black;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     .categoria {
         width: 100%;

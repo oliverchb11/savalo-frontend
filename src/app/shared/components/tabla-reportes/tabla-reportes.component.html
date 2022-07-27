@@ -47,6 +47,17 @@
                 <td>{{totalOrdersTransferencia| currency: '$'}}</td>
             </tr>
         </tbody>
+        <tbody class="tbody-total" *ngIf="search?.length > 0">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total tiempo del cliente mesa</td>
+                <td>{{tiempoTotalMesa}} minutos</td>
+            </tr>
+        </tbody>
     </table>
     <mat-paginator *ngIf="search?.length > 0" (page)="page($event)" [length]="lengthPage" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
     </mat-paginator>
@@ -56,4 +67,24 @@
             No hay busqueda de reportes o No hay ventas
         </h2>
     </div>
+
+    <br>
+    <br>
+    <table id="season-tble" *ngIf="search?.length > 0">
+        <thead>
+            <tr>
+                <td>Articulos</td>
+                <td>Precio</td>
+            </tr>
+        </thead>
+        <tbody *ngIf="search?.length > 0">
+            <tr>
+                <td>1 Sopa</td>
+                <td>$2000</td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
 </div>

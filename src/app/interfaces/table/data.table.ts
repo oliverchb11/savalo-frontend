@@ -4,6 +4,7 @@ import { DataOrders } from "../orders/data-orders";
 export interface DataTable{
     name?: string;
     libre?: boolean;
+    ocultar?: boolean;
     category?: string;
     articles?: string;
     img?:string;
@@ -17,6 +18,7 @@ export interface DataTableOrder{
     name?: string;
     libre?: boolean;
     category?: string;
+    ocultar?: boolean;
     articles?: DataCreateArticle[];
     img?:string;
     position?: number;

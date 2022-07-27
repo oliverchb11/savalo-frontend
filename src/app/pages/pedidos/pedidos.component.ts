@@ -9,7 +9,7 @@ import { PayComponent } from '../pay/pay.component';
 import { CambioEstadoOrdenComponent } from '../cambio-estado-orden/cambio-estado-orden.component';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import { infoAlert, successAlertGlobal } from 'src/app/utils/global-alerts';
 import { TableService } from 'src/app/core/services/tables/table.service';
 import { PqrsComponent } from '../pqrs/pqrs.component';
 import { TranferenciaComponent } from '../tranferencia/tranferencia.component';
@@ -118,7 +118,11 @@ export class PedidosComponent implements OnInit {
   }
 
   public pay(order, modal): void {
-    this.methodPay(modal);
+    if(order.preparationState === 'preparacion'){
+      infoAlert('El pedido esta en preparación no se puede realizar el pago')
+    }else{
+      this.methodPay(modal);
+    }
     this.order = order;
   }
 
@@ -179,5 +183,9 @@ export class PedidosComponent implements OnInit {
         console.log('mesa update');
       }
     })
+  }
+
+  public close(): void{
+    this.dialog.closeAll()
   }
 }

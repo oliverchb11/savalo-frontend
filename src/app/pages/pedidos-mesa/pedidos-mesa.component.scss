@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     background-color: #DCE1E3;
-    height: 100vh;
+    height: auto;
     padding: 10px;
 }
 
@@ -118,6 +118,11 @@ h3 {
 
 .info-mesa-4 .btn-create :disabled {
     background-color: red;
+}
+
+.info-mesa-4 .btn-cancelar {
+    background-color: red;
+    margin-top: 10px;
 }
 
 .select-cajero {

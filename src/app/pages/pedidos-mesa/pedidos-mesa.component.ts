@@ -236,7 +236,6 @@ export class PedidosMesaComponent implements OnInit {
       this.total = this.total - parseInt(this.pedido2[index].price);
       if(this.pedido2[index].cantidad === 0){
         this.pedido2.splice(index,1);
-        this.seBorro = true;
       }
       // if(this.pedido2.length === 0){
       //   this.seBorro = true;
@@ -365,5 +364,9 @@ export class PedidosMesaComponent implements OnInit {
       this.rolUser = user.rol[0];
       this.cajeroActual = user.name;
       console.log(this.rolUser, this.cajeros.length);
+    }
+
+    public cancelOrder(): void{
+      this.router.navigateByUrl('pages/pedidos')
     }
 }

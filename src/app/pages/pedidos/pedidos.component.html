@@ -49,9 +49,9 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let article of order.articles_cantidad">
-                                <th scope="row">{{article.cantidad}}</th>
-                                <td>{{article.name}}</td>
-                                <td>{{article.price | currency: '$'}}</td>
+                                <th *ngIf="article.cantidad !== 0" scope="row">{{article.cantidad}}</th>
+                                <td *ngIf="article.cantidad !== 0">{{article.name}}</td>
+                                <td *ngIf="article.cantidad !== 0">{{article.price | currency: '$'}}</td>
                             </tr>
                         </tbody>
                     </table>

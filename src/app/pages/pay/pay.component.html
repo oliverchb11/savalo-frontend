@@ -18,9 +18,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of data.articles_cantidad">
-                    <th scope="row">{{item.cantidad}}</th>
-                    <td>{{item.name}}</td>
-                    <td>{{item.price | currency: '$'}}</td>
+                    <th *ngIf="item.cantidad !== 0" scope="row">{{item.cantidad}}</th>
+                    <td *ngIf="item.cantidad !== 0">{{item.name}}</td>
+                    <td *ngIf="item.cantidad !== 0">{{item.price | currency: '$'}}</td>
                 </tr>
             </tbody>
         </table>
@@ -56,9 +56,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of data.articles_cantidad">
-                <th scope="row">{{item.cantidad}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.price | currency: '$'}}</td>
+                <th *ngIf="item.cantidad !== 0" scope="row">{{item.cantidad}}</th>
+                <td *ngIf="item.cantidad !== 0">{{item.name}}</td>
+                <td *ngIf="item.cantidad !== 0">{{item.price | currency: '$'}}</td>
             </tr>
         </tbody>
     </table>

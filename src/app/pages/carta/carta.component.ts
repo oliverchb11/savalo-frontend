@@ -25,6 +25,8 @@ export class CartaComponent implements OnInit {
     this.getCarta(8);
     this.getArticle();
     this.getCategory();
+    console.log('ok');
+    
   }
 
 

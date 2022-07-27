@@ -9,14 +9,11 @@
                         <div class="col-md-12 " *ngFor="let itemArticle of articles">
                             <div class="row div-article" *ngIf="itemArticle.category === itemCategory._id">
                                 <div class="col-md-2">
-                                    <img *ngIf="itemArticle.photo" class="img-article"
-                                        src="{{baseUrl}}upload/productos/{{itemArticle.photo}}" alt="">
-                                    <img *ngIf="!itemArticle.photo" class="img-article" src="assets/img/no-photo.png"
-                                        alt="">
+                                    <img *ngIf="itemArticle.photo" class="img-article" src="{{baseUrl}}upload/productos/{{itemArticle.photo}}" alt="">
+                                    <img *ngIf="!itemArticle.photo" class="img-article" src="assets/img/no-photo.png" alt="">
                                 </div>
                                 <div class="col-md-9">
-                                    <p class="name-price"> {{itemArticle.name}} ............ {{itemArticle.price |
-                                        currency: '$' }}</p>
+                                    <p class="name-price"> {{itemArticle.name}} ............ {{itemArticle.price | currency: '$' }}</p>
                                 </div>
                             </div>
                         </div>

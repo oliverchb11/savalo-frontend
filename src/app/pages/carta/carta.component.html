@@ -1,22 +1,22 @@
 <div class="container ml-5">
-    <div class="container2">
-
-        <h3 class="text-center">Carta</h3>
-        <div class="card" *ngIf="category?.length > 0">
-            <div class="row">
-                <div class="col-md-4 div-category" *ngFor="let itemCategory of category">
-                    <div *ngIf="itemCategory?.visibility === 'si'">
-                        <h1 class="text-center title-category">{{itemCategory.name}}</h1>
-                        <div class="row">
-                            <div class="col-md-12 " *ngFor="let itemArticle of articles">
-                                <div class="row div-article" *ngIf="itemArticle.category === itemCategory._id">
-                                    <div class="col-md-2">
-                                        <img *ngIf="itemArticle.photo" class="img-article" src="{{baseUrl}}upload/productos/{{itemArticle.photo}}" alt="">
-                                        <img *ngIf="!itemArticle.photo" class="img-article" src="assets/img/no-photo.png" alt="">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p class="name-price"> {{itemArticle.name}} ............ {{itemArticle.price | currency: '$' }}</p>
-                                    </div>
+    <h3 class="text-center">Carta</h3>
+    <div class="card" *ngIf="category?.length > 0">
+        <div class="row">
+            <div class="col-md-4 div-category" *ngFor="let itemCategory of category">
+                <div *ngIf="itemCategory?.visibility === 'si'">
+                    <h1 class="text-center title-category">{{itemCategory.name}}</h1>
+                    <div class="row">
+                        <div class="col-md-12 " *ngFor="let itemArticle of articles">
+                            <div class="row div-article" *ngIf="itemArticle.category === itemCategory._id">
+                                <div class="col-md-2">
+                                    <img *ngIf="itemArticle.photo" class="img-article"
+                                        src="{{baseUrl}}upload/productos/{{itemArticle.photo}}" alt="">
+                                    <img *ngIf="!itemArticle.photo" class="img-article" src="assets/img/no-photo.png"
+                                        alt="">
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="name-price"> {{itemArticle.name}} ............ {{itemArticle.price |
+                                        currency: '$' }}</p>
                                 </div>
                             </div>
                         </div>
@@ -24,13 +24,12 @@
                 </div>
             </div>
         </div>
-        <div class="row no-carta" *ngIf="category?.length === 0">
-            <img src="assets/img/undraw_blog_post_re_fy5x.svg" alt="">
-            <h2 class="text-center">No hay Carta disponible</h2>
-        </div>
-        <!-- <div class="card" *ngFor="let item of carta">
+    </div>
+    <div class="row no-carta" *ngIf="category?.length === 0">
+        <img src="assets/img/undraw_blog_post_re_fy5x.svg" alt="">
+        <h2 class="text-center">No hay Carta disponible</h2>
+    </div>
+    <!-- <div class="card" *ngFor="let item of carta">
         <img [src]="item.img" alt="">
     </div> -->
-    </div>
-
 </div>

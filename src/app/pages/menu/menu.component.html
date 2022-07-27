@@ -7,12 +7,12 @@
     <div class="all" *ngIf="categorys?.length > 0">
         <div class="categorias" *ngFor="let category of categorys; let i = index">
             <div class="categorys bg-primary" (click)="gestionCategoy(category)">
-                <p>{{category.name}} </p>
+                <p>{{category.name | mayusculaInicial}} </p>
                 <span class="badge bg-secondary">{{i+1}}</span>
             </div>
             <div class="prueba" *ngFor="let article of articles">
                 <div class="articles-info" *ngIf="category._id === article.category" (click)="gestionArticle(article)">
-                    <p> <img *ngIf="article.photo" class="img-article" src="{{baseUrl}}upload/productos/{{article.photo}}" alt=""> <img *ngIf="!article.photo" class="img-article" src="assets/img/no-photo.png" alt=""> {{article.name}}</p>
+                    <p> <img *ngIf="article.photo" class="img-article" src="{{baseUrl}}upload/productos/{{article.photo}}" alt=""> <img *ngIf="!article.photo" class="img-article" src="assets/img/no-photo.png" alt=""> {{article.name | mayusculaInicial}}</p>
                     <span class="badge bg-dark b-article">{{article.price | currency: '$'}}</span>
                 </div>
             </div>

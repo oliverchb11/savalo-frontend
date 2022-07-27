@@ -10,6 +10,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { LoaderComponent } from './components/loader/loader.component';
 import { TablaReportesComponent } from './components/tabla-reportes/tabla-reportes.component';
 import { MaterialModule } from '../material/material.module';
+import { MayusculaInicialPipe } from './components/pipes/mayuscula-inicial.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MaterialModule } from '../material/material.module';
     ChartVentasComponent,
     ChartPedidosComponent,
     LoaderComponent,
-    TablaReportesComponent
+    TablaReportesComponent,
+    MayusculaInicialPipe
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { MaterialModule } from '../material/material.module';
     ChartVentasComponent,
     ChartPedidosComponent,
     LoaderComponent,
-    TablaReportesComponent
+    TablaReportesComponent,
+    MayusculaInicialPipe
   ]
 })
 export class SharedModule { }

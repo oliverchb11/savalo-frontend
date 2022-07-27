@@ -41,7 +41,7 @@
 </div>
 
 
-<div class="contenido-resivo" onload="window.print()">
+<div #innerHtmlNgTemplate id="print" style="visibility: hidden;" class="print">
     <h2>Cafe Savalo</h2>
     <p>Fecha: {{data.createdAt| date: 'YYYY-MM-dd:HH:MM'}}</p>
     <p>Cajer@: {{data.cajero}}</p>
@@ -66,7 +66,4 @@
     <p>Impuesto: {{servicioVal | currency: '$'}}</p>
     <p>Propina: {{propinaVal | currency: '$'}}</p>
     <p>Total: {{total | currency: '$'}}</p>
-    <div class="boton">
-        <button class="btn btn-primary form-control btn-print" onclick="window.print()">Imprimir recibo</button>
-    </div>
 </div>

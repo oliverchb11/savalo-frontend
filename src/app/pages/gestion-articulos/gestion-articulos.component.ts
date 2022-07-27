@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/core/services/articles/article.service';
 import { DataCreateArticle } from 'src/app/interfaces/article/data-create-article';
-import { successAlertGlobal } from 'src/app/utils/global-alerts';
+import { errorAlert, successAlertGlobal } from 'src/app/utils/global-alerts';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-gestion-articulos',
@@ -100,13 +100,18 @@ export class GestionArticulosComponent implements OnInit {
       delete data.available;
     }
     if(Object.entries(data).length !== 0){
-      console.log(data); 
+      console.log(data, id); 
       this.articleService.updateArticle(data, id).subscribe((response) => {
         if(response.success){
           successAlertGlobal(response.message);
           this.router.navigateByUrl('pages/menu')
+        }else{
+         errorAlert('Error al actualizar el articulo')
+          
         }
-      })
+      }, (err => {
+        console.log('no cargo', err);
+      }))
     }
     
   }

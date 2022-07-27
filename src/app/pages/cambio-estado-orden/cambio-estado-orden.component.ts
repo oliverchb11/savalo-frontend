@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OrderService } from 'src/app/core/services/orders/order.service';
+import { TableService } from 'src/app/core/services/tables/table.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cambio-estado-orden',
@@ -13,11 +14,14 @@ export class CambioEstadoOrdenComponent implements OnInit {
   constructor(
     public dialogo: MatDialogRef<CambioEstadoOrdenComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private tableService: TableService
   ) { }
 
   ngOnInit(): void {
     this.state = this.data.preparationState;
+    console.log(this.data);
+    
   }
 
   public estadoAcutal(event): void{
@@ -50,6 +54,7 @@ export class CambioEstadoOrdenComponent implements OnInit {
         }
       })
     }else{
+ 
       const data = {
         preparationState: this.stateNew
       }
@@ -62,6 +67,18 @@ export class CambioEstadoOrdenComponent implements OnInit {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+          if(this.stateNew === 'cancelado'){
+            let idTabla = this.data.table._id;
+            let data = {
+              libre: true
+            }
+            this.tableService.updateTable(data,idTabla).subscribe((response)=>{
+              if(response.success){
+                console.log('tabla actualizada');
+                
+              }
+            })
+          }
           this.orderService.updateOrder(data, id).subscribe((response) => {
             if (response.success){
               Swal.fire(response.message, '', 'success');

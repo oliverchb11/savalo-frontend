@@ -43,6 +43,7 @@ export class CambioEstadoOrdenComponent implements OnInit {
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+          
           this.orderService.updateOrder(data, id).subscribe((response) => {
             if (response.success){
               Swal.fire(response.message, '', 'success');

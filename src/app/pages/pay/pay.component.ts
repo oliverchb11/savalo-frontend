@@ -1,11 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { OrderService } from 'src/app/core/services/orders/order.service';
 import { TableService } from 'src/app/core/services/tables/table.service';
 import { DataOrders } from 'src/app/interfaces/orders/data-orders';
 import { successAlertGlobal } from 'src/app/utils/global-alerts';
-
+import Swal from 'sweetalert2';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-pay',
   templateUrl: './pay.component.html',
@@ -25,7 +28,7 @@ export class PayComponent implements OnInit {
     private orderService: OrderService,
     private tableService: TableService
   ) { }
-
+  @ViewChild('innerHtmlNgTemplate', {static: true}) public innerHtmlNgTemplate;
   ngOnInit(): void {
     console.log(this.data);
     this.total = this.data.total;
@@ -37,17 +40,32 @@ export class PayComponent implements OnInit {
       metodoPago: 'efectivo',
       total
     }
-    this.praintPay(order, total);
+    // this.praintPay(order, total);
       this.orderService.updateOrder(infoUpdate, order._id).subscribe((response) => {
         if (response.success){
-          successAlertGlobal(response.message);
+          this.alertPay('Orden pagada correctamente');
           this.dialogo.close();
           this.updateTable(order.table._id)
             }
       })
   }
   
-
+  public alertPay(message): void{
+    Swal.fire({
+      title: message,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Imprimir Recibo',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.praintPay();
+      } else if (result.isDenied) {
+        Swal.fire('Cancelado', '', 'info')
+      }
+    })
+  }
   public updateTable(id: string): void {
     const data = {
       libre: true,
@@ -96,17 +114,19 @@ export class PayComponent implements OnInit {
   }
 
 
-  public praintPay(order: DataOrders, total): void{
-    this.mostrarRecibo = true
-    let prueba = document.querySelector('.contenido-resivo');
-    let popupWinindow 
-    popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no'); 
-    popupWinindow.document.open(); 
-    popupWinindow.document.write(prueba.innerHTML);
-     popupWinindow.document.close();
+  public praintPay(): void{
+    const printContent = document.getElementById("print");
+    const WindowPrt = window.open('', '', 'left=0,top=50,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+    WindowPrt.document.write(this.innerHtmlNgTemplate.nativeElement.innerHTML);
+    WindowPrt.document.close();
+    WindowPrt.focus();
+    WindowPrt.print();
+    WindowPrt.close();
   }
 
 public close(): void{
   this.dialogo.close()
 }
+
+
 }

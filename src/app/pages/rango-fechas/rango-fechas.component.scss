@@ -1,3 +1,27 @@
+::ng-deep .mat-start-date {
+    color: #000 !important;
+}
+
+::ng-deep .mat-end-date {
+    color: #000 !important;
+}
+
 ::ng-deep .mat-form-field {
     width: 100%;
+}
+
+::ng-deep .mat-dialog-container {
+    background-color: #fff;
+}
+
+::ng-deep .mat-datepicker-toggle-default-icon {
+    color: #000;
+}
+
+::ng-deep .mat-date-range-input-mirror {
+    color: #000 !important;
+}
+
+h2 {
+    color: black;
 }

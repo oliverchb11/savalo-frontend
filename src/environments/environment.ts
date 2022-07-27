@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   API_LOCAL: 'http://localhost:4000/api/v1/',
-  API_PRODUCTION: 'http://localhost:4000/api/v1/',
-  // API_PRODUCTION: 'https://savalo-server-back.herokuapp.com/api/v1/',
+  // API_PRODUCTION: 'http://localhost:4000/api/v1/',
+  API_PRODUCTION: 'https://savalo-server-back.herokuapp.com/api/v1/',
 };
 
 /*
